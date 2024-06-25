@@ -22,6 +22,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (_v != 0 || _h != 0)
         {
+            Vector3 screen_LeftBottom = Camera.main.ScreenToWorldPoint(Vector3.zero);
+            Vector3 screen_RightTop = Camera.main.ScreenToWorldPoint(
+                new Vector3(Screen.width, Screen.height, 0)
+            );
+
             transform.position += new Vector3(_h, _v) * _moveSpeed;
         }
     }

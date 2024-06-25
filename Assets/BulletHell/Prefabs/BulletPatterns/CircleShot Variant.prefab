@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2322203149887932540
+--- !u!1001 &67987855887901352
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -49,43 +49,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: cullingMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: lengthInSec
-      value: 0.3
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: ShapeModule.arc.mode
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: ShapeModule.arc.value
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: ShapeModule.m_Rotation.z
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_BurstCount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: TrailModule.lifetime.scalar
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: ShapeModule.arc.speed.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: VelocityModule.orbitalZ.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: CollisionModule.m_Bounce.scalar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
@@ -102,39 +78,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.12173247
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.055797815
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
-      value: 0.62578607
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.75800997
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: InitialModule.startColor.minColor.r
-      value: 0.63483644
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: VelocityModule.speedModifier.scalar
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
-      value: 0.1
+      value: 0.73899364
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
-      objectReference: {fileID: 8231469314462995424}
+      objectReference: {fileID: 5978414519560993076}
+    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.ctime1
+      value: 43562
+      objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxGradient.key0.b
-      value: 0.12911367
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxGradient.key0.g
-      value: 1
+      value: 0.37840176
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxGradient.key0.r
@@ -142,15 +122,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxGradient.key1.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxGradient.key1.g
-      value: 0.9049736
+      value: 0.9677026
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxGradient.key1.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
@@ -166,7 +146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
@@ -262,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: m_Name
-      value: FollowCursorShot
+      value: CircleShot Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -270,27 +250,30 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7758474455973365944}
+      addedObject: {fileID: 2342563554995440145}
   m_SourcePrefab: {fileID: 100100000, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
---- !u!1 &373726563014003615 stripped
+--- !u!1 &2730355352459796811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-  m_PrefabInstance: {fileID: 2322203149887932540}
+  m_PrefabInstance: {fileID: 67987855887901352}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7758474455973365944
+--- !u!114 &2342563554995440145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373726563014003615}
+  m_GameObject: {fileID: 2730355352459796811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b25a26c83031fc46859c171684f6f3d, type: 3}
+  m_Script: {fileID: 11500000, guid: a3d320b8ec9da0745bdde394403f7cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &8231469314462995424 stripped
+  _waitTime: 0.5
+  _maxAngular: 360
+  _minAngular: 0
+--- !u!198 &5978414519560993076 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5910432231058660252, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-  m_PrefabInstance: {fileID: 2322203149887932540}
+  m_PrefabInstance: {fileID: 67987855887901352}
   m_PrefabAsset: {fileID: 0}

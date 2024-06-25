@@ -27,7 +27,7 @@ public class HealthController : MonoBehaviour
             for (int i = 0; i < _health; i++)
             {
                 _healthBar[i] = Instantiate(_healthPrefab, transform);
-                _healthBar[i].transform.position = new Vector2(this.transform.position.x + i * _healthPadding, this.transform.position.y);
+                _healthBar[i].transform.position = new Vector2(this.transform.position.x + i * Screen.width / _healthPadding, this.transform.position.y);
             }
         }
         else

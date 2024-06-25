@@ -8,7 +8,7 @@ public class BulletPatternRandomizer : MonoBehaviour
 {
     [Header("óLå¯Ç…Ç∑ÇÈÇ©Ç«Ç§Ç©")]
     [SerializeField]
-    bool isEnabled;
+    bool _isEnabled;
 
     [Header("ë“ã@ïbêî")]
     [SerializeField]
@@ -21,10 +21,9 @@ public class BulletPatternRandomizer : MonoBehaviour
     GameObject _curretnPattern;
     private void Start()
     {
-        if (isEnabled && _patterns != null)
+        if (_isEnabled && _patterns != null)
         {
             StartCoroutine(PatternSwitcher());
-            _curretnPattern = Instantiate(_patterns[Random.Range(0, _patterns.Length)]);
         }
     }
 
@@ -32,11 +31,14 @@ public class BulletPatternRandomizer : MonoBehaviour
     {
         while (true)
         {
+            if (_curretnPattern != null)
+            {
+                var emission = _curretnPattern.GetComponent<ParticleSystem>().emission;
+                emission.enabled = false;
+                Destroy(_curretnPattern, 10);
+            }
+            _curretnPattern = Instantiate(_patterns[Random.Range(0, _patterns.Length)], this.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(_waitSeconds);
-            var emission = _curretnPattern.GetComponent<ParticleSystem>().emission;
-            emission.enabled = false;
-            Destroy(_curretnPattern, 10);
-            _curretnPattern = Instantiate(_patterns[Random.Range(0, _patterns.Length)]);
         }
     }
 }

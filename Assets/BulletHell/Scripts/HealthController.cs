@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
@@ -66,6 +67,6 @@ public class HealthController : MonoBehaviour
     void Gameover()
     {
         Debug.Log("Gameover");
-        Time.timeScale = 0;
+        SceneManager.LoadScene("Gameover");
     }
 }

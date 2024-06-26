@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static float _time;
+    public static float gameTime => _time;
+    Text _text;
+    private void Start()
     {
-        
+        _time = 0f;
+        _text = GameObject.Find("TimeField").GetComponent<Text>();
     }
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        _time += Time.deltaTime;
+        if (_text != null)
+        {
+            _text.text = _time.ToString("F2");
+        }
     }
 }

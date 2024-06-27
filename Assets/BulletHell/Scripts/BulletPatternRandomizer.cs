@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 弾幕パターンを配列からランダムに選出し、生成するスクリプト。
@@ -23,8 +24,13 @@ public class BulletPatternRandomizer : MonoBehaviour
 
     /// <summary> 現在の弾幕パターンを保存。 </summary>
     GameObject _curretnPattern;
+
+    /// <summary> パターン切り替わる時に表示するパネル </summary>
+    Image _flashPanel;
     private void Start()
     {
+        _flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();
+        _flashPanel.enabled = false;
         if (_isEnabled && _patterns != null)
         {
             StartCoroutine(PatternSwitcher());
@@ -37,9 +43,10 @@ public class BulletPatternRandomizer : MonoBehaviour
         {
             if (_curretnPattern != null)
             {
-                var emission = _curretnPattern.GetComponent<ParticleSystem>().emission;
-                emission.enabled = false;
-                Destroy(_curretnPattern, 10);
+                _flashPanel.enabled = true;
+                Destroy(_curretnPattern);
+                yield return new WaitForSeconds(0.1f);
+                _flashPanel.enabled = false;
             }
             var pickedPattern = _patterns[Random.Range(0, _patterns.Length)];
             var spawnPos = this.transform.position;
@@ -48,7 +55,7 @@ public class BulletPatternRandomizer : MonoBehaviour
                 spawnPos = pickedPattern.transform.position;
             }
             _curretnPattern = Instantiate(pickedPattern, spawnPos, Quaternion.identity);
-            yield return new WaitForSeconds(_waitSeconds);
+            yield return new WaitForSeconds(_waitSeconds - 0.1f);
         }
     }
 }

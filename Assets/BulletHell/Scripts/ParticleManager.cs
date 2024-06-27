@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 弾幕のヒット時に体力を削ったり、弾幕生成時に効果音を鳴らすスクリプト。
+/// FollowCursorのプレイヤーの方向を向く機能と、RandomDirectionのランダムな方向に向く機能を統合させ1つのスクリプトにまとめた。。
+/// </summary>
 public class ParticleManager : MonoBehaviour
 {
     [Header("パーティクルのダメージ量")]

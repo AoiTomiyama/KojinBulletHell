@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 指定秒数毎に向きをランダムな方向へ変える。
+/// ParticleManagerに統合予定。
 /// </summary>
 public class RandomDirection : MonoBehaviour
 {

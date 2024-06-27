@@ -1,7 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// フェードインとフェードアウトを行うスクリプト。
+/// 現状フェードアウトのみ
+/// </summary>
 public class FadeInOut : MonoBehaviour
 {
     [Header("フェードインにかかる時間")]

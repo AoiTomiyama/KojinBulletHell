@@ -4,8 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// リトライ画面を管理するスクリプト
+/// </summary>
 public class RetryManager : MonoBehaviour
 {
+    [Header("記録を出力するテキスト")]
     [SerializeField]
     TextMeshProUGUI _timeRecordTMPro;
     private void Start()

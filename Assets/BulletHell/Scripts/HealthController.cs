@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+/// <summary>
+/// 体力を制御するスクリプト
+/// </summary>
 public class HealthController : MonoBehaviour
 {
     [Header("HPの量(-1で体力∞)")]
@@ -18,6 +20,7 @@ public class HealthController : MonoBehaviour
     [SerializeField]
     GameObject _healthPrefab;
 
+    /// <summary> 画面上の体力ゲージを管理する配列 </summary>
     GameObject[] _healthBar;
 
     private void Start()

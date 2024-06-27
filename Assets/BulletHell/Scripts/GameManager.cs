@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ゲーム画面自体を管理するスクリプト
+/// 現在タイマーの管理のみ
+/// </summary>
 public class GameManager : MonoBehaviour
 {
+    /// <summary> 経過時間。 </summary>
     private static float _time;
     public static float GameTime => _time;
-    Text _text;
+    [Header("経過時間を表示させるテキスト")]
+    [SerializeField]
+    Text _timerText;
     private void Start()
     {
         _time = 0f;
-        _text = GameObject.Find("TimeField").GetComponent<Text>();
+        _timerText = GameObject.Find("TimeField").GetComponent<Text>();
     }
     void FixedUpdate()
     {
         _time += Time.deltaTime;
-        if (_text != null)
+        if (_timerText != null)
         {
-            _text.text = _time.ToString("F2");
+            _timerText.text = _time.ToString("F2");
         }
     }
 }

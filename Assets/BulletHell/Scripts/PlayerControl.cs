@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーの動きを制御するスクリプト。
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-
-
 public class PlayerControl : MonoBehaviour
 {
     [Header("プレイヤーの移動速度")]
@@ -23,10 +24,15 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private float _jumpPowerAfterOneJump = 1f;
 
+    /// <summary> 残りあと何回ジャンプできるか </summary>
     private int _remainingJumpCount;
+    /// <summary> 左右入力を取得 </summary>
     private float _h;
+    /// <summary> ジャンプボタンが何秒押されたか </summary>
     private float _pressedJumpButtonTime;
+    /// <summary> コンポーネントを取得 </summary>
     private Rigidbody2D _rb;
+    /// <summary> ジャンプボタンが押されたかどうか </summary>
     private bool _isJumpPresed;
 
     private void Start()

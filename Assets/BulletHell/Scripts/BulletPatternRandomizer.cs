@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
+/// <summary>
+/// 弾幕パターンを配列からランダムに選出し、生成するスクリプト。
+/// </summary>
 public class BulletPatternRandomizer : MonoBehaviour
 {
     [Header("有効にするかどうか")]
@@ -18,6 +21,7 @@ public class BulletPatternRandomizer : MonoBehaviour
     [SerializeField]
     GameObject[] _patterns;
 
+    /// <summary> 現在の弾幕パターンを保存。 </summary>
     GameObject _curretnPattern;
     private void Start()
     {

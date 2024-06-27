@@ -296,6 +296,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BurstShot
       objectReference: {fileID: 0}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 06ebe1a1632a38145ad3d98b5a6be913, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -264,31 +264,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: FollowPlayerShot
       objectReference: {fileID: 0}
+    - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: _particleBehaviour
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7758474455973365944}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
---- !u!1 &373726563014003615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-  m_PrefabInstance: {fileID: 2322203149887932540}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7758474455973365944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373726563014003615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b25a26c83031fc46859c171684f6f3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &8231469314462995424 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5910432231058660252, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}

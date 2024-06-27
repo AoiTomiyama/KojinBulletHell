@@ -246,36 +246,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: m_Name
-      value: CircleShot Variant
+      value: CircleShot
       objectReference: {fileID: 0}
+    - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: _waitTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: _particleShootSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 06ebe1a1632a38145ad3d98b5a6be913, type: 3}
+    - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: _particleBehaviour
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 06ebe1a1632a38145ad3d98b5a6be913, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2342563554995440145}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
---- !u!1 &2730355352459796811 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
-  m_PrefabInstance: {fileID: 67987855887901352}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2342563554995440145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2730355352459796811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d320b8ec9da0745bdde394403f7cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waitTime: 0.5
-  _maxAngular: 360
-  _minAngular: 0
 --- !u!198 &5978414519560993076 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5910432231058660252, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}

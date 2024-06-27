@@ -41,7 +41,7 @@ public class BulletPatternRandomizer : MonoBehaviour
             var spawnPos = this.transform.position;
             if (pickedPattern.name == "RainShot")
             {
-                spawnPos.x = 0;
+                spawnPos = pickedPattern.transform.position;
             }
             _curretnPattern = Instantiate(pickedPattern, spawnPos, Quaternion.identity);
             yield return new WaitForSeconds(_waitSeconds);

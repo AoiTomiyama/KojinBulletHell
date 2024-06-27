@@ -25,7 +25,7 @@ public class ParticleHit : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.name == "Player")
         {
             _healthController.RemoveHealth(_particleDamage);
         }

@@ -10,12 +10,23 @@ public class PlayerControl : MonoBehaviour
     [Header("プレイヤーの移動速度")]
     [SerializeField]
     private float _moveSpeed = 1f;
+
     [Header("プレイヤーのジャンプ力")]
     [SerializeField]
     private float _jumpPower = 1f;
+
+    [Header("何回ジャンプ可能か(-1でジャンプ回数∞)")]
+    [SerializeField]
+    private int _jumpCount = 2;
+
+    [Header("二回目以降のジャンプ力")]
+    [SerializeField]
+    private float _jumpPowerAfterOneJump = 1f;
+
+    private int _remainingJumpCount;
     private float _h;
-    private Rigidbody2D _rb;
     private float _pressedJumpButtonTime;
+    private Rigidbody2D _rb;
     private bool _isJumpPresed;
 
     private void Start()
@@ -28,7 +39,11 @@ public class PlayerControl : MonoBehaviour
         _h = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump"))
         {
-            _isJumpPresed = true;
+            if (_remainingJumpCount > 0 || _jumpCount == -1)
+            {
+                _isJumpPresed = true;
+                _remainingJumpCount--;
+            }
         }
         else if (Input.GetButtonUp("Jump"))
         {
@@ -43,31 +58,23 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 screen_LeftBottom = Camera.main.ScreenToWorldPoint(Vector3.zero);
-        Vector3 screen_RightTop = Camera.main.ScreenToWorldPoint(
-            new Vector3(Screen.width, Screen.height, 0)
-        );
-        //左端かつ入力が左方向の時、左右入力を無効化。
-        if (transform.position.x < screen_LeftBottom.x && _h <= -1)
-        {
-            _h = 0;
-            Debug.Log("左端に到達");
-        }
-        //右端かつ入力が右方向の時、左右入力を無効化。
-        if (transform.position.x > screen_RightTop.x && _h >= 1)
-        {
-            _h = 0;
-            Debug.Log("右端に到達");
-        }
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
 
         if (_isJumpPresed && _pressedJumpButtonTime < 0.2f)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpPower);
+            _rb.velocity = (_remainingJumpCount == _jumpCount - 1) ? new Vector2(_rb.velocity.x, _jumpPower) : new Vector2(_rb.velocity.x, _jumpPowerAfterOneJump);
         }
         else
         {
             _isJumpPresed = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Floor")
+        {
+            _remainingJumpCount = _jumpCount;
         }
     }
 }

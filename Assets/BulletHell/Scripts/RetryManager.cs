@@ -10,7 +10,7 @@ public class RetryManager : MonoBehaviour
     TextMeshProUGUI _timeRecordTMPro;
     private void Start()
     {
-        _timeRecordTMPro.text = "Time: " + GameManager.gameTime.ToString("F2");
+        _timeRecordTMPro.text = "Time: " + GameManager.GameTime.ToString("F2");
     }
 
     private void Update()

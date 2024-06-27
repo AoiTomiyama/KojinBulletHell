@@ -37,7 +37,13 @@ public class BulletPatternRandomizer : MonoBehaviour
                 emission.enabled = false;
                 Destroy(_curretnPattern, 10);
             }
-            _curretnPattern = Instantiate(_patterns[Random.Range(0, _patterns.Length)], this.transform.position, Quaternion.identity);
+            var pickedPattern = _patterns[Random.Range(0, _patterns.Length)];
+            var spawnPos = this.transform.position;
+            if (pickedPattern.name == "RainShot")
+            {
+                spawnPos.x = 0;
+            }
+            _curretnPattern = Instantiate(pickedPattern, spawnPos, Quaternion.identity);
             yield return new WaitForSeconds(_waitSeconds);
         }
     }

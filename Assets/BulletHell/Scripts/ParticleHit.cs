@@ -20,7 +20,7 @@ public class ParticleHit : MonoBehaviour
 
     private void OnParticleTrigger()
     {
-        _aus.PlayOneShot(_particleShootSE, 0.2f);
+        _aus.PlayOneShot(_particleShootSE);
     }
 
     private void OnParticleCollision(GameObject other)

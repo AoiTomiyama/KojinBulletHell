@@ -23,5 +23,9 @@ public class RetryManager : MonoBehaviour
         {
             SceneManager.LoadScene("BulletHell");
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene("Title");
+        }
     }
 }

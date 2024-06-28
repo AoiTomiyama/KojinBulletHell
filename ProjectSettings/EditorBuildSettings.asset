@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/BulletHell/Scenes/Title.unity
+    guid: 1dd1cc0d0fa39da4e8938cc58cf27c82
+  - enabled: 1
     path: Assets/BulletHell/Scenes/BulletHell.unity
     guid: 4c751627988298e47acc3a31b70b5112
   - enabled: 1

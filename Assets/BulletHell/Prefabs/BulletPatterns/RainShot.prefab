@@ -208,6 +208,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: RainShot
       objectReference: {fileID: 0}
+    - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: _shootSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 136301e3528a7da4c80414b4cd8296ad, type: 3}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: Pan2D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_Pitch
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_Volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7012107333041349192, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
     m_RemovedGameObjects: []

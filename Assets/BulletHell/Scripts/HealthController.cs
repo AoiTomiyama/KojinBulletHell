@@ -20,11 +20,17 @@ public class HealthController : MonoBehaviour
     [SerializeField]
     GameObject _healthPrefab;
 
+    [Header("ダメージ時のSE")]
+    [SerializeField]
+    AudioClip _damageSE;
     /// <summary> 画面上の体力ゲージを管理する配列 </summary>
     GameObject[] _healthBar;
+    /// <summary> 音源となるAudioSourceを取得 </summary>
+    AudioSource _aus;
 
     private void Start()
     {
+        _aus = GetComponent<AudioSource>();
         if (_health != -1)
         {
             _healthBar = new GameObject[_health];
@@ -55,6 +61,7 @@ public class HealthController : MonoBehaviour
                     Destroy(_healthBar[i - 1]);
                 }
                 _health -= damage;
+                _aus.PlayOneShot(_damageSE);
                 Debug.Log($"Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
             }
             if (_health == 0)

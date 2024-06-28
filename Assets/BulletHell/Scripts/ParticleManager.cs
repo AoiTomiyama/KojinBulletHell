@@ -17,13 +17,20 @@ public class ParticleManager : MonoBehaviour
     ParticleBehaviour _particleBehaviour = ParticleBehaviour.None;
 
     [Header("方向を変える周期（RandomDirection時のみ有効）")]
-    public float _waitTime;
+    [SerializeField] 
+    float _waitTime;
 
     [Header("方向の最大値（RandomDirection時のみ有効）")]
-    public float _maxAngular = 360;
+    [SerializeField] 
+    float _maxAngular = 360;
 
     [Header("方向の最小値（RandomDirection時のみ有効）")]
-    public float _minAngular = 0;
+    [SerializeField]
+    float _minAngular = 0;
+
+    [Header("発射時の効果音")]
+    [SerializeField]
+    AudioClip _shootSE;
 
     /// <summary> 体力を管理しているHealthControllerを取得 </summary>
     HealthController _healthController;
@@ -53,7 +60,7 @@ public class ParticleManager : MonoBehaviour
 
     private void OnParticleTrigger()
     {
-        _aus.Play();
+        _aus.PlayOneShot(_shootSE);
     }
 
     private void OnParticleCollision(GameObject other)

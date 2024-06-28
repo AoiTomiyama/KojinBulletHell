@@ -113,6 +113,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: SubModule.subEmitters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -174,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: VelocityModule.speedModifier.maxCurve.m_Curve.Array.size
@@ -405,6 +409,10 @@ PrefabInstance:
       value: ShotgunShot
       objectReference: {fileID: 0}
     - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: _shootSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 06ebe1a1632a38145ad3d98b5a6be913, type: 3}
+    - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: _minAngular
       value: 0
       objectReference: {fileID: 0}
@@ -419,7 +427,19 @@ PrefabInstance:
     - target: {fileID: 7782341364216967684, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 06ebe1a1632a38145ad3d98b5a6be913, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824556139387759201, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824556139387759201, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824556139387759201, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

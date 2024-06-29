@@ -9,6 +9,8 @@ public class ShowTutorialGuide : MonoBehaviour
     [Header("表示させるテキスト")]
     [SerializeField]
     TextMeshProUGUI _text;
+    /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
+    List<Tween> _tweens = new();
     private void Start()
     {
         var color = _text.color;
@@ -19,8 +21,15 @@ public class ShowTutorialGuide : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            _text.transform.DOMoveY(_text.transform.position.y - 30f, 0.79f);
-            _text.DOFade(1, 0.8f).OnComplete(() => Destroy(this.gameObject));
+            _tweens.Add(_text.transform.DOMoveY(_text.transform.position.y - 30f, 0.7f));
+            _tweens.Add(_text.DOFade(1, 0.8f).OnComplete(() => Destroy(this.gameObject)));
+        }
+    }
+    private void OnDisable()
+    {
+        foreach (var tw in _tweens)
+        {
+            tw.Kill();
         }
     }
 }

@@ -12,6 +12,7 @@ public class FadeInOut : MonoBehaviour
     [SerializeField]
     float _fadeInTimer = 1f;
 
+    /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
     Tween _tween;
     /// <summary>Imageコンポーネントを取得</summary>
     Image _image;

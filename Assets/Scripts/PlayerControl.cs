@@ -78,9 +78,18 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Floor")
+        if (collision.gameObject.name.Contains("Floor"))
         {
             _remainingJumpCount = _jumpCount;
+            Debug.Log("On Floor");
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Contains("Floor") && _remainingJumpCount == _jumpCount)
+        {
+            _remainingJumpCount--;
+            Debug.Log("Leave Floor");
         }
     }
 }

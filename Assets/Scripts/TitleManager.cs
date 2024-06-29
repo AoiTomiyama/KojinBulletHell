@@ -4,14 +4,35 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ボタンから読み取り、OnStartButtonClicked関数を実行してシーンを移動させる。
+/// タイトル画面の管理を行う。
 /// </summary>
 public class TitleManager : MonoBehaviour
 {
     [Header("ボタンが押されたときのSE")]
     [SerializeField]
     AudioClip _pressedSE;
-    public void OnStartButtonClicked(string SceneName)
+    [Header("ここにLevelSelectPanelを入れる")]
+    [SerializeField]
+    GameObject _levelSelectPanel;
+    [Header("ここにMainMenuPanelを入れる")]
+    [SerializeField]
+    GameObject _mainMenuPanel;
+
+    private void Start()
+    {
+        _levelSelectPanel.SetActive(false);
+    }
+    public void OnStartButtonClicked()
+    {
+        _mainMenuPanel.SetActive(false);
+        _levelSelectPanel.SetActive(true);
+    }
+    public void OnBackToTitleButtonClicked()
+    {
+        _mainMenuPanel.SetActive(true);
+        _levelSelectPanel.SetActive(false);
+    }
+    public void OnLevelButtonClicked(string SceneName)
     {
         SceneManager.LoadScene(SceneName);
     }

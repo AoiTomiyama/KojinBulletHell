@@ -22,6 +22,13 @@ public class GameManager : MonoBehaviour
         _time = 0f;
         _timerText = GameObject.Find("TimeField").GetComponent<Text>();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            SceneManager.LoadScene("Title");
+        }
+    }
     void FixedUpdate()
     {
         _time += Time.deltaTime;

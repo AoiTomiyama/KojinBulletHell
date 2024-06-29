@@ -21,28 +21,39 @@ public class SettingsManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI[] _settingsText;
     /// <summary> BGM音量の値を一時的に入れる変数 </summary>
-    int _bgmVolume;
+    float _bgmVolume;
     /// <summary> SE音量の値を一時的に入れる変数 </summary>
-    int _seVolume;
+    float _seVolume;
+    /// <summary> 音源となるAudioSourceを取得 </summary>
+    AudioSource _aus;
     private void Start()
     {
+        _aus = GameObject.Find("BGM").GetComponent<AudioSource>();
         _settingsPanel.gameObject.SetActive(false);
 
         //スライダーの値をPlayerPrefsに保存されている値に応じてあらかじめ動かす。
         if (PlayerPrefs.HasKey("BGMVolume") && PlayerPrefs.HasKey("SEVolume"))
         {
-            _sliders[0].value = (float)PlayerPrefs.GetInt("BGMVolume") / 10;
-            _sliders[1].value = (float)PlayerPrefs.GetInt("SEVolume") / 10;
+            _sliders[0].value = PlayerPrefs.GetFloat("BGMVolume") * 10;
+            _sliders[1].value = PlayerPrefs.GetFloat("SEVolume") * 10;
+        }
+        else
+        {
+            _sliders[0].value = 10f;
+            _sliders[1].value = 10f;
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        _bgmVolume = Mathf.CeilToInt(_sliders[0].value * 10);
-        _seVolume = Mathf.CeilToInt(_sliders[1].value * 10); 
-        
-        _settingsText[0].text = "BGM: " + _bgmVolume.ToString("F0");
-        _settingsText[1].text = "SE: " + _seVolume.ToString("F0");
+        if (_settingsPanel.gameObject.activeSelf == true)
+        {
+            _bgmVolume = _aus.volume = (float)_sliders[0].value / 10;
+            _seVolume = (float)_sliders[1].value / 10;
+
+            _settingsText[0].text = "BGM: " + _sliders[0].value.ToString("F0");
+            _settingsText[1].text = "SE: " + _sliders[1].value.ToString("F0");
+        }
     }
     public void OnSettingsButtonClicked()
     {
@@ -53,8 +64,15 @@ public class SettingsManager : MonoBehaviour
     {
         _settingsPanel.gameObject.SetActive(false);
         //キャンセルボタンが押されたとき（プレイヤーが設定を終えた時）にPlayerPrefsで値を保存している。
-        PlayerPrefs.SetInt("BGMVolume", _bgmVolume);
-        PlayerPrefs.SetInt("SEVolume", _seVolume);
+        PlayerPrefs.SetFloat("BGMVolume", _bgmVolume);
+        PlayerPrefs.SetFloat("SEVolume", _seVolume);
         PlayerPrefs.Save();
+    }
+
+    public void OnSETesterButtonClicked()
+    {
+        var seSource = GameObject.Find("SE").GetComponent<AudioSource>();
+        seSource.volume = _seVolume;
+        seSource.Play();
     }
 }

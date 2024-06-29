@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour
     Text _timerText;
     private void Start()
     {
-        GameObject.Find("BGM").GetComponent<AudioSource>().volume *= (float)PlayerPrefs.GetInt("BGMVolume") / 10;
+        GameObject.Find("BGM").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("BGMVolume");
+        PlayerPrefs.SetString("Scene", SceneManager.GetActiveScene().name);
         _time = 0f;
         _timerText = GameObject.Find("TimeField").GetComponent<Text>();
     }

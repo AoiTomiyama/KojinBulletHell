@@ -12,8 +12,12 @@ public class RetryManager : MonoBehaviour
     [Header("記録を出力するテキスト")]
     [SerializeField]
     TextMeshProUGUI _timeRecordTMPro;
+    /// <summary>直前のシーン名を入れる変数</summary>
+    string _oneBeforeSceneName;
     private void Start()
     {
+        /// <summary>GameManagerがメイン画面時に記録していたシーン名をPlayerPrefsから持ってくる</summary>
+        _oneBeforeSceneName = PlayerPrefs.GetString("Scene");
         _timeRecordTMPro.text = "Time: " + GameManager.GameTime.ToString("F2");
     }
 
@@ -21,7 +25,7 @@ public class RetryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("BulletHell");
+            SceneManager.LoadScene(_oneBeforeSceneName);
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {

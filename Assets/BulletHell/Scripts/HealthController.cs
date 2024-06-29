@@ -28,11 +28,11 @@ public class HealthController : MonoBehaviour
     /// <summary> ‰¹Œ¹‚Æ‚È‚éAudioSource‚ğæ“¾ </summary>
     AudioSource _aus;
     /// <summary> SE‰¹—Ê‚Ì’l‚ğˆê“I‚É“ü‚ê‚é•Ï” </summary>
-    int _seVolume;
+    float _seVolume;
 
     private void Start()
     {
-        _seVolume = PlayerPrefs.GetInt("SEVolume");
+        _seVolume = PlayerPrefs.GetFloat("SEVolume");
         _aus = GetComponent<AudioSource>();
         if (_health != -1)
         {
@@ -64,7 +64,7 @@ public class HealthController : MonoBehaviour
                     Destroy(_healthBar[i - 1]);
                 }
                 _health -= damage;
-                _aus.PlayOneShot(_damageSE, _aus.volume * ((float)_seVolume / 10));
+                _aus.PlayOneShot(_damageSE, _aus.volume * _seVolume);
                 Debug.Log($"Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
             }
             if (_health == 0)

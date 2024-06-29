@@ -784,6 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be0d1af22ff5384499852892e9c1852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pressedSE: {fileID: 0}
 --- !u!4 &684984223
 Transform:
   m_ObjectHideFlags: 0
@@ -1178,6 +1179,8 @@ MonoBehaviour:
   _settingsText:
   - {fileID: 1161303502}
   - {fileID: 742438353}
+  _openSettingsSE: {fileID: 8300000, guid: 856a048f2a612114eb723fce9b24850b, type: 3}
+  _closeSettingsSE: {fileID: 8300000, guid: 7d7789d4828af9a42bddeae7a98cf29f, type: 3}
 --- !u!4 &919846005
 Transform:
   m_ObjectHideFlags: 0
@@ -2002,7 +2005,7 @@ GameObject:
   - component: {fileID: 1271890157}
   - component: {fileID: 1271890156}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

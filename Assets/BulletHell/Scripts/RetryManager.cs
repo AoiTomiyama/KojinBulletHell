@@ -16,8 +16,9 @@ public class RetryManager : MonoBehaviour
     string _oneBeforeSceneName;
     private void Start()
     {
-        /// <summary>GameManagerがメイン画面時に記録していたシーン名をPlayerPrefsから持ってくる</summary>
+        //GameManagerがメイン画面時に記録していたシーン名をPlayerPrefsから持ってくる
         _oneBeforeSceneName = PlayerPrefs.GetString("Scene");
+        GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SEVolume");
         _timeRecordTMPro.text = "Time: " + GameManager.GameTime.ToString("F2");
     }
 

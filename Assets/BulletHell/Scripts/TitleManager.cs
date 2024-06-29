@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class TitleManager : MonoBehaviour
 {
+    [Header("ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÌSE")]
+    [SerializeField]
+    AudioClip _pressedSE;
     public void OnStartButtonClicked(string SceneName)
     {
         SceneManager.LoadScene(SceneName);

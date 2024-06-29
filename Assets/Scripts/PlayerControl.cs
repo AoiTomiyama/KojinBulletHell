@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 /// <summary>
@@ -24,6 +25,10 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private float _jumpPowerAfterOneJump = 1f;
 
+    [Header("ここに弾丸のPrefabを入れる")]
+    [SerializeField]
+    private GameObject _bulletPrefab;
+
     /// <summary> 残りあと何回ジャンプできるか </summary>
     private int _remainingJumpCount;
     /// <summary> 左右入力を取得 </summary>
@@ -34,9 +39,15 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rb;
     /// <summary> ジャンプボタンが押されたかどうか </summary>
     private bool _isJumpPresed;
+    /// <summary> 画面上の弾を記録 </summary>
+    private List<GameObject> _bullets = new();
+    /// <summary> 弾の発射口 </summary>
+    private GameObject _muzzle;
+
 
     private void Start()
     {
+        _muzzle = transform.Find("Muzzle").gameObject;
         _rb = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
@@ -60,11 +71,21 @@ public class PlayerControl : MonoBehaviour
         {
             _pressedJumpButtonTime += Time.deltaTime;
         }
+        if (Input.GetButtonDown("Fire1") && _bullets.Count < 6)
+        {
+            var bullet = Instantiate(_bulletPrefab, _muzzle.transform.position, Quaternion.identity);
+            bullet.transform.localScale = new Vector3(transform.localScale.x, bullet.transform.localScale.y, bullet.transform.localScale.z);
+            _bullets.Add(bullet);
+        }
     }
 
     private void FixedUpdate()
     {
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
+        if (_h != 0)
+        {
+            transform.localScale = new Vector3(_h, transform.localScale.y, transform.localScale.z);
+        }
 
         if (_isJumpPresed && _pressedJumpButtonTime < 0.2f)
         {

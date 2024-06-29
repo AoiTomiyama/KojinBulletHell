@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     Text _timerText;
     private void Start()
     {
+        GameObject.Find("BGM").GetComponent<AudioSource>().volume *= (float)PlayerPrefs.GetInt("BGMVolume") / 10;
         _time = 0f;
         _timerText = GameObject.Find("TimeField").GetComponent<Text>();
     }

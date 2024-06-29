@@ -38,9 +38,12 @@ public class ParticleManager : MonoBehaviour
     AudioSource _aus;
     /// <summary> プレイヤーのGameObjectを取得 </summary>
     GameObject _player;
+    /// <summary> SE音量の値を一時的に入れる変数 </summary>
+    int _seVolume;
 
     private void Start()
     {
+        _seVolume = PlayerPrefs.GetInt("SEVolume");
         _healthController = FindObjectOfType<HealthController>();
         _aus = GetComponent<AudioSource>();
         _player = GameObject.Find("Player");
@@ -60,7 +63,7 @@ public class ParticleManager : MonoBehaviour
 
     private void OnParticleTrigger()
     {
-        _aus.PlayOneShot(_shootSE);
+        _aus.PlayOneShot(_shootSE, _aus.volume * ((float)_seVolume / 10));
     }
 
     private void OnParticleCollision(GameObject other)

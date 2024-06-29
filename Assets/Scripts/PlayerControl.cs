@@ -39,8 +39,8 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rb;
     /// <summary> ƒWƒƒƒ“ƒvƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚© </summary>
     private bool _isJumpPresed;
-    /// <summary> ‰æ–Êã‚Ì’e‚ğ‹L˜^ </summary>
-    private List<GameObject> _bullets = new();
+    /// <summary> ‰æ–Êã‚Ì’e”‚ğ‹L˜^ </summary>
+    private float _bulletCount;
     /// <summary> ’e‚Ì”­ËŒû </summary>
     private GameObject _muzzle;
 
@@ -71,11 +71,11 @@ public class PlayerControl : MonoBehaviour
         {
             _pressedJumpButtonTime += Time.deltaTime;
         }
-        if (Input.GetButtonDown("Fire1") && _bullets.Count < 6)
+        if (Input.GetButtonDown("Fire1") && _bulletCount < 6)
         {
             var bullet = Instantiate(_bulletPrefab, _muzzle.transform.position, Quaternion.identity);
-            bullet.transform.localScale = new Vector3(transform.localScale.x, bullet.transform.localScale.y, bullet.transform.localScale.z);
-            _bullets.Add(bullet);
+            bullet.transform.localScale = new Vector3(bullet.transform.localScale.x * transform.localScale.x, bullet.transform.localScale.y, bullet.transform.localScale.z);
+            _bulletCount++;
         }
     }
 
@@ -112,5 +112,9 @@ public class PlayerControl : MonoBehaviour
             _remainingJumpCount--;
             Debug.Log("Leave Floor");
         }
+    }
+    public void OnBulletHit(Vector2 pos)
+    {
+        _bulletCount--;
     }
 }

@@ -17,7 +17,10 @@ public class ShowTutorialGuide : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _text.transform.DOMoveY(_text.transform.position.y - 30f, 0.79f);
-        _text.DOFade(1, 0.8f).OnComplete(() => Destroy(this.gameObject));
+        if (collision.gameObject.name == "Player")
+        {
+            _text.transform.DOMoveY(_text.transform.position.y - 30f, 0.79f);
+            _text.DOFade(1, 0.8f).OnComplete(() => Destroy(this.gameObject));
+        }
     }
 }

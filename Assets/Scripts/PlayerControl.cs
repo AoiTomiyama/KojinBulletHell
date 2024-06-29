@@ -39,15 +39,15 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rb;
     /// <summary> ƒWƒƒƒ“ƒvƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚© </summary>
     private bool _isJumpPresed;
-    /// <summary> ‰æ–Êã‚Ì’e”‚ğ‹L˜^ </summary>
-    private float _bulletCount;
     /// <summary> ’e‚Ì”­ËŒû </summary>
-    private GameObject _muzzle;
+    private ParticleSystem _ps;
+    /// <summary> ‰æ–Êã‚Ì’e”</summary>
+    float _bulletCount;
 
 
     private void Start()
     {
-        _muzzle = transform.Find("Muzzle").gameObject;
+        _ps = transform.GetComponentInChildren<ParticleSystem>();
         _rb = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
@@ -73,8 +73,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire1") && _bulletCount < 6)
         {
-            var bullet = Instantiate(_bulletPrefab, _muzzle.transform.position, Quaternion.identity);
-            bullet.transform.localScale = new Vector3(bullet.transform.localScale.x * transform.localScale.x, bullet.transform.localScale.y, bullet.transform.localScale.z);
+            _ps.Emit(1);
             _bulletCount++;
         }
     }
@@ -113,8 +112,9 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Leave Floor");
         }
     }
-    public void OnBulletHit(Vector2 pos)
+    private void OnParticleCollision(GameObject other)
     {
+        Debug.Log("HIT");
         _bulletCount--;
     }
 }

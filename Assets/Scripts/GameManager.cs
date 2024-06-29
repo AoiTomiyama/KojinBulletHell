@@ -11,8 +11,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     /// <summary> 経過時間。 </summary>
-    private static float _time;
-    public static float GameTime => _time;
+    private float _time;
     [Header("経過時間を表示させるテキスト")]
     [SerializeField]
     Text _timerText;
@@ -30,5 +29,11 @@ public class GameManager : MonoBehaviour
         {
             _timerText.text = _time.ToString("F2");
         }
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat("Time", _time);
+        PlayerPrefs.Save();
     }
 }

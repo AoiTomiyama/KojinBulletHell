@@ -19,7 +19,7 @@ public class RetryManager : MonoBehaviour
         //GameManagerがメイン画面時に記録していたシーン名をPlayerPrefsから持ってくる
         _oneBeforeSceneName = PlayerPrefs.GetString("Scene");
         GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SEVolume");
-        _timeRecordTMPro.text = "Time: " + GameManager.GameTime.ToString("F2");
+        _timeRecordTMPro.text = "time: " + PlayerPrefs.GetFloat("Time").ToString("F2");
     }
 
     private void Update()
@@ -27,10 +27,12 @@ public class RetryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(_oneBeforeSceneName);
+            PlayerPrefs.DeleteKey("Time");
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             SceneManager.LoadScene("Title");
+            PlayerPrefs.DeleteKey("Time");
         }
     }
 }

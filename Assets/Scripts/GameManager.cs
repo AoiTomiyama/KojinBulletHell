@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameObject.Find("BGM").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("BGMVolume");
+        GameObject.Find("SE").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("SEVolume");
         PlayerPrefs.SetString("Scene", SceneManager.GetActiveScene().name);
         _time = 0f;
         _timerText = GameObject.Find("TimeField").GetComponent<Text>();

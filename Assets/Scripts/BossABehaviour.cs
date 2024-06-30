@@ -1,8 +1,10 @@
 using DG.Tweening;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class BossABehaviour : MonoBehaviour
@@ -10,6 +12,12 @@ public class BossABehaviour : MonoBehaviour
     [Header("弾幕パターン")]
     [SerializeField]
     GameObject[] _particles;
+    [Header("死亡時の音（チャージ音）")]
+    [SerializeField]
+    AudioClip _deathChargeSE;
+    [Header("死亡時の音（爆発）")]
+    [SerializeField]
+    AudioClip _deathExplodeSE;
 
     Dictionary<string, GameObject> _particlesDict;
     Transform[] _pos;
@@ -23,6 +31,8 @@ public class BossABehaviour : MonoBehaviour
     Vector2 _startPos;
     /// <summary>弾幕を発生させる位置</summary>
     Transform _particleTr;
+    /// <summary>SEを鳴らすためのAudioSourceを取得</summary>
+    AudioSource _seAus;
     private void Start()
     {
         _particlesDict = _particles.ToDictionary(n => n.name, n => n);
@@ -30,6 +40,8 @@ public class BossABehaviour : MonoBehaviour
         _particleTr = this.transform.Find("ParticlePosition").transform;
         _bossCube = this.transform.Find("BossCube").gameObject;
         _pos = GameObject.Find("Positions").transform.GetComponentsInChildren<Transform>();
+        _seAus = GetComponent<AudioSource>();
+        _seAus.volume *= PlayerPrefs.GetFloat("SEVolume");
         _actions = new Action[1];
         _actions[0] = AttackPatternOne;
         _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
@@ -95,12 +107,30 @@ public class BossABehaviour : MonoBehaviour
 
     public void OnDeath()
     {
+        GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
+        _seAus.PlayOneShot(_deathChargeSE);
         if (_seq != null)
         {
             _seq.Kill();
         }
         transform.DOKill();
         _bossCube.transform.DOKill();
+        _bossCube.transform.rotation = Quaternion.Euler(Vector3.zero);
+        this.transform.position = new Vector2(0, _startPos.y);
+        Destroy(_particleTr.gameObject);
+        StartCoroutine(Flash());
+        _bossCube.transform.DORotate(Vector3.one * 360 * 4.8f, 4, RotateMode.FastBeyond360).
+            SetEase(Ease.InExpo).
+            OnComplete(() => this.transform.DOLocalMoveX(0, 0.2f).OnComplete(() => _seAus.PlayOneShot(_deathExplodeSE))
+            );
+    }
+
+    private IEnumerator Flash()
+    {
+        var flash = GameObject.Find("FlashPanel").GetComponent<Image>();
+        flash.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        flash.enabled = false;
     }
 
     private void OnDisable()

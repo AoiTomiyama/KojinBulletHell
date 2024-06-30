@@ -1,5 +1,7 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +11,7 @@ public class BossABehaviour : MonoBehaviour
     [SerializeField]
     GameObject[] _particles;
 
+    Dictionary<string, GameObject> _particlesDict;
     Transform[] _pos;
     /// <summary>TweenäÆóπëOÇ…ÉVÅ[Éìà⁄ìÆÇµÇΩç€Ç…KillÇ≈Ç´ÇÈÇÊÇ§Ç…ï€ë∂</summary>
     Tween _tween;
@@ -24,6 +27,7 @@ public class BossABehaviour : MonoBehaviour
     Transform _particleTr;
     private void Start()
     {
+        _particlesDict = _particles.ToDictionary(n => n.name, n => n);
         _startPos = this.transform.position;
         _particleTr = this.transform.Find("ParticlePosition").transform;
         _bossCube = this.transform.Find("BossCube").gameObject;
@@ -59,7 +63,7 @@ public class BossABehaviour : MonoBehaviour
             SetEase(Ease.InOutSine).
             OnStart(() =>
                 {
-                    ps = Instantiate(_particles[0], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
+                    ps = Instantiate(_particlesDict["ShotgunShot"], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
                     _bossCube.transform.DORotate(new Vector3(0, 1080, 0), duration, RotateMode.FastBeyond360)
                     .SetEase(Ease.InOutSine);
                 }
@@ -84,6 +88,11 @@ public class BossABehaviour : MonoBehaviour
                     _actions[Random.Range(0, _actions.Length)].Invoke();
                 }
             ));
+    }
+
+    private void AttackPatternTwo()
+    {
+
     }
 
     private void OnDisable()

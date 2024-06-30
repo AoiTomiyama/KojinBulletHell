@@ -40,9 +40,14 @@ public class ParticleManager : MonoBehaviour
     GameObject _player;
     /// <summary> SE‰¹—Ê‚Ì’l‚ğˆê“I‚É“ü‚ê‚é•Ï” </summary>
     float _seVolume;
+    /// <summary> ParticleSystem‚ğæ“¾ </summary>
+    ParticleSystem _ps;
+    /// <summary> OnParticleTrigger‚ÅŒŸ’m‚µ‚½Particle‚ğ•Û‘¶‚·‚é</summary>
+    private HashSet<int> triggeredParticles = new();
 
     private void Start()
     {
+        _ps = GetComponent<ParticleSystem>();
         _seVolume = PlayerPrefs.GetFloat("SEVolume");
         _healthController = FindObjectOfType<HealthController>();
         _aus = GetComponent<AudioSource>();
@@ -63,7 +68,24 @@ public class ParticleManager : MonoBehaviour
 
     private void OnParticleTrigger()
     {
-        _aus.PlayOneShot(_shootSE, _aus.volume * _seVolume);
+        List<ParticleSystem.Particle> enterParticles = new();
+        int enterCount = _ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enterParticles);
+        bool hasTriggeredNewParticle = false;
+
+        for (int i = 0; i < enterCount; i++)
+        {
+            int particleID = (int)enterParticles[i].randomSeed;
+
+            if (!triggeredParticles.Contains(particleID))
+            {
+                triggeredParticles.Add(particleID);
+                hasTriggeredNewParticle |= true;
+            }
+        }
+        if (hasTriggeredNewParticle)
+        {
+            _aus.PlayOneShot(_shootSE, _aus.volume * _seVolume);
+        }
     }
 
     private void OnParticleCollision(GameObject other)

@@ -114,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: SubModule.subEmitters.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
@@ -152,6 +152,14 @@ PrefabInstance:
       propertyPath: LifetimeByEmitterSpeedModule.enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: SubModule.subEmitters.Array.data[1].type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: SubModule.subEmitters.Array.data[1].emitter
+      value: 
+      objectReference: {fileID: 8726576068356092054}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: TrailModule.colorOverTrail.maxGradient.key0.g
       value: 0.33932635
@@ -445,3 +453,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+--- !u!198 &8726576068356092054 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8824556139387759201, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+  m_PrefabInstance: {fileID: 246600387853359863}
+  m_PrefabAsset: {fileID: 0}

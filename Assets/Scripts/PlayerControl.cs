@@ -71,7 +71,7 @@ public class PlayerControl : MonoBehaviour
         {
             _pressedJumpButtonTime += Time.deltaTime;
         }
-        if (Input.GetButtonDown("Fire1") && _bulletCount < 6)
+        if (Input.GetButtonDown("Fire1") && _bulletCount < 3)
         {
             _ps.Emit(1);
             _bulletCount++;

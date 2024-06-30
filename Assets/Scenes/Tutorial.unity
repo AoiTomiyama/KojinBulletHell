@@ -1438,9 +1438,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5855868415132932878, guid: d3839f0b64d2afc43838573cc029f641, type: 3}
       propertyPath: m_text
-      value: '[Z/LeftClick] - shoot
+      value: '[Z/RightShift] - shoot
 
-        [V] - go back title
+        [V] - go back to title
 
 
         Tutorial

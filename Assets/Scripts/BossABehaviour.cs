@@ -51,7 +51,7 @@ public class BossABehaviour : MonoBehaviour
     }
     private void AttackPatternOne()
     {
-        float duration = 5f;
+        float duration = 4.5f;
         ParticleSystem ps = default;
         _seq = DOTween.Sequence();
         _seq.Append(

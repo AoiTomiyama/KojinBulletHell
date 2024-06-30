@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 /// <summary>
@@ -54,6 +51,8 @@ public class PlayerControl : MonoBehaviour
     private AudioSource _aus;
     /// <summary> ジャンプしたときにEmitさせるParticleSystem</summary>
     private ParticleSystem _jumpEffect;
+    /// <summary> 敵体力を管理しているコンポーネントを取得 </summary>
+    private EnemyHealthController _enemyHealthController;
 
 
     private void Start()
@@ -62,6 +61,7 @@ public class PlayerControl : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _aus = GetComponent<AudioSource>();
         _jumpEffect = transform.Find("JumpEffect").GetComponent<ParticleSystem>();
+        _enemyHealthController = FindObjectOfType<EnemyHealthController>();
         _aus.volume *= PlayerPrefs.GetFloat("SEVolume");
     }
     // Update is called once per frame
@@ -138,7 +138,13 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("HIT");
-        _bulletCount--;
+        if (other.name.Contains("Boss"))
+        {
+            _enemyHealthController.EnemyDamage(1);
+        }
+        if (_bulletCount > 0)
+        {
+            _bulletCount--;
+        }
     }
 }

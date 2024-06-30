@@ -21,6 +21,7 @@ public class TitleManager : MonoBehaviour
     private void Start()
     {
         _levelSelectPanel.SetActive(false);
+        PlayerPrefs.DeleteKey("Scene");
     }
     public void OnStartButtonClicked()
     {

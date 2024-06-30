@@ -55,7 +55,7 @@ public class BossABehaviour : MonoBehaviour
             OnStart(() => this.transform.DOMove(_pos[1].position, 0.5f))
             );
         _seq.Append(
-            this.transform.DOMove(new Vector2(-this.transform.position.x, this.transform.position.y), duration).
+            this.transform.DOMove(new Vector2(-_pos[1].position.x, _pos[1].position.y), duration).
             SetEase(Ease.InOutSine).
             OnStart(() =>
                 {

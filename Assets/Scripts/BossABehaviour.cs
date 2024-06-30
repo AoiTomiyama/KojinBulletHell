@@ -18,6 +18,9 @@ public class BossABehaviour : MonoBehaviour
     [Header("死亡時の音（爆発）")]
     [SerializeField]
     AudioClip _deathExplodeSE;
+    [Header("死亡時のエフェクト（爆発）")]
+    [SerializeField]
+    GameObject _explodePrefab;
 
     Dictionary<string, GameObject> _particlesDict;
     Transform[] _pos;
@@ -121,8 +124,14 @@ public class BossABehaviour : MonoBehaviour
         StartCoroutine(Flash());
         _bossCube.transform.DORotate(Vector3.one * 360 * 4.8f, 4, RotateMode.FastBeyond360).
             SetEase(Ease.InExpo).
-            OnComplete(() => this.transform.DOLocalMoveX(0, 0.2f).OnComplete(() => _seAus.PlayOneShot(_deathExplodeSE))
+            OnComplete(() => Invoke(nameof(Explode), 0.2f)
             );
+    }
+    private void Explode()
+    {
+        _bossCube.SetActive(false);
+        _seAus.PlayOneShot(_deathExplodeSE);
+        Instantiate(_explodePrefab, this.transform.position, Quaternion.identity);
     }
 
     private IEnumerator Flash()

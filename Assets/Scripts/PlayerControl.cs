@@ -25,10 +25,17 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private float _jumpPowerAfterOneJump = 1f;
 
-    [Header("ここに弾丸のPrefabを入れる")]
+    [Header("発射時のSE")]
     [SerializeField]
-    private GameObject _bulletPrefab;
+    AudioClip _bulletShotSE;
 
+    [Header("一段ジャンプのSE")]
+    [SerializeField]
+    AudioClip _oneJumpSE;
+
+    [Header("二段ジャンプのSE")]
+    [SerializeField]
+    AudioClip _twoJumpSE;
     /// <summary> 残りあと何回ジャンプできるか </summary>
     private int _remainingJumpCount;
     /// <summary> 左右入力を取得 </summary>
@@ -42,13 +49,17 @@ public class PlayerControl : MonoBehaviour
     /// <summary> 弾の発射口 </summary>
     private ParticleSystem _ps;
     /// <summary> 画面上の弾数</summary>
-    float _bulletCount;
+    private float _bulletCount;
+    /// <summary> AudioSourceコンポーネントを取得</summary>
+    private AudioSource _aus;
 
 
     private void Start()
     {
         _ps = transform.GetComponentInChildren<ParticleSystem>();
         _rb = GetComponent<Rigidbody2D>();
+        _aus = GetComponent<AudioSource>();
+        _aus.volume *= PlayerPrefs.GetFloat("SEVolume");
     }
     // Update is called once per frame
     void Update()
@@ -60,6 +71,14 @@ public class PlayerControl : MonoBehaviour
             {
                 _isJumpPresed = true;
                 _remainingJumpCount--;
+                if (_remainingJumpCount == _jumpCount - 1)
+                {
+                    _aus.PlayOneShot(_oneJumpSE);
+                }
+                else
+                {
+                    _aus.PlayOneShot(_twoJumpSE);
+                }
             }
         }
         else if (Input.GetButtonUp("Jump"))
@@ -74,6 +93,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && _bulletCount < 3)
         {
             _ps.Emit(1);
+            _aus.PlayOneShot(_bulletShotSE);
             _bulletCount++;
         }
     }

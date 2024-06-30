@@ -13,8 +13,6 @@ public class BossABehaviour : MonoBehaviour
 
     Dictionary<string, GameObject> _particlesDict;
     Transform[] _pos;
-    /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
-    Tween _tween;
     /// <summary>攻撃パターンを入れる。完了前にシーン移動した際にKillできるように保存</summary>
     Sequence _seq;
     /// <summary>行動パターンの保管</summary>
@@ -34,7 +32,7 @@ public class BossABehaviour : MonoBehaviour
         _pos = GameObject.Find("Positions").transform.GetComponentsInChildren<Transform>();
         _actions = new Action[1];
         _actions[0] = AttackPatternOne;
-        _tween = _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
+        _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
             SetLoops(-1, LoopType.Incremental).
             SetEase(Ease.Linear).OnStart(() =>
             {
@@ -95,12 +93,18 @@ public class BossABehaviour : MonoBehaviour
 
     }
 
+    public void OnDeath()
+    {
+        if (_seq != null)
+        {
+            _seq.Kill();
+        }
+        transform.DOKill();
+        _bossCube.transform.DOKill();
+    }
+
     private void OnDisable()
     {
-        if (_tween != null)
-        {
-            _tween.Kill();
-        }
         if (_seq != null)
         {
             _seq.Kill();

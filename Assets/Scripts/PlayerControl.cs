@@ -138,7 +138,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        if (other.name.Contains("Boss"))
+        if (other.name.Contains("Boss") && _enemyHealthController != null)
         {
             _enemyHealthController.EnemyDamage(1);
         }

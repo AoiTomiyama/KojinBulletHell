@@ -27,9 +27,10 @@ public class EnemyHealthController : MonoBehaviour
     }
     public void EnemyDamage(int damage)
     {
-        if (_health - damage <= 0)
+        if (_health - damage == 0)
         {
-            Debug.Log("Defeat Boss");
+            _followTarget.GetComponent<BossABehaviour>().OnDeath();
+            Destroy(this.gameObject);
         }
         else
         {

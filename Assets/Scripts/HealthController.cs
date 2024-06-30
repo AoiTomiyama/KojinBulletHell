@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,10 +62,12 @@ public class HealthController : MonoBehaviour
             {
                 for (int i = _health; i > _health - damage; i--)
                 {
-                    Destroy(_healthBar[i - 1]);
+                    _healthBar[i - 1].GetComponent<Image>().color = Color.red;
+                    Destroy(_healthBar[i - 1], 0.5f);
                 }
                 _health -= damage;
                 _aus.PlayOneShot(_damageSE, _aus.volume * _seVolume);
+                FindObjectOfType<CinemachineImpulseSource>().GenerateImpulse();
                 Debug.Log($"Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
             }
             if (_health == 0)

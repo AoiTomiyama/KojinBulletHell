@@ -97,7 +97,15 @@ public class BossABehaviour : MonoBehaviour
 
     private void OnDisable()
     {
-        _tween.Kill();
-        _seq.Kill();
+        if (_tween != null)
+        {
+            _tween.Kill();
+        }
+        if (_seq != null)
+        {
+            _seq.Kill();
+        }
+        transform.DOKill();
+        _bossCube.transform.DOKill();
     }
 }

@@ -52,6 +52,8 @@ public class PlayerControl : MonoBehaviour
     private float _bulletCount;
     /// <summary> AudioSourceコンポーネントを取得</summary>
     private AudioSource _aus;
+    /// <summary> ジャンプしたときにEmitさせるParticleSystem</summary>
+    private ParticleSystem _jumpEffect;
 
 
     private void Start()
@@ -59,6 +61,7 @@ public class PlayerControl : MonoBehaviour
         _ps = transform.GetComponentInChildren<ParticleSystem>();
         _rb = GetComponent<Rigidbody2D>();
         _aus = GetComponent<AudioSource>();
+        _jumpEffect = transform.Find("JumpEffect").GetComponent<ParticleSystem>();
         _aus.volume *= PlayerPrefs.GetFloat("SEVolume");
     }
     // Update is called once per frame
@@ -71,6 +74,7 @@ public class PlayerControl : MonoBehaviour
             {
                 _isJumpPresed = true;
                 _remainingJumpCount--;
+                _jumpEffect.Emit(1);
                 if (_remainingJumpCount == _jumpCount - 1)
                 {
                     _aus.PlayOneShot(_oneJumpSE);

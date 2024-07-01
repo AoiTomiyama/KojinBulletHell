@@ -29,7 +29,7 @@ public class EnemyHealthController : MonoBehaviour
     {
         if (_health - damage == 0)
         {
-            _followTarget.GetComponent<BossABehaviour>().OnDeath();
+            _followTarget.GetComponent<BossABehaviour>().Death();
             Destroy(this.gameObject);
         }
         else

@@ -1,5 +1,5 @@
+using Cinemachine;
 using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -145,7 +145,7 @@ public class BossABehaviour : MonoBehaviour
                 {
                     ps.Emit(emitCount);
                     _bossCube.transform.DORotate(new Vector3(0, -720, -720), 1, RotateMode.FastBeyond360).
-                    SetEase(Ease.OutQuad); 
+                    SetEase(Ease.OutQuad);
                 }
                 ));
             }
@@ -163,7 +163,7 @@ public class BossABehaviour : MonoBehaviour
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
     }
 
-    public void OnDeath()
+    public void Death()
     {
         float duration = 4f;
         GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
@@ -172,18 +172,18 @@ public class BossABehaviour : MonoBehaviour
         _seq?.Kill();
         transform.DOKill();
         _bossCube.transform.DOKill();
-        //_bossCube.transform.rotation = Quaternion.Euler(Vector3.zero);
         this.transform.position = new Vector2(0, _startPos.y);
         Destroy(_particleTr.gameObject);
         StartCoroutine(Flash());
         _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360).
             SetEase(Ease.InExpo).
-            OnComplete(() => StartCoroutine(Explode())
-            );
+            OnComplete(() => StartCoroutine(Explode()));
         StartCoroutine(FindObjectOfType<LightRay>().EmitLightRay(duration, 10));
     }
     private IEnumerator Explode()
     {
+        var shaker = FindObjectOfType<CinemachineImpulseSource>();
+        shaker.GenerateImpulseWithForce(5);
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(Flash());
         _bossCube.SetActive(false);

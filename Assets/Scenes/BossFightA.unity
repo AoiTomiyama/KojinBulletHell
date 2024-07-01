@@ -603,6 +603,7 @@ Transform:
   m_Children:
   - {fileID: 452029149}
   - {fileID: 1747755991}
+  - {fileID: 1919165002}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &544453170
@@ -937,7 +938,7 @@ Transform:
   m_GameObject: {fileID: 685698101}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12.6}
+  m_LocalPosition: {x: 0, y: 0, z: 21.7}
   m_LocalScale: {x: 77.21276, y: 43.342, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1672,9 +1673,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particles:
-  - {fileID: 8002026987802222995, guid: a5c5bebeb129d23468b2c08aa65f56dd, type: 3}
   - {fileID: 2772450030705432852, guid: a874ad541822378438805938f67b1836, type: 3}
   - {fileID: 8510297749152905686, guid: 8184b95007d099a46a6cfb0b7461f4a6, type: 3}
+  - {fileID: 8002026987802222995, guid: a5c5bebeb129d23468b2c08aa65f56dd, type: 3}
   _deathChargeSE: {fileID: 8300000, guid: e105b08a0a7d6884a9f9ff2aa0c98090, type: 3}
   _deathExplodeSE: {fileID: 8300000, guid: e93d82bc8aeeabe428690a32617cdbc7, type: 3}
   _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
@@ -2077,6 +2078,37 @@ Transform:
   - {fileID: 1588597134}
   m_Father: {fileID: 1603850485}
   m_LocalEulerAnglesHint: {x: 33.2, y: -79.15, z: -28.84}
+--- !u!1 &1919165001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919165002}
+  m_Layer: 0
+  m_Name: pos3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919165002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919165001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 14.93, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 490415503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2120213743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,7 +2288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1543933051723752734, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
       propertyPath: _maxHealth
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3954522143579728476, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
       propertyPath: m_AnchorMax.x

@@ -33,6 +33,10 @@ public class PlayerControl : MonoBehaviour
     [Header("二段ジャンプのSE")]
     [SerializeField]
     AudioClip _twoJumpSE;
+
+    [Header("敵ヒット時のSE")]
+    [SerializeField]
+    AudioClip _hitAtEnemySE;
     /// <summary> 残りあと何回ジャンプできるか </summary>
     private int _remainingJumpCount;
     /// <summary> 左右入力を取得 </summary>
@@ -105,10 +109,6 @@ public class PlayerControl : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
-        if (_h != 0)
-        {
-            transform.localScale = new Vector3(_h, transform.localScale.y, transform.localScale.z);
-        }
 
         if (_isJumpPresed && _pressedJumpButtonTime < 0.2f)
         {
@@ -141,6 +141,7 @@ public class PlayerControl : MonoBehaviour
         if (other.name.Contains("Boss") && _enemyHealthController != null)
         {
             _enemyHealthController.EnemyDamage(1);
+            _aus.PlayOneShot(_hitAtEnemySE);
         }
         if (_bulletCount > 0)
         {

@@ -27,8 +27,6 @@ public class BossABehaviour : MonoBehaviour
     Transform[] _pos;
     /// <summary>攻撃パターンを入れる。完了前にシーン移動した際にKillできるように保存</summary>
     Sequence _seq;
-    /// <summary>行動パターンの保管</summary>
-    Action[] _actions;
     /// <summary>ボスの見た目部分。</summary>
     GameObject _bossCube;
     /// <summary>開始時の位置</summary>
@@ -46,11 +44,6 @@ public class BossABehaviour : MonoBehaviour
         _pos = GameObject.Find("Positions").transform.GetComponentsInChildren<Transform>();
         _seAus = GetComponent<AudioSource>();
         _seAus.volume *= PlayerPrefs.GetFloat("SEVolume");
-
-        _actions = new Action[2];
-        _actions[0] = AttackPatternOne;
-        _actions[1] = AttackPatternTwo;
-
         _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
             SetLoops(-1, LoopType.Incremental).
             SetEase(Ease.Linear);
@@ -65,8 +58,24 @@ public class BossABehaviour : MonoBehaviour
              OnComplete(() =>
              {
                  _bossCube.transform.DOPause();
-                 _actions[Random.Range(0, _actions.Length)].Invoke();
+                 Attack();
              });
+    }
+    private void Attack()
+    {
+        int index = Random.Range(0, 2);
+        if (index == 0)
+        {
+            AttackPatternOne();
+        }
+        else if (index == 1)
+        {
+            AttackPatternTwo();
+        }
+        else
+        {
+            Debug.Log("Attack failed");
+        }
     }
     private void AttackPatternOne()
     {

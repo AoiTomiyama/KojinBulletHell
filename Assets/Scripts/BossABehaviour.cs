@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -86,6 +87,8 @@ public class BossABehaviour : MonoBehaviour
                     var emission = ps.emission;
                     emission.enabled = false;
                     _particleTr.DetachChildren();
+                    //âÊñ äOÇ…âüÇµèoÇ∑
+                    ps.transform.position += Vector3.up * 1000;
                     Destroy(ps.gameObject, duration);
                     _bossCube.transform.DOPlay();
                 }
@@ -110,28 +113,33 @@ public class BossABehaviour : MonoBehaviour
 
     public void OnDeath()
     {
+        float duration = 4f;
         GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
+        FindObjectOfType<GameManager>().IsTimeStop = true;
         _seAus.PlayOneShot(_deathChargeSE);
-        if (_seq != null)
-        {
-            _seq.Kill();
-        }
+        _seq?.Kill();
         transform.DOKill();
         _bossCube.transform.DOKill();
-        _bossCube.transform.rotation = Quaternion.Euler(Vector3.zero);
+        //_bossCube.transform.rotation = Quaternion.Euler(Vector3.zero);
         this.transform.position = new Vector2(0, _startPos.y);
         Destroy(_particleTr.gameObject);
         StartCoroutine(Flash());
-        _bossCube.transform.DORotate(Vector3.one * 360 * 4.8f, 4, RotateMode.FastBeyond360).
+        _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360).
             SetEase(Ease.InExpo).
-            OnComplete(() => Invoke(nameof(Explode), 0.2f)
+            OnComplete(() => StartCoroutine(Explode())
             );
+        StartCoroutine(FindObjectOfType<LightRay>().EmitLightRay(duration, 10));
     }
-    private void Explode()
+    private IEnumerator Explode()
     {
+        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(Flash());
         _bossCube.SetActive(false);
+        FindObjectOfType<LightRay>().gameObject.SetActive(false);
         _seAus.PlayOneShot(_deathExplodeSE);
         Instantiate(_explodePrefab, this.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("StageClear");
     }
 
     private IEnumerator Flash()
@@ -144,10 +152,7 @@ public class BossABehaviour : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_seq != null)
-        {
-            _seq.Kill();
-        }
+        _seq?.Kill();
         transform.DOKill();
         _bossCube.transform.DOKill();
     }

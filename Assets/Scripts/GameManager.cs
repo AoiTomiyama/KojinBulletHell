@@ -15,10 +15,22 @@ public class GameManager : MonoBehaviour
     [Header("経過時間を表示させるテキスト")]
     [SerializeField]
     Text _timerText;
+    private bool _isTimeStop;
+    public bool IsTimeStop { set { _isTimeStop = value; } }
     private void Start()
     {
-        GameObject.Find("BGM").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("BGMVolume");
-        GameObject.Find("SE").GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("SEVolume");
+        //BGMとSEを設定画面で決めた値にする。
+        var bgm = GameObject.Find("BGM");
+        if (bgm != null)
+        {
+            bgm.GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("BGMVolume");
+        }
+        var se = GameObject.Find("SE");
+        if (se != null)
+        {
+            se.GetComponent<AudioSource>().volume *= PlayerPrefs.GetFloat("SEVolume");
+        }
+
         PlayerPrefs.SetString("Scene", SceneManager.GetActiveScene().name);
         _time = 0f;
         _timerText = GameObject.Find("TimeField").GetComponent<Text>();
@@ -32,7 +44,10 @@ public class GameManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        _time += Time.deltaTime;
+        if (!_isTimeStop)
+        {
+            _time += Time.deltaTime;
+        }
         if (_timerText != null)
         {
             _timerText.text = _time.ToString("F2");

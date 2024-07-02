@@ -217,7 +217,8 @@ public class BossABehaviour : MonoBehaviour
             SetEase(Ease.Linear);
         this.transform.position = _pos[3].position;
         _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
-        _bossCube.transform.DORotate(Vector3.one * 3600, 5, RotateMode.FastBeyond360).
+        var shieldDuration = 10f;
+        _bossCube.transform.DORotate(new Vector3(Random.Range(-3600, 3600), Random.Range(-3600, 3600), Random.Range(-3600, 3600)), shieldDuration, RotateMode.FastBeyond360).
             SetEase(Ease.Linear).
             OnComplete(() =>
             {

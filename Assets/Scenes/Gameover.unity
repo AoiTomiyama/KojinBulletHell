@@ -822,7 +822,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53bc071a01276c4a9b2ad856fedf62d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeRecordTMPro: {fileID: 999369858}
+  _timeRecordText: {fileID: 999369858}
+  _difficultyText: {fileID: 0}
+  _clearText: {fileID: 0}
+  _isClearScene: 0
 --- !u!4 &1690168274
 Transform:
   m_ObjectHideFlags: 0

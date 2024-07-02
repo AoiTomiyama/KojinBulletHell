@@ -7,9 +7,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class RetryManager : MonoBehaviour
 {
-    [Header("記録を出力するテキスト")]
+    [Header("時間の記録を出力するテキスト")]
     [SerializeField]
-    TextMeshProUGUI _timeRecordTMPro;
+    TextMeshProUGUI _timeRecordText;
+    [Header("選んだ難易度を出力するテキスト")]
+    [SerializeField]
+    TextMeshProUGUI _difficultyText;
+    [Header("クリア表示")]
+    [SerializeField]
+    TextMeshProUGUI _clearText;
+    [Header("上2つを使用するか")]
+    [SerializeField]
+    bool _isClearScene;
     /// <summary>直前のシーン名を入れる変数</summary>
     string _oneBeforeSceneName;
     private void Start()
@@ -17,11 +26,11 @@ public class RetryManager : MonoBehaviour
         //GameManagerがメイン画面時に記録していたシーン名をPlayerPrefsから持ってくる
         _oneBeforeSceneName = PlayerPrefs.GetString("Scene");
         GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SEVolume");
-        _timeRecordTMPro.text = "time: " + PlayerPrefs.GetFloat("Time").ToString("F2");
-        var go = GameObject.Find("ClearText");
-        if (go != null)
+        _timeRecordText.text = "Time: " + PlayerPrefs.GetFloat("Time").ToString("F2");
+        if (_isClearScene)
         {
-            go.GetComponent<TextMeshProUGUI>().text = $"-{_oneBeforeSceneName}-\r\n-COMPLETE-";
+            _clearText.text = $"-{_oneBeforeSceneName}-\r\n-COMPLETE-";
+            _difficultyText.text = "Difficulty: " + PlayerPrefs.GetString("DIFF").ToUpper();
         }
     }
 

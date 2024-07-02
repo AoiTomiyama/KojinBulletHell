@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -10,24 +11,20 @@ public class TitleManager : MonoBehaviour
     [Header("ボタンが押されたときのSE")]
     [SerializeField]
     AudioClip _pressedSE;
-    [Header("ここにLevelSelectPanelを入れる")]
-    [SerializeField]
-    GameObject _levelSelectPanel;
     [Header("ここにMainMenuPanelを入れる")]
     [SerializeField]
     GameObject _mainMenuPanel;
-    [Header("ここにDifficultyPanelを入れる")]
-    [SerializeField]
-    GameObject _difficultyPanel;
+    /// <summary>選択されたステージ名を取得</summary>
     string _selectedLevel;
+    /// <summary>現在アクティブなパネルを保存</summary>
     GameObject _currentActivePanel;
     private void Start()
     {
         _mainMenuPanel.SetActive(true);
         _currentActivePanel = _mainMenuPanel;
-        _levelSelectPanel.SetActive(false);
-        _difficultyPanel.SetActive(false);
+        //タイトルに戻ってきたときに、不要なPlayerPrefsを破棄
         PlayerPrefs.DeleteKey("Scene");
+        PlayerPrefs.DeleteKey("DIFF");
     }
     public void PanelMove(GameObject panel)
     {
@@ -35,13 +32,14 @@ public class TitleManager : MonoBehaviour
         _currentActivePanel = panel;
         panel.SetActive(true);
     }
-    public void OnLevelButtonClicked(string SceneName)
+    public void OnTutorialButtonClicked()
     {
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene("Tutorial");
     }
     public void OnDifficultyButtonClicked(string difficulty)
     {
         PlayerPrefs.SetString("DIFF", difficulty);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(_selectedLevel);
     }
     public void OnSelectLevelClicked(string selectedLevel)

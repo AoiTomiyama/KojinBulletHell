@@ -7,7 +7,7 @@ public class LightRay : MonoBehaviour
 {
     [Header("Œõü")]
     [SerializeField]
-    GameObject _ray;
+    private GameObject _ray;
     /// <summary>
     /// “G‚ª€‚ñ‚¾‚Æ‚«‚È‚Ç‚Éo‚éŒõ‚Ì˜Ro‚ğ”­¶‚³‚¹‚é
     /// </summary>

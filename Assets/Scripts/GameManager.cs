@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     /// <summary> 経過時間。 </summary>
     private float _time;
     /// <summary> 経過時間を表示させるテキスト</summary>
-    Text _timerText;
+    private Text _timerText;
+    /// <summary> ボス撃破時にタイマーを止める用</summary>
     private bool _isTimeStop;
     public bool IsTimeStop { set { _isTimeStop = value; } }
     private void Start()

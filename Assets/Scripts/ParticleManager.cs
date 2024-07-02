@@ -10,38 +10,38 @@ public class ParticleManager : MonoBehaviour
 {
     [Header("パーティクルのダメージ量")]
     [SerializeField]
-    int _particleDamage = 1;
+    private int _particleDamage = 1;
 
     [Header("弾幕の挙動")]
     [SerializeField]
-    ParticleBehaviour _particleBehaviour = ParticleBehaviour.None;
+    private ParticleBehaviour _particleBehaviour = ParticleBehaviour.None;
 
     [Header("方向を変える周期（RandomDirection時のみ有効）")]
     [SerializeField]
-    float _waitTime;
+    private float _waitTime;
 
     [Header("方向の最大値（RandomDirection時のみ有効）")]
     [SerializeField]
-    float _maxAngular = 360;
+    private float _maxAngular = 360;
 
     [Header("方向の最小値（RandomDirection時のみ有効）")]
     [SerializeField]
-    float _minAngular = 0;
+    private float _minAngular = 0;
 
     [Header("発射時の効果音")]
     [SerializeField]
-    AudioClip _shootSE;
+    private AudioClip _shootSE;
 
     /// <summary> 体力を管理しているHealthControllerを取得 </summary>
-    HealthController _healthController;
+    private HealthController _healthController;
     /// <summary> 音源となるAudioSourceを取得 </summary>
-    AudioSource _aus;
+    private AudioSource _aus;
     /// <summary> プレイヤーのGameObjectを取得 </summary>
-    GameObject _player;
+    private GameObject _player;
     /// <summary> SE音量の値を一時的に入れる変数 </summary>
-    float _seVolume;
+    private float _seVolume;
     /// <summary> ParticleSystemを取得 </summary>
-    ParticleSystem _ps;
+    private ParticleSystem _ps;
     /// <summary> OnParticleTriggerで検知したParticleを保存する</summary>
     private HashSet<int> triggeredParticles = new();
 

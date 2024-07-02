@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -10,19 +8,20 @@ public class TitleManager : MonoBehaviour
 {
     [Header("クリック時のSE")]
     [SerializeField]
-    AudioClip _pressedSE;
+    private AudioClip _pressedSE;
     [Header("キャンセル時のSE")]
     [SerializeField]
-    AudioClip _cancelledSE;
+    private AudioClip _cancelledSE;
     [Header("ここにMainMenuPanelを入れる")]
     [SerializeField]
-    GameObject _mainMenuPanel;
+    private GameObject _mainMenuPanel;
+
     /// <summary>選択されたステージ名を取得</summary>
-    string _selectedLevel;
+    private string _selectedLevel;
     /// <summary>現在アクティブなパネルを保存</summary>
-    GameObject _currentActivePanel;
+    private GameObject _currentActivePanel;
     /// <summary>SEのAudiosourceを取得</summary>
-    AudioSource _seAus;
+    private AudioSource _seAus;
     private void Start()
     {
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();

@@ -11,25 +11,25 @@ public class HealthController : MonoBehaviour
 {
     [Header("HPの量(-1で体力∞)")]
     [SerializeField]
-    int _health = 5; 
+    private int _health = 5; 
 
     [Header("体力ゲージ1つおきの幅")]
     [SerializeField]
-    int _healthPadding = 5;
+    private int _healthPadding = 5;
 
     [Header("体力ゲージの見た目")]
     [SerializeField]
-    GameObject _healthPrefab;
+    private GameObject _healthPrefab;
 
     [Header("ダメージ時のSE")]
     [SerializeField]
-    AudioClip _damageSE;
+    private AudioClip _damageSE;
     /// <summary> 画面上の体力ゲージを管理する配列 </summary>
-    GameObject[] _healthBar;
+    private GameObject[] _healthBar;
     /// <summary> 音源となるAudioSourceを取得 </summary>
-    AudioSource _aus;
+    private AudioSource _aus;
     /// <summary> SE音量の値を一時的に入れる変数 </summary>
-    float _seVolume;
+    private float _seVolume;
 
     private void Start()
     {

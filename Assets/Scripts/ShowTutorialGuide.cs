@@ -9,9 +9,9 @@ public class ShowTutorialGuide : MonoBehaviour
 {
     [Header("表示させるテキスト")]
     [SerializeField]
-    TextMeshProUGUI _text;
+    private TextMeshProUGUI _text;
     /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
-    List<Tween> _tweens = new();
+    private List<Tween> _tweens = new();
     private void Start()
     {
         var color = _text.color;

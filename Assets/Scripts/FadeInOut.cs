@@ -10,12 +10,12 @@ public class FadeInOut : MonoBehaviour
 {
     [Header("フェードインにかかる時間")]
     [SerializeField]
-    float _fadeInTimer = 1f;
+    private float _fadeInTimer = 1f;
 
     /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
-    Tween _tween;
+    private Tween _tween;
     /// <summary>Imageコンポーネントを取得</summary>
-    Image _image;
+    private Image _image;
     void Start()
     {
         _image = GetComponent<Image>();

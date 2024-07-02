@@ -9,7 +9,7 @@ public class BulletPatternRandomizer : MonoBehaviour
 {
     [Header("有効にするかどうか")]
     [SerializeField]
-    bool _isEnabled;
+    private bool _isEnabled;
 
     [Header("待機秒数")]
     [SerializeField]
@@ -17,13 +17,13 @@ public class BulletPatternRandomizer : MonoBehaviour
 
     [Header("弾幕のパターン")]
     [SerializeField]
-    GameObject[] _patterns;
+    private GameObject[] _patterns;
 
     /// <summary> 現在の弾幕パターンを保存。 </summary>
-    GameObject _curretnPattern;
+    private GameObject _curretnPattern;
 
     /// <summary> パターン切り替わる時に表示するパネル </summary>
-    Image _flashPanel;
+    private Image _flashPanel;
     private void Start()
     {
         _flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();

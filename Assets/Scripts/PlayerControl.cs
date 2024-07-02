@@ -37,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     [Header("弾を撃った後のインターバル時間")]
     [SerializeField]
     private float _shootInterval = 1f;
+
     /// <summary> 弾発射後の経過時間 </summary>
     private float _intervalTimer;
     /// <summary> 残りあと何回ジャンプできるか </summary>

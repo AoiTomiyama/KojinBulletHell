@@ -9,18 +9,18 @@ public class RetryManager : MonoBehaviour
 {
     [Header("時間の記録を出力するテキスト")]
     [SerializeField]
-    TextMeshProUGUI _timeRecordText;
+    private TextMeshProUGUI _timeRecordText;
     [Header("選んだ難易度を出力するテキスト")]
     [SerializeField]
-    TextMeshProUGUI _difficultyText;
+    private TextMeshProUGUI _difficultyText;
     [Header("クリア表示")]
     [SerializeField]
-    TextMeshProUGUI _clearText;
+    private TextMeshProUGUI _clearText;
     [Header("上2つを使用するか")]
     [SerializeField]
-    bool _isClearScene;
+    private bool _isClearScene;
     /// <summary>直前のシーン名を入れる変数</summary>
-    string _oneBeforeSceneName;
+    private string _oneBeforeSceneName;
     private void Start()
     {
         //GameManagerがメイン画面時に記録していたシーン名をPlayerPrefsから持ってくる

@@ -1,5 +1,6 @@
 using Cinemachine;
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,29 +13,29 @@ public class BossABehaviour : MonoBehaviour
 {
     [Header("弾幕パターン")]
     [SerializeField]
-    GameObject[] _particles;
+    private GameObject[] _particles;
     [Header("死亡時の音（チャージ音）")]
     [SerializeField]
-    AudioClip _deathChargeSE;
+    private AudioClip _deathChargeSE;
     [Header("死亡時の音（爆発）")]
     [SerializeField]
-    AudioClip _deathExplodeSE;
+    private AudioClip _deathExplodeSE;
     [Header("死亡時のエフェクト（爆発）")]
     [SerializeField]
-    GameObject _explodePrefab;
+    private GameObject _explodePrefab;
 
     /// <summary>移動先の場所</summary>
-    Transform[] _pos;
+    private Transform[] _pos;
     /// <summary>攻撃パターンを入れる。完了前にシーン移動した際にKillできるように保存</summary>
-    Sequence _seq;
+    private Sequence _seq;
     /// <summary>ボスの見た目部分。</summary>
-    GameObject _bossCube;
+    private GameObject _bossCube;
     /// <summary>開始時の位置</summary>
-    Vector2 _startPos;
+    private Vector2 _startPos;
     /// <summary>弾幕を発生させる位置</summary>
-    Transform _particleTr;
+    private Transform _particleTr;
     /// <summary>SEを鳴らすためのAudioSourceを取得</summary>
-    AudioSource _seAus;
+    private AudioSource _seAus;
     private void Start()
     {
         _startPos = this.transform.position;
@@ -193,6 +194,7 @@ public class BossABehaviour : MonoBehaviour
     public void PhaseSecondStart()
     {
         Debug.Log("Phase 2 Start");
+        StartCoroutine(Flash());
     }
     public void Death()
     {

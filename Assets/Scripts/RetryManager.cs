@@ -18,6 +18,7 @@ public class RetryManager : MonoBehaviour
         _oneBeforeSceneName = PlayerPrefs.GetString("Scene");
         GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SEVolume");
         _timeRecordTMPro.text = "time: " + PlayerPrefs.GetFloat("Time").ToString("F2");
+        GameObject.Find("ClearText").GetComponent<TextMeshProUGUI>().text = $"-{_oneBeforeSceneName}-\r\n-COMPLETE-";
     }
 
     private void Update()

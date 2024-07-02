@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -15,24 +16,36 @@ public class TitleManager : MonoBehaviour
     [Header("‚±‚±‚ÉMainMenuPanel‚ð“ü‚ê‚é")]
     [SerializeField]
     GameObject _mainMenuPanel;
-
+    [Header("‚±‚±‚ÉDifficultyPanel‚ð“ü‚ê‚é")]
+    [SerializeField]
+    GameObject _difficultyPanel;
+    string _selectedLevel;
+    GameObject _currentActivePanel;
     private void Start()
     {
+        _mainMenuPanel.SetActive(true);
+        _currentActivePanel = _mainMenuPanel;
         _levelSelectPanel.SetActive(false);
+        _difficultyPanel.SetActive(false);
         PlayerPrefs.DeleteKey("Scene");
     }
-    public void OnStartButtonClicked()
+    public void PanelMove(GameObject panel)
     {
-        _mainMenuPanel.SetActive(false);
-        _levelSelectPanel.SetActive(true);
-    }
-    public void OnBackToTitleButtonClicked()
-    {
-        _mainMenuPanel.SetActive(true);
-        _levelSelectPanel.SetActive(false);
+        _currentActivePanel.SetActive(false);
+        _currentActivePanel = panel;
+        panel.SetActive(true);
     }
     public void OnLevelButtonClicked(string SceneName)
     {
         SceneManager.LoadScene(SceneName);
+    }
+    public void OnDifficultyButtonClicked(string difficulty)
+    {
+        PlayerPrefs.SetString("DIFF", difficulty);
+        SceneManager.LoadScene(_selectedLevel);
+    }
+    public void OnSelectLevelClicked(string selectedLevel)
+    {
+        _selectedLevel = selectedLevel;
     }
 }

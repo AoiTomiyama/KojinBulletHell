@@ -1,6 +1,5 @@
 using Cinemachine;
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,10 +22,13 @@ public class BossABehaviour : MonoBehaviour
     [Header("死亡時のエフェクト（爆発）")]
     [SerializeField]
     private GameObject _explodePrefab;
+    [Header("シールド展開時のSprite")]
+    [SerializeField]
+    private Sprite _shieldEnabled;
 
     /// <summary>移動先の場所</summary>
     private Transform[] _pos;
-    /// <summary>攻撃パターンを入れる。完了前にシーン移動した際にKillできるように保存</summary>
+    /// <summary>攻撃時の動きを入れる。完了前にシーン移動した際にKillできるように保存</summary>
     private Sequence _seq;
     /// <summary>ボスの見た目部分。</summary>
     private GameObject _bossCube;
@@ -36,8 +38,14 @@ public class BossABehaviour : MonoBehaviour
     private Transform _particleTr;
     /// <summary>SEを鳴らすためのAudioSourceを取得</summary>
     private AudioSource _seAus;
+    /// <summary> 弾幕パターン</summary>
+    private ParticleSystem _particlePattern;
+    /// <summary> シールドのGameObject</summary>
+    private GameObject _shield;
     private void Start()
     {
+        _shield = transform.Find("Shield").gameObject;
+        _shield.SetActive(false);
         _startPos = this.transform.position;
         _particleTr = this.transform.Find("ParticlePosition").transform;
         _bossCube = this.transform.Find("BossCube").gameObject;
@@ -45,21 +53,22 @@ public class BossABehaviour : MonoBehaviour
         _seAus = GetComponent<AudioSource>();
         _seAus.volume *= PlayerPrefs.GetFloat("SEVolume");
         _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
-            SetLoops(-1, LoopType.Incremental).
-            SetEase(Ease.Linear);
+        SetLoops(-1, LoopType.Incremental).
+        SetEase(Ease.Linear);
 
         WanderingMove();
     }
     private void WanderingMove()
     {
         this.transform.DOMove(new Vector2(-_startPos.x, _startPos.y), 3).
-             SetLoops(2, LoopType.Yoyo).
-             SetEase(Ease.InOutQuad).
-             OnComplete(() =>
-             {
-                 _bossCube.transform.DOPause();
-                 Attack();
-             });
+            SetLoops(2, LoopType.Yoyo).
+            SetEase(Ease.InOutQuad).
+            OnComplete(() =>
+            {
+                _bossCube.transform.DOPause();
+                Attack();
+            }
+            );
     }
     private void Attack()
     {
@@ -84,10 +93,10 @@ public class BossABehaviour : MonoBehaviour
     private void AttackPatternOne()
     {
         float duration = 4.5f;
-        ParticleSystem ps = Instantiate(_particles[0], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
-        ps.Stop();
-        var emission = ps.emission;
-        var main = ps.main;
+        _particlePattern = Instantiate(_particles[0], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
+        _particlePattern.Stop();
+        var emission = _particlePattern.emission;
+        var main = _particlePattern.main;
         main.duration = 0.75f;
         _seq = DOTween.Sequence();
         _seq.Append(
@@ -99,7 +108,7 @@ public class BossABehaviour : MonoBehaviour
             SetEase(Ease.InOutSine).
             OnStart(() =>
                 {
-                    ps.Play();
+                    _particlePattern.Play();
                     _bossCube.transform.DORotate(new Vector3(0, 360 * 5, 360), duration, RotateMode.FastBeyond360)
                     .SetEase(Ease.InOutSine);
                 }
@@ -108,7 +117,7 @@ public class BossABehaviour : MonoBehaviour
                 {
                     emission.enabled = false;
                     _particleTr.DetachChildren();
-                    Destroy(ps.gameObject, duration);
+                    Destroy(_particlePattern.gameObject, duration);
                     _bossCube.transform.DOPlay();
                 }
             ));
@@ -119,8 +128,8 @@ public class BossABehaviour : MonoBehaviour
     {
         float duration = 4f;
         float moveToPosTime = 0.5f;
-        ParticleSystem ps = Instantiate(_particles[1], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
-        var emission = ps.emission;
+        _particlePattern = Instantiate(_particles[1], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
+        var emission = _particlePattern.emission;
         int emitCount = (int)emission.GetBurst(0).count.constant;
         emission.enabled = false;
         _seq = DOTween.Sequence();
@@ -134,7 +143,7 @@ public class BossABehaviour : MonoBehaviour
             {
                 _seq.Append(transform.DOMoveX(-_pos[2].position.x, 1).OnStart(() =>
                 {
-                    ps.Emit(emitCount);
+                    _particlePattern.Emit(emitCount);
                     _bossCube.transform.DORotate(new Vector3(0, 720, 720), 1, RotateMode.FastBeyond360).
                     SetEase(Ease.OutQuad);
                 }
@@ -144,7 +153,7 @@ public class BossABehaviour : MonoBehaviour
             {
                 _seq.Append(transform.DOMoveX(_pos[2].position.x, 1).OnStart(() =>
                 {
-                    ps.Emit(emitCount);
+                    _particlePattern.Emit(emitCount);
                     _bossCube.transform.DORotate(new Vector3(0, -720, -720), 1, RotateMode.FastBeyond360).
                     SetEase(Ease.OutQuad);
                 }
@@ -155,7 +164,7 @@ public class BossABehaviour : MonoBehaviour
             OnStart(() =>
             {
                 _particleTr.DetachChildren();
-                Destroy(ps.gameObject, duration);
+                Destroy(_particlePattern.gameObject, duration);
                 _bossCube.transform.DOPlay();
             }
             ));
@@ -164,9 +173,9 @@ public class BossABehaviour : MonoBehaviour
     private void AttackPatternThree()
     {
         float duration = 5f;
-        ParticleSystem ps = Instantiate(_particles[2], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
-        ps.Stop();
-        var emission = ps.emission;
+        _particlePattern = Instantiate(_particles[2], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
+        _particlePattern.Stop();
+        var emission = _particlePattern.emission;
         emission.rateOverTimeMultiplier *= 2f;
         float moveToPosTime = 0.5f;
         _seq = DOTween.Sequence();
@@ -177,14 +186,14 @@ public class BossABehaviour : MonoBehaviour
         _seq.Append(
             _bossCube.transform.DORotate(18000 * Vector3.one, duration, RotateMode.FastBeyond360).
             SetEase(Ease.InOutSine).
-            OnStart(() => ps.Play())
+            OnStart(() => _particlePattern.Play())
             );
         _seq.Append(this.transform.DOMove(_startPos, moveToPosTime).
             OnStart(() =>
             {
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(ps.gameObject, duration);
+                Destroy(_particlePattern.gameObject, duration);
                 _bossCube.transform.DOPlay();
             }
             ));
@@ -195,6 +204,30 @@ public class BossABehaviour : MonoBehaviour
     {
         Debug.Log("Phase 2 Start");
         StartCoroutine(Flash());
+        _seq?.Kill();
+        _bossCube.transform.DOPause();
+        this.transform.DOKill();
+        if (_particlePattern != null)
+        {
+            Destroy(_particlePattern.gameObject);
+        }
+        _shield.SetActive(true);
+        Tween tw = _shield.transform.DORotate(new Vector3(0, 0, 360), 3, RotateMode.FastBeyond360).
+            SetLoops(-1, LoopType.Incremental).
+            SetEase(Ease.Linear);
+        this.transform.position = _pos[3].position;
+        _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
+        _bossCube.transform.DORotate(Vector3.one * 3600, 5, RotateMode.FastBeyond360).
+            SetEase(Ease.Linear).
+            OnComplete(() =>
+            {
+                StartCoroutine(Flash());
+                tw.Kill();
+                _shield.SetActive(false);
+                _bossCube.transform.DOPlay();
+                this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove());
+            }
+            );
     }
     public void Death()
     {

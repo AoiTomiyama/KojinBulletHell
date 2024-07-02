@@ -8,9 +8,12 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class TitleManager : MonoBehaviour
 {
-    [Header("ボタンが押されたときのSE")]
+    [Header("クリック時のSE")]
     [SerializeField]
     AudioClip _pressedSE;
+    [Header("キャンセル時のSE")]
+    [SerializeField]
+    AudioClip _cancelledSE;
     [Header("ここにMainMenuPanelを入れる")]
     [SerializeField]
     GameObject _mainMenuPanel;
@@ -18,8 +21,11 @@ public class TitleManager : MonoBehaviour
     string _selectedLevel;
     /// <summary>現在アクティブなパネルを保存</summary>
     GameObject _currentActivePanel;
+    /// <summary>SEのAudiosourceを取得</summary>
+    AudioSource _seAus;
     private void Start()
     {
+        _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
         _mainMenuPanel.SetActive(true);
         _currentActivePanel = _mainMenuPanel;
         //タイトルに戻ってきたときに、不要なPlayerPrefsを破棄
@@ -31,6 +37,14 @@ public class TitleManager : MonoBehaviour
         _currentActivePanel.SetActive(false);
         _currentActivePanel = panel;
         panel.SetActive(true);
+        _seAus.PlayOneShot(_pressedSE);
+    }
+    public void PanelCancel(GameObject panel)
+    {
+        _currentActivePanel.SetActive(false);
+        _currentActivePanel = panel;
+        panel.SetActive(true);
+        _seAus.PlayOneShot(_cancelledSE);
     }
     public void OnTutorialButtonClicked()
     {

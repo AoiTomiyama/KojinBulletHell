@@ -1,13 +1,13 @@
 using Cinemachine;
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
-
+/// <summary>
+/// ボスAの動き
+/// </summary>
 public class BossABehaviour : MonoBehaviour
 {
     [Header("弾幕パターン")]
@@ -23,6 +23,7 @@ public class BossABehaviour : MonoBehaviour
     [SerializeField]
     GameObject _explodePrefab;
 
+    /// <summary>移動先の場所</summary>
     Transform[] _pos;
     /// <summary>攻撃パターンを入れる。完了前にシーン移動した際にKillできるように保存</summary>
     Sequence _seq;
@@ -98,7 +99,7 @@ public class BossABehaviour : MonoBehaviour
             OnStart(() =>
                 {
                     ps.Play();
-                    _bossCube.transform.DORotate(new Vector3(0, 1080, 0), duration, RotateMode.FastBeyond360)
+                    _bossCube.transform.DORotate(new Vector3(0, 360 * 5, 360), duration, RotateMode.FastBeyond360)
                     .SetEase(Ease.InOutSine);
                 }
             ).

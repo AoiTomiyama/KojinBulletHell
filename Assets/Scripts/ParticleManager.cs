@@ -17,11 +17,11 @@ public class ParticleManager : MonoBehaviour
     ParticleBehaviour _particleBehaviour = ParticleBehaviour.None;
 
     [Header("方向を変える周期（RandomDirection時のみ有効）")]
-    [SerializeField] 
+    [SerializeField]
     float _waitTime;
 
     [Header("方向の最大値（RandomDirection時のみ有効）")]
-    [SerializeField] 
+    [SerializeField]
     float _maxAngular = 360;
 
     [Header("方向の最小値（RandomDirection時のみ有効）")]

@@ -697,6 +697,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &823038457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 75178264745732007, guid: 0be5a7989ef5c6f4b8f3103b770a9615, type: 3}
+  m_PrefabInstance: {fileID: 597488703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &951449831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,7 +1681,7 @@ PrefabInstance:
     - target: {fileID: 7869802869773924168, guid: 056581e80a347a44db75fa95e8bf8ede, type: 3}
       propertyPath: _timerText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 823038457}
     - target: {fileID: 8551412027732299989, guid: 056581e80a347a44db75fa95e8bf8ede, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,8 +10,7 @@ public class GameManager : MonoBehaviour
 {
     /// <summary> 経過時間。 </summary>
     private float _time;
-    [Header("経過時間を表示させるテキスト")]
-    [SerializeField]
+    /// <summary> 経過時間を表示させるテキスト</summary>
     Text _timerText;
     private bool _isTimeStop;
     public bool IsTimeStop { set { _isTimeStop = value; } }

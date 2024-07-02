@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// “G‘Ì—Í‚ÌŠÇ—B
+/// </summary>
 public class EnemyHealthController : MonoBehaviour
 {
     [Header("“G‚ÌÅ‘å‘Ì—Í")]

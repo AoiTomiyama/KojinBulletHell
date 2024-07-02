@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
-
+/// <summary>
+/// “G€–S‚Éo‚·Œõü‚Ì§Œä
+/// </summary>
 public class LightRay : MonoBehaviour
 {
     [Header("Œõü")]

@@ -2,7 +2,9 @@ using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+/// <summary>
+/// チュートリアル画面で、特定の範囲に入ったらテキストを表示させるスクリプト
+/// </summary>
 public class ShowTutorialGuide : MonoBehaviour
 {
     [Header("表示させるテキスト")]

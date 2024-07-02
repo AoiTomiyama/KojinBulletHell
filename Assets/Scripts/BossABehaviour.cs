@@ -190,6 +190,10 @@ public class BossABehaviour : MonoBehaviour
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
     }
 
+    public void PhaseSecondStart()
+    {
+        Debug.Log("Phase 2 Start");
+    }
     public void Death()
     {
         float duration = 4f;

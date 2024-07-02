@@ -24,19 +24,21 @@ public class PlayerControl : MonoBehaviour
 
     [Header("発射時のSE")]
     [SerializeField]
-    AudioClip _bulletShotSE;
+    private AudioClip _bulletShotSE;
 
     [Header("一段ジャンプのSE")]
     [SerializeField]
-    AudioClip _oneJumpSE;
+    private AudioClip _oneJumpSE;
 
     [Header("二段ジャンプのSE")]
     [SerializeField]
-    AudioClip _twoJumpSE;
+    private AudioClip _twoJumpSE;
 
-    [Header("敵ヒット時のSE")]
+    [Header("弾を撃った後のインターバル時間")]
     [SerializeField]
-    AudioClip _hitAtEnemySE;
+    private float _shootInterval = 1f;
+    /// <summary> 弾発射後の経過時間 </summary>
+    private float _intervalTimer;
     /// <summary> 残りあと何回ジャンプできるか </summary>
     private int _remainingJumpCount;
     /// <summary> 左右入力を取得 </summary>
@@ -98,16 +100,21 @@ public class PlayerControl : MonoBehaviour
         {
             _pressedJumpButtonTime += Time.deltaTime;
         }
-        if (Input.GetButtonDown("Fire1") && _bulletCount < 3)
+        if (Input.GetButtonDown("Fire1") && _bulletCount < 3 && _intervalTimer <= 0)
         {
             _ps.Emit(1);
             _aus.PlayOneShot(_bulletShotSE);
             _bulletCount++;
+            _intervalTimer = _shootInterval;
         }
     }
 
     private void FixedUpdate()
     {
+        if (_intervalTimer > 0)
+        {
+            _intervalTimer -= Time.deltaTime;
+        }
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
 
         if (_isJumpPresed && _pressedJumpButtonTime < 0.2f)
@@ -141,7 +148,6 @@ public class PlayerControl : MonoBehaviour
         if (other.name.Contains("Boss") && _enemyHealthController != null)
         {
             _enemyHealthController.EnemyDamage(1);
-            _aus.PlayOneShot(_hitAtEnemySE);
         }
         if (_bulletCount > 0)
         {

@@ -494,8 +494,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
-  m_Pitch: 3
+  m_Volume: 1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -2447,6 +2447,10 @@ PrefabInstance:
       propertyPath: _maxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1543933051723752734, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
+      propertyPath: _hitAtEnemySE
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ceb40d47923dc64397e5ba95862ec7e, type: 3}
     - target: {fileID: 3954522143579728476, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

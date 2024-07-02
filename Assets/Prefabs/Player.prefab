@@ -4942,7 +4942,7 @@ MonoBehaviour:
   _bulletShotSE: {fileID: 8300000, guid: 34f1bd519f13fef47adc6dc909c8eb21, type: 3}
   _oneJumpSE: {fileID: 8300000, guid: 440c7b1e3b1f1aa4eb03643d7960b11d, type: 3}
   _twoJumpSE: {fileID: 8300000, guid: c275a4524c74af544938d2fd3c6a7c98, type: 3}
-  _hitAtEnemySE: {fileID: 8300000, guid: 8ceb40d47923dc64397e5ba95862ec7e, type: 3}
+  _shootInterval: 0.15
 --- !u!58 &5343573656671455794
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5717,7 +5717,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0.5, z: 0}
+    m_Position: {x: 0, y: 0.7, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0

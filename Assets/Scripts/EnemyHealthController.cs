@@ -30,6 +30,15 @@ public class EnemyHealthController : MonoBehaviour
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
         _followTarget = FindObjectOfType<BossABehaviour>().gameObject;
         _healthSlider = GetComponent<Slider>();
+        var difficulty = PlayerPrefs.GetString("DIFF");
+        if (difficulty == "expert")
+        {
+            _maxHealth *= 1.2f;
+        }
+        else if (difficulty == "ruthless")
+        {
+            _maxHealth *= 1.5f;
+        }
         _health = _maxHealth;
         _healthText = transform.Find("EnemyHealthText").GetComponent<TextMeshProUGUI>();
         _healthSlider.value = _health / _maxHealth;

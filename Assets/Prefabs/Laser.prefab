@@ -55,7 +55,7 @@ MonoBehaviour:
   _endLaser: 0.7
   _laserDuration: 0.5
   _prewarnDuration: 1
-  _damage: 1
+  _damage: 3
   _isLoop: 0
   _warnSE: {fileID: 8300000, guid: 76aa2d3664b0e794492f72f0f942734a, type: 3}
   _beamSE: {fileID: 8300000, guid: c891a2f3cfa012a4fadf02b416f3a7df, type: 3}

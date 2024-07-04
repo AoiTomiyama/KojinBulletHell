@@ -32,6 +32,8 @@ public class EnemyHealthController : MonoBehaviour
         _healthSlider = GetComponent<Slider>();
         _health = _maxHealth;
         _healthText = transform.Find("EnemyHealthText").GetComponent<TextMeshProUGUI>();
+        _healthSlider.value = _health / _maxHealth;
+        _healthText.text = $"{_maxHealth}/{_health}";
     }
     private void FixedUpdate()
     {

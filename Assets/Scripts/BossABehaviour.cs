@@ -1,6 +1,7 @@
 using Cinemachine;
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,6 +26,9 @@ public class BossABehaviour : MonoBehaviour
     [Header("シールド展開時のSprite")]
     [SerializeField]
     private Sprite _shieldEnabled;
+    [Header("レーザーのPrefab")]
+    [SerializeField]
+    private GameObject _laser;
 
     /// <summary>移動先の場所</summary>
     private Transform[] _pos;
@@ -38,10 +42,12 @@ public class BossABehaviour : MonoBehaviour
     private Transform _particleTr;
     /// <summary>SEを鳴らすためのAudioSourceを取得</summary>
     private AudioSource _seAus;
-    /// <summary> 弾幕パターン</summary>
+    /// <summary>弾幕パターン</summary>
     private ParticleSystem _particlePattern;
-    /// <summary> シールドのGameObject</summary>
+    /// <summary>シールドのGameObject</summary>
     private GameObject _shield;
+    /// <summary>Tweenを保存してこのスクリプトが破壊されたときにTweenを止める用</summary>
+    List<Tween> _tweens = new();
     private void Start()
     {
         _shield = transform.Find("Shield").gameObject;
@@ -52,23 +58,27 @@ public class BossABehaviour : MonoBehaviour
         _pos = GameObject.Find("Positions").transform.GetComponentsInChildren<Transform>();
         _seAus = GetComponent<AudioSource>();
         _seAus.volume *= PlayerPrefs.GetFloat("SEVolume");
-        _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
-        SetLoops(-1, LoopType.Incremental).
-        SetEase(Ease.Linear);
+        _tweens.Add(
+            _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
+                SetLoops(-1, LoopType.Incremental).
+                SetEase(Ease.Linear)
+        );
 
         WanderingMove();
     }
     private void WanderingMove()
     {
-        this.transform.DOMove(new Vector2(-_startPos.x, _startPos.y), 3).
-            SetLoops(2, LoopType.Yoyo).
-            SetEase(Ease.InOutQuad).
-            OnComplete(() =>
-            {
-                _bossCube.transform.DOPause();
-                Attack();
-            }
-            );
+        _tweens.Add(
+            this.transform.DOMove(new Vector2(-_startPos.x, _startPos.y), 3).
+                SetLoops(2, LoopType.Yoyo).
+                SetEase(Ease.InOutQuad).
+                OnComplete(() =>
+                {
+                    _bossCube.transform.DOPause();
+                    Attack();
+                }
+                )
+        );
     }
     private void Attack()
     {
@@ -215,13 +225,23 @@ public class BossABehaviour : MonoBehaviour
         Tween tw = _shield.transform.DORotate(new Vector3(0, 0, 360), 3, RotateMode.FastBeyond360).
             SetLoops(-1, LoopType.Incremental).
             SetEase(Ease.Linear);
+        _tweens.Add(tw);
         this.transform.position = _pos[3].position;
         _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
-        var shieldDuration = 10f;
+        float shieldDuration = 10f;
+        float laserInterval = 1.2f;
+        for (float i = shieldDuration; i > 0; i -= laserInterval)
+        {
+            Invoke(nameof(ShotLaser), shieldDuration - i);
+        }
         _bossCube.transform.DORotate(new Vector3(Random.Range(-3600, 3600), Random.Range(-3600, 3600), Random.Range(-3600, 3600)), shieldDuration, RotateMode.FastBeyond360).
             SetEase(Ease.Linear).
             OnComplete(() =>
             {
+                foreach (var go in transform.GetComponentsInChildren<LaserBeam>())
+                {
+                    Destroy(go.gameObject);
+                }
                 StartCoroutine(Flash());
                 tw.Kill();
                 _shield.SetActive(false);
@@ -229,6 +249,10 @@ public class BossABehaviour : MonoBehaviour
                 this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove());
             }
             );
+    }
+    private void ShotLaser()
+    {
+        Instantiate(_laser, transform);
     }
     public void Death()
     {
@@ -272,7 +296,9 @@ public class BossABehaviour : MonoBehaviour
     private void OnDisable()
     {
         _seq?.Kill();
-        transform.DOKill();
-        _bossCube.transform.DOKill();
+        foreach (var t in _tweens)
+        {
+            t.Kill();
+        }
     }
 }

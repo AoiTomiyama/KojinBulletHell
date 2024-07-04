@@ -29,6 +29,12 @@ public class LaserBeam : MonoBehaviour
     [Header("ループさせるか")]
     [SerializeField]
     private bool _isLoop = false;
+    [Header("予測線のSE")]
+    [SerializeField]
+    AudioClip _warnSE;
+    [Header("発射時のSE")]
+    [SerializeField]
+    AudioClip _beamSE;
 
     /// <summary> 予測線のLineRendererを取得 </summary>
     private LineRenderer _prewarnLr;
@@ -44,10 +50,13 @@ public class LaserBeam : MonoBehaviour
     private BoxCollider2D _hitBox;
     /// <summary> 体力を管理しているHealthControllerを取得 </summary>
     private HealthController _healthController;
-    /// <summary> Tweenerを保存してこのスクリプトが破壊されたときにTweenを止める用 </summary>
+    /// <summary> Tweenerを保存してこのスクリプトが破壊されたときにTweenerを止める用 </summary>
     private Tweener _tweener;
+    /// <summary>SEのAudiosourceを取得</summary>
+    private AudioSource _seAus;
     private void Start()
     {
+        _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
         _laserLr = GetComponent<LineRenderer>();
         _hitBox = transform.Find("Hitbox").GetComponent<BoxCollider2D>();
         _prewarnLr = transform.Find("Prewarn").GetComponent<LineRenderer>();
@@ -58,6 +67,7 @@ public class LaserBeam : MonoBehaviour
     }
     private void PrewarnLaser()
     {
+        _seAus.PlayOneShot(_warnSE);
         _endPos = (_targetPos.position - this.transform.position) * 5;
         _prewarnLr.SetPosition(0, Vector2.zero);
         _prewarnLr.SetPosition(1, _endPos);
@@ -65,15 +75,17 @@ public class LaserBeam : MonoBehaviour
     }
     private void ShootLaser()
     {
+        _seAus.PlayOneShot(_beamSE);
         _laserLr.SetPosition(0, Vector2.zero);
         _laserLr.SetPosition(1, _endPos);
         _hitBox.enabled = _laserLr.enabled = true;
         _prewarnLr.SetPosition(1, Vector2.zero);
+        GetComponent<ParticleSystem>().Emit(1);
         _tweener = DOVirtual.Float(0, _laserWidth, _startLaser, (value) => _currentLaserWidth = value).
             OnComplete(
             () =>
             {
-                DOVirtual.Float(_laserWidth, 0, _endLaser, (value) => _currentLaserWidth = value).
+                _tweener = DOVirtual.Float(_laserWidth, 0, _endLaser, (value) => _currentLaserWidth = value).
                 SetEase(Ease.InQuad).
                 SetDelay(_laserDuration).
                 OnComplete(() =>
@@ -82,6 +94,10 @@ public class LaserBeam : MonoBehaviour
                     if (_isLoop)
                     {
                         PrewarnLaser();
+                    }
+                    else
+                    {
+                        Destroy(this.gameObject);
                     }
                 });
             }
@@ -94,7 +110,7 @@ public class LaserBeam : MonoBehaviour
     }
     private void SetCollider()
     {
-        if (_hitBox.enabled)
+        if (_hitBox.enabled && _currentLaserWidth > 0)
         {
             _laserLr.widthMultiplier = _currentLaserWidth;
             Vector2 midPos = _endPos / 2;
@@ -112,7 +128,7 @@ public class LaserBeam : MonoBehaviour
             _healthController.RemoveHealth(_damage);
         }
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         _tweener?.Kill();
     }

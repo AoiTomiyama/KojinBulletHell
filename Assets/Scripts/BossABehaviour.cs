@@ -48,8 +48,11 @@ public class BossABehaviour : MonoBehaviour
     private GameObject _shield;
     /// <summary>Tweenを保存してこのスクリプトが破壊されたときにTweenを止める用</summary>
     List<Tween> _tweens = new();
+    /// <summary>難易度</summary>
+    private string _difficulty;
     private void Start()
     {
+        _difficulty = PlayerPrefs.GetString("DIFF");
         _shield = transform.Find("Shield").gameObject;
         _shield.SetActive(false);
         _startPos = this.transform.position;
@@ -107,11 +110,24 @@ public class BossABehaviour : MonoBehaviour
         _particlePattern.Stop();
         var emission = _particlePattern.emission;
         var main = _particlePattern.main;
-        main.duration = 0.75f;
+
+        if (_difficulty == "expert")
+        {
+            main.duration = 0.6f;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            main.duration = 0.5f;
+        }
+        else
+        {
+            main.duration = 0.75f;
+        }
+
         _seq = DOTween.Sequence();
         _seq.Append(
             _bossCube.transform.DORotate(new Vector3(0, 720, 0), 0.5f, RotateMode.FastBeyond360).
-            OnStart(() => this.transform.DOMove(_pos[1].position, 0.5f))
+            OnStart(() => _tweens.Add(this.transform.DOMove(_pos[1].position, 0.5f)))
             );
         _seq.Append(
             this.transform.DOMove(new Vector2(-_pos[1].position.x, _pos[1].position.y), duration).
@@ -119,8 +135,8 @@ public class BossABehaviour : MonoBehaviour
             OnStart(() =>
                 {
                     _particlePattern.Play();
-                    _bossCube.transform.DORotate(new Vector3(0, 360 * 5, 360), duration, RotateMode.FastBeyond360)
-                    .SetEase(Ease.InOutSine);
+                    _tweens.Add(_bossCube.transform.DORotate(new Vector3(0, 360 * 5, 360), duration, RotateMode.FastBeyond360)
+                    .SetEase(Ease.InOutSine));
                 }
             ).
             OnComplete(() =>
@@ -136,26 +152,42 @@ public class BossABehaviour : MonoBehaviour
 
     private void AttackPatternTwo()
     {
-        float duration = 4f;
+        int burstCount = 4;
+        if (_difficulty == "expert")
+        {
+            burstCount += 2;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            burstCount += 4;
+        }
         float moveToPosTime = 0.5f;
         _particlePattern = Instantiate(_particles[1], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
         var emission = _particlePattern.emission;
-        int emitCount = (int)emission.GetBurst(0).count.constant;
+        float emitCount = emission.GetBurst(0).count.constant;
+        if (_difficulty == "expert")
+        {
+            emitCount *= 1.2f;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            emitCount *= 1.4f;
+        }
         emission.enabled = false;
         _seq = DOTween.Sequence();
         _seq.Append(
             _bossCube.transform.DORotate(new Vector3(720, 0, 0), moveToPosTime, RotateMode.FastBeyond360).
-            OnStart(() => this.transform.DOMove(_pos[2].position, moveToPosTime))
+            OnStart(() => _tweens.Add(this.transform.DOMove(_pos[2].position, moveToPosTime)))
             );
-        for (int i = (int)duration; i > 0; i--)
+        for (int i = burstCount; i > 0; i--)
         {
             if (i % 2 == 0)
             {
                 _seq.Append(transform.DOMoveX(-_pos[2].position.x, 1).OnStart(() =>
                 {
-                    _particlePattern.Emit(emitCount);
-                    _bossCube.transform.DORotate(new Vector3(0, 720, 720), 1, RotateMode.FastBeyond360).
-                    SetEase(Ease.OutQuad);
+                    _particlePattern.Emit((int)emitCount);
+                    _tweens.Add(_bossCube.transform.DORotate(new Vector3(0, 720, 720), 1, RotateMode.FastBeyond360).
+                    SetEase(Ease.OutQuad));
                 }
                 ));
             }
@@ -163,9 +195,9 @@ public class BossABehaviour : MonoBehaviour
             {
                 _seq.Append(transform.DOMoveX(_pos[2].position.x, 1).OnStart(() =>
                 {
-                    _particlePattern.Emit(emitCount);
-                    _bossCube.transform.DORotate(new Vector3(0, -720, -720), 1, RotateMode.FastBeyond360).
-                    SetEase(Ease.OutQuad);
+                    _particlePattern.Emit((int)emitCount);
+                    _tweens.Add(_bossCube.transform.DORotate(new Vector3(0, -720, -720), 1, RotateMode.FastBeyond360).
+                    SetEase(Ease.OutQuad));
                 }
                 ));
             }
@@ -174,7 +206,7 @@ public class BossABehaviour : MonoBehaviour
             OnStart(() =>
             {
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy(_particlePattern.gameObject, burstCount);
                 _bossCube.transform.DOPlay();
             }
             ));
@@ -186,12 +218,23 @@ public class BossABehaviour : MonoBehaviour
         _particlePattern = Instantiate(_particles[2], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
         _particlePattern.Stop();
         var emission = _particlePattern.emission;
-        emission.rateOverTimeMultiplier *= 2f;
+        if (_difficulty == "expert")
+        {
+            emission.rateOverTimeMultiplier *= 2.5f;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            emission.rateOverTimeMultiplier *= 3f;
+        }
+        else
+        {
+            emission.rateOverTimeMultiplier *= 2f;
+        }
         float moveToPosTime = 0.5f;
         _seq = DOTween.Sequence();
         _seq.Append(
             _bossCube.transform.DORotate(new Vector3(0, 0, 720), moveToPosTime, RotateMode.FastBeyond360).
-            OnStart(() => this.transform.DOMove(_pos[3].position, moveToPosTime))
+            OnStart(() => _tweens.Add(this.transform.DOMove(_pos[3].position, moveToPosTime)))
             );
         _seq.Append(
             _bossCube.transform.DORotate(18000 * Vector3.one, duration, RotateMode.FastBeyond360).
@@ -229,12 +272,28 @@ public class BossABehaviour : MonoBehaviour
         this.transform.position = _pos[3].position;
         _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
         float shieldDuration = 10f;
+        if (_difficulty == "expert")
+        {
+            shieldDuration *= 1.5f;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            shieldDuration *= 2f;
+        }
         float laserInterval = 1.2f;
+        if (_difficulty == "expert")
+        {
+            laserInterval = 1f;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            laserInterval = 0.8f;
+        }
         for (float i = shieldDuration; i > 0; i -= laserInterval)
         {
             Invoke(nameof(ShotLaser), shieldDuration - i);
         }
-        _bossCube.transform.DORotate(new Vector3(Random.Range(-3600, 3600), Random.Range(-3600, 3600), Random.Range(-3600, 3600)), shieldDuration, RotateMode.FastBeyond360).
+        _tweens.Add(_bossCube.transform.DORotate(new Vector3(Random.Range(-3600, 3600), Random.Range(-3600, 3600), Random.Range(-3600, 3600)), shieldDuration, RotateMode.FastBeyond360).
             SetEase(Ease.Linear).
             OnComplete(() =>
             {
@@ -248,7 +307,7 @@ public class BossABehaviour : MonoBehaviour
                 _bossCube.transform.DOPlay();
                 this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove());
             }
-            );
+            ));
     }
     private void ShotLaser()
     {

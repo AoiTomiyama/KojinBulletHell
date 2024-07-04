@@ -25,6 +25,8 @@ public class EnemyHealthController : MonoBehaviour
     private TextMeshProUGUI _healthText;
     /// <summary>SE‚ÌAudiosource‚ðŽæ“¾</summary>
     private AudioSource _seAus;
+    /// <summary>‘æ“ñŒ`‘Ô‚É“Ë“ü‚µ‚½‚©‚Ç‚¤‚©</summary>
+    private bool _isPhaseSecondStarted;
     private void Start()
     {
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
@@ -62,9 +64,10 @@ public class EnemyHealthController : MonoBehaviour
             _health -= damage;
             _healthSlider.value = _health / _maxHealth;
             _healthText.text = $"{_maxHealth}/{_health}";
-            if (_health == _maxHealth / 2)
+            if (_health <= _maxHealth / 2 && _isPhaseSecondStarted == false)
             {
                 _followTarget.GetComponent<BossABehaviour>().PhaseSecondStart();
+                _isPhaseSecondStarted = true;
             }
         }
     }

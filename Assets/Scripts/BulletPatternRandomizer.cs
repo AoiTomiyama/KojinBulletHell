@@ -7,9 +7,13 @@ using UnityEngine.UI;
 /// </summary>
 public class BulletPatternRandomizer : MonoBehaviour
 {
-    [Header("有効にするかどうか")]
+    [Header("どの難易度で有効にするかどうか")]
     [SerializeField]
-    private bool _isEnabled;
+    private bool _enableAtNormal;
+    [SerializeField]
+    private bool _enableAtExpert;
+    [SerializeField]
+    private bool _enableAtRuthless;
 
     [Header("待機秒数")]
     [SerializeField]
@@ -28,9 +32,13 @@ public class BulletPatternRandomizer : MonoBehaviour
     {
         _flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();
         _flashPanel.enabled = false;
-        if (_isEnabled && _patterns != null)
+        string difficulty = PlayerPrefs.GetString("DIFF");
+        if (_patterns != null)
         {
-            StartCoroutine(PatternSwitcher());
+            if (difficulty == "normal" && _enableAtNormal || difficulty == "expert" && _enableAtExpert || difficulty == "ruthless" && _enableAtRuthless)
+            {
+                StartCoroutine(PatternSwitcher());
+            }
         }
     }
 

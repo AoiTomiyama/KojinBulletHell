@@ -35,11 +35,11 @@ public class EnemyHealthController : MonoBehaviour
         var difficulty = PlayerPrefs.GetString("DIFF");
         if (difficulty == "expert")
         {
-            _maxHealth *= 1.2f;
+            _maxHealth *= 1.4f;
         }
         else if (difficulty == "ruthless")
         {
-            _maxHealth *= 1.5f;
+            _maxHealth *= 1.8f;
         }
         _health = _maxHealth;
         _healthText = transform.Find("EnemyHealthText").GetComponent<TextMeshProUGUI>();

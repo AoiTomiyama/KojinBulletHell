@@ -672,11 +672,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4430237761791107033, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4430237761791107033, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.7
+      value: -18.49
       objectReference: {fileID: 0}
     - target: {fileID: 4430237761791107033, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
       propertyPath: m_LocalPosition.z
@@ -709,6 +709,18 @@ PrefabInstance:
     - target: {fileID: 4430237761791107033, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099501799899483640, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165422158276614601, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
+      propertyPath: _interval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165422158276614601, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
+      propertyPath: _dashPower
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2046,6 +2058,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1942625523}
     m_Modifications:
+    - target: {fileID: 4151811672555866667, guid: cf54087d669555549b6f851e392b835d, type: 3}
+      propertyPath: _healthAtExpert
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6657270789531395702, guid: cf54087d669555549b6f851e392b835d, type: 3}
       propertyPath: m_Name
       value: HealthSystem
@@ -2568,7 +2584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1543933051723752734, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
       propertyPath: _maxHealth
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1543933051723752734, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
       propertyPath: _hitAtEnemySE

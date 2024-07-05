@@ -165,14 +165,6 @@ public class BossABehaviour : MonoBehaviour
         _particlePattern = Instantiate(_particles[1], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
         var emission = _particlePattern.emission;
         float emitCount = emission.GetBurst(0).count.constant;
-        if (_difficulty == "expert")
-        {
-            emitCount *= 1.2f;
-        }
-        else if (_difficulty == "ruthless")
-        {
-            emitCount *= 1.4f;
-        }
         emission.enabled = false;
         _seq = DOTween.Sequence();
         _seq.Append(

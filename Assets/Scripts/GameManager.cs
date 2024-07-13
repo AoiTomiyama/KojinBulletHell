@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 /// <summary>
 /// ゲーム画面自体を管理するスクリプト
-/// 現在タイマーの管理のみ
 /// </summary>
 public class GameManager : MonoBehaviour
 {

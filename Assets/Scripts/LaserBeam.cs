@@ -1,10 +1,9 @@
+using Cinemachine;
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+/// <summary>
+/// レーザービームを撃つスクリプト
+/// </summary>
 
 public class LaserBeam : MonoBehaviour
 {
@@ -75,6 +74,7 @@ public class LaserBeam : MonoBehaviour
     }
     private void ShootLaser()
     {
+        GameObject.Find("Shaker").GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         _seAus.PlayOneShot(_beamSE);
         _laserLr.SetPosition(0, Vector2.zero);
         _laserLr.SetPosition(1, _endPos);

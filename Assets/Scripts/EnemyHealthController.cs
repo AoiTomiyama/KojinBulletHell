@@ -18,7 +18,7 @@ public class EnemyHealthController : MonoBehaviour
     /// <summary>現在の体力を保存</summary>
     private float _health;
     /// <summary>追従するボスのGameObject</summary>
-    private GameObject _followTarget;
+    private BossBase _boss;
     /// <summary>体力を表示するスライダー</summary>
     private Slider _healthSlider;
     /// <summary>体力を表示するスライダー</summary>
@@ -30,7 +30,7 @@ public class EnemyHealthController : MonoBehaviour
     private void Start()
     {
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
-        _followTarget = FindObjectOfType<BossABehaviour>().gameObject;
+        _boss = FindObjectOfType<BossBase>();
         _healthSlider = GetComponent<Slider>();
         var difficulty = PlayerPrefs.GetString("DIFF");
         if (difficulty == "expert")
@@ -49,13 +49,13 @@ public class EnemyHealthController : MonoBehaviour
     private void FixedUpdate()
     {
         float offsetFromCenter = 6f;
-        this.transform.position = Camera.main.WorldToScreenPoint(_followTarget.transform.position + Vector3.up * offsetFromCenter);
+        this.transform.position = Camera.main.WorldToScreenPoint(_boss.transform.position + Vector3.up * offsetFromCenter);
     }
     public void EnemyDamage(int damage)
     {
         if (_health - damage == 0)
         {
-            _followTarget.GetComponent<BossABehaviour>().Death();
+            _boss.Death();
             Destroy(this.gameObject);
         }
         else
@@ -66,7 +66,7 @@ public class EnemyHealthController : MonoBehaviour
             _healthText.text = $"{_maxHealth}/{_health}";
             if (_health <= _maxHealth / 2 && _isPhaseSecondStarted == false)
             {
-                _followTarget.GetComponent<BossABehaviour>().PhaseSecondStart();
+                _boss.PhaseSecondStart();
                 _isPhaseSecondStarted = true;
             }
         }

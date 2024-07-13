@@ -1,7 +1,6 @@
 using Cinemachine;
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,47 +8,8 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// ボスAの動き
 /// </summary>
-public class BossABehaviour : MonoBehaviour
+public class BossABehaviour : BossBase
 {
-    [Header("弾幕パターン")]
-    [SerializeField]
-    private GameObject[] _particles;
-    [Header("死亡時の音（チャージ音）")]
-    [SerializeField]
-    private AudioClip _deathChargeSE;
-    [Header("死亡時の音（爆発）")]
-    [SerializeField]
-    private AudioClip _deathExplodeSE;
-    [Header("死亡時のエフェクト（爆発）")]
-    [SerializeField]
-    private GameObject _explodePrefab;
-    [Header("シールド展開時のSprite")]
-    [SerializeField]
-    private Sprite _shieldEnabled;
-    [Header("レーザーのPrefab")]
-    [SerializeField]
-    private GameObject _laser;
-
-    /// <summary>移動先の場所</summary>
-    private Transform[] _pos;
-    /// <summary>攻撃時の動きを入れる。完了前にシーン移動した際にKillできるように保存</summary>
-    private Sequence _seq;
-    /// <summary>ボスの見た目部分。</summary>
-    private GameObject _bossCube;
-    /// <summary>開始時の位置</summary>
-    private Vector2 _startPos;
-    /// <summary>弾幕を発生させる位置</summary>
-    private Transform _particleTr;
-    /// <summary>SEを鳴らすためのAudioSourceを取得</summary>
-    private AudioSource _seAus;
-    /// <summary>弾幕パターン</summary>
-    private ParticleSystem _particlePattern;
-    /// <summary>シールドのGameObject</summary>
-    private GameObject _shield;
-    /// <summary>Tweenを保存してこのスクリプトが破壊されたときにTweenを止める用</summary>
-    List<Tween> _tweens = new();
-    /// <summary>難易度</summary>
-    private string _difficulty;
     private void Start()
     {
         _difficulty = PlayerPrefs.GetString("DIFF");
@@ -83,27 +43,7 @@ public class BossABehaviour : MonoBehaviour
                 )
         );
     }
-    private void Attack()
-    {
-        int index = Random.Range(0, 3);
-        if (index == 0)
-        {
-            AttackPatternOne();
-        }
-        else if (index == 1)
-        {
-            AttackPatternTwo();
-        }
-        else if (index == 2)
-        {
-            AttackPatternThree();
-        }
-        else
-        {
-            Debug.Log("Attack failed");
-        }
-    }
-    private void AttackPatternOne()
+    public override void AttackPatternOne()
     {
         float duration = 4.5f;
         _particlePattern = Instantiate(_particles[0], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
@@ -150,7 +90,7 @@ public class BossABehaviour : MonoBehaviour
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
     }
 
-    private void AttackPatternTwo()
+    public override void AttackPatternTwo()
     {
         int burstCount = 4;
         if (_difficulty == "expert")
@@ -204,7 +144,7 @@ public class BossABehaviour : MonoBehaviour
             ));
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
     }
-    private void AttackPatternThree()
+    public override void AttackPatternThree()
     {
         float duration = 5f;
         _particlePattern = Instantiate(_particles[2], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
@@ -245,7 +185,7 @@ public class BossABehaviour : MonoBehaviour
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
     }
 
-    public void PhaseSecondStart()
+    public override void PhaseSecondStart()
     {
         Debug.Log("Phase 2 Start");
         StartCoroutine(Flash());
@@ -301,11 +241,7 @@ public class BossABehaviour : MonoBehaviour
             }
             ));
     }
-    private void ShotLaser()
-    {
-        Instantiate(_laser, transform);
-    }
-    public void Death()
+    public override void Death()
     {
         float duration = 4f;
         GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
@@ -322,6 +258,17 @@ public class BossABehaviour : MonoBehaviour
             OnComplete(() => StartCoroutine(Explode()));
         StartCoroutine(FindObjectOfType<LightRay>().EmitLightRay(duration, 10));
     }
+    private void ShotLaser()
+    {
+        Instantiate(_laser, transform);
+    }
+    private IEnumerator Flash()
+    {
+        var flash = GameObject.Find("FlashPanel").GetComponent<Image>();
+        flash.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        flash.enabled = false;
+    }
     private IEnumerator Explode()
     {
         var shaker = FindObjectOfType<CinemachineImpulseSource>();
@@ -334,22 +281,5 @@ public class BossABehaviour : MonoBehaviour
         Instantiate(_explodePrefab, this.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("StageClear");
-    }
-
-    private IEnumerator Flash()
-    {
-        var flash = GameObject.Find("FlashPanel").GetComponent<Image>();
-        flash.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        flash.enabled = false;
-    }
-
-    private void OnDisable()
-    {
-        _seq?.Kill();
-        foreach (var t in _tweens)
-        {
-            t.Kill();
-        }
     }
 }

@@ -1620,7 +1620,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.009102374, y: 0.009102374, z: 0.009102374}
+  m_LocalScale: {x: 0.021974953, y: 0.021974953, z: 0.021974953}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1874395098}
@@ -1667,7 +1667,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0dcf76e1f8982f647aefcc271e3e66e2, type: 3}
-  m_Color: {r: 0, g: 0.8866782, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.46857548, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1762,36 +1762,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1603850485}
   - component: {fileID: 1603850484}
-  - component: {fileID: 1603850483}
   - component: {fileID: 1603850486}
+  - component: {fileID: 1603850487}
   m_Layer: 0
-  m_Name: BossACore
+  m_Name: BossBCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1603850483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603850482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ea6bf418429bc4ab179e917bd0fd59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particles:
-  - {fileID: 2772450030705432852, guid: a874ad541822378438805938f67b1836, type: 3}
-  - {fileID: 8510297749152905686, guid: 8184b95007d099a46a6cfb0b7461f4a6, type: 3}
-  - {fileID: 8002026987802222995, guid: a5c5bebeb129d23468b2c08aa65f56dd, type: 3}
-  _deathChargeSE: {fileID: 8300000, guid: e105b08a0a7d6884a9f9ff2aa0c98090, type: 3}
-  _deathExplodeSE: {fileID: 8300000, guid: e93d82bc8aeeabe428690a32617cdbc7, type: 3}
-  _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
-  _shieldEnabled: {fileID: 21300000, guid: 6e38dda5a9958c845bad5e4a1f3e4861, type: 3}
-  _laser: {fileID: 795258873947668354, guid: 6a8e27e7d75b1684f8d91b71fb2a0bc0, type: 3}
 --- !u!58 &1603850484
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1942,6 +1921,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1603850487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603850482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfd09e398cb83940b71e18e65d5d631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particles: []
+  _deathChargeSE: {fileID: 0}
+  _deathExplodeSE: {fileID: 0}
+  _explodePrefab: {fileID: 0}
+  _laser: {fileID: 0}
 --- !u!1 &1735844726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2275,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8415d2b06f5c8094390dc1492f0df108, type: 2}
+  - {fileID: 2100000, guid: be69e31bfc3a537448e3be39afd6ff14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2308,7 +2304,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874395094}
-  m_Mesh: {fileID: -5820193132980138969, guid: 68bc7fac8159064478085733e8e4aad9, type: 3}
+  m_Mesh: {fileID: 6761731705000654285, guid: 49c07db68df910446b2bd81f3e846529, type: 3}
 --- !u!4 &1874395098
 Transform:
   m_ObjectHideFlags: 0
@@ -2319,7 +2315,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.36530918, y: -0.536464, z: -0.007674007, w: 0.7607212}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 484.23926, y: 484.23926, z: 484.23932}
+  m_LocalScale: {x: 190.33994, y: 190.33994, z: 190.33995}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1588597134}

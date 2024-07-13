@@ -46,13 +46,11 @@ public class BulletPatternRandomizer : MonoBehaviour
     {
         while (true)
         {
-            if (_curretnPattern != null)
-            {
-                _flashPanel.enabled = true;
-                Destroy(_curretnPattern);
-                yield return new WaitForSeconds(0.1f);
-                _flashPanel.enabled = false;
-            }
+            yield return new WaitForSeconds(_waitSeconds - 0.1f);
+            _flashPanel.enabled = true;
+            Destroy(_curretnPattern);
+            yield return new WaitForSeconds(0.1f);
+            _flashPanel.enabled = false;
             var pickedPattern = _patterns[Random.Range(0, _patterns.Length)];
             var spawnPos = this.transform.position;
             if (pickedPattern.name == "RainShot")
@@ -60,7 +58,6 @@ public class BulletPatternRandomizer : MonoBehaviour
                 spawnPos = pickedPattern.transform.position;
             }
             _curretnPattern = Instantiate(pickedPattern, spawnPos, Quaternion.identity);
-            yield return new WaitForSeconds(_waitSeconds - 0.1f);
         }
     }
 }

@@ -1790,8 +1790,7 @@ MonoBehaviour:
   _deathChargeSE: {fileID: 8300000, guid: e105b08a0a7d6884a9f9ff2aa0c98090, type: 3}
   _deathExplodeSE: {fileID: 8300000, guid: e93d82bc8aeeabe428690a32617cdbc7, type: 3}
   _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
-  _shieldEnabled: {fileID: 21300000, guid: 6e38dda5a9958c845bad5e4a1f3e4861, type: 3}
-  _laser: {fileID: 795258873947668354, guid: 6a8e27e7d75b1684f8d91b71fb2a0bc0, type: 3}
+  _laser: {fileID: 795258873947668354, guid: e251c76fef0339b41b146709abd9071b, type: 3}
 --- !u!58 &1603850484
 CircleCollider2D:
   m_ObjectHideFlags: 0

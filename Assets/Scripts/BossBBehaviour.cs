@@ -1,4 +1,6 @@
 using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossBBehaviour : BossBase
@@ -15,7 +17,7 @@ public class BossBBehaviour : BossBase
         _seAus = GetComponent<AudioSource>();
         _seAus.volume *= PlayerPrefs.GetFloat("SEVolume");
         _tweens.Add(
-            _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
+            _bossCube.transform.DORotate(new Vector3(Random.Range(300, 600), Random.Range(300, 600), Random.Range(300, 600)), 1.5f, RotateMode.FastBeyond360).
                 SetLoops(-1, LoopType.Incremental).
                 SetEase(Ease.Linear)
         );

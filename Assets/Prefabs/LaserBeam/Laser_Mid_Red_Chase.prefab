@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7985966254619423186}
   - component: {fileID: 8302378199852681657}
   m_Layer: 0
-  m_Name: Laser
+  m_Name: Laser_Mid_Red_Chase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,6 +57,7 @@ MonoBehaviour:
   _prewarnDuration: 1
   _damage: 3
   _isLoop: 0
+  _isTargetAtPlayer: 1
   _warnSE: {fileID: 8300000, guid: 76aa2d3664b0e794492f72f0f942734a, type: 3}
   _beamSE: {fileID: 8300000, guid: c891a2f3cfa012a4fadf02b416f3a7df, type: 3}
 --- !u!50 &8809069121681090873
@@ -130,10 +131,10 @@ LineRenderer:
   m_SortingOrder: -5
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 70, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0
+    widthMultiplier: 40
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -153,18 +154,18 @@ LineRenderer:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 0.9105228, g: 1, b: 0, a: 0}
+      key3: {r: 0.17603368, g: 1, b: 0.79863983, a: 0}
+      key4: {r: 0.12643719, g: 0, b: 1, a: 0}
+      key5: {r: 0.5713968, g: 0, b: 1, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
+      ctime2: 23387
+      ctime3: 36237
+      ctime4: 46903
+      ctime5: 56540
       ctime6: 0
       ctime7: 0
       atime0: 0

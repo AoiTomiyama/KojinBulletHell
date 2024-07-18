@@ -28,6 +28,9 @@ public class LaserBeam : MonoBehaviour
     [Header("ループさせるか")]
     [SerializeField]
     private bool _isLoop = false;
+    [Header("プレイヤーを狙うか")]
+    [SerializeField]
+    private bool _isTargetAtPlayer = false;
     [Header("予測線のSE")]
     [SerializeField]
     AudioClip _warnSE;
@@ -57,24 +60,26 @@ public class LaserBeam : MonoBehaviour
     {
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
         _laserLr = GetComponent<LineRenderer>();
+        _laserLr.widthMultiplier = 0;
         _hitBox = transform.Find("Hitbox").GetComponent<BoxCollider2D>();
         _prewarnLr = transform.Find("Prewarn").GetComponent<LineRenderer>();
 
         _healthController = FindObjectOfType<HealthController>();
         _targetPos = GameObject.Find("Player").transform;
+        if (_isTargetAtPlayer) transform.up = Vector3.up;
         PrewarnLaser();
     }
     private void PrewarnLaser()
     {
         _seAus.PlayOneShot(_warnSE);
-        _endPos = (_targetPos.position - this.transform.position) * 5;
+        _endPos = (_isTargetAtPlayer) ? (_targetPos.position - this.transform.position) * 5 : Vector3.up * 1000;
         _prewarnLr.SetPosition(0, Vector2.zero);
         _prewarnLr.SetPosition(1, _endPos);
         Invoke(nameof(ShootLaser), _prewarnDuration);
     }
     private void ShootLaser()
     {
-        GameObject.Find("Shaker").GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+        FindFirstObjectByType<CinemachineImpulseSource>().GenerateImpulse();
         _seAus.PlayOneShot(_beamSE);
         _laserLr.SetPosition(0, Vector2.zero);
         _laserLr.SetPosition(1, _endPos);
@@ -110,13 +115,13 @@ public class LaserBeam : MonoBehaviour
     }
     private void SetCollider()
     {
-        if (_hitBox.enabled && _currentLaserWidth > 0)
+        if (_hitBox.enabled && _currentLaserWidth > 0.1f)
         {
             _laserLr.widthMultiplier = _currentLaserWidth;
-            Vector2 midPos = _endPos / 2;
+            Vector2 midPos = (_isTargetAtPlayer) ? _endPos / 2 : transform.up * 500;
             float length = Vector2.Distance(Vector2.zero, _endPos);
-            Vector2 direction = _endPos.normalized;
-            _hitBox.size = new Vector2(_currentLaserWidth * 0.3f, length);
+            Vector2 direction = (_isTargetAtPlayer) ? _endPos.normalized : transform.up.normalized;
+            _hitBox.size = new Vector2(_currentLaserWidth * 0.15f, length);
             _hitBox.transform.position = midPos + (Vector2)this.transform.position;
             _hitBox.transform.up = direction;
         }

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BossBBehaviour : BossBase
@@ -82,7 +83,7 @@ public class BossBBehaviour : BossBase
             count--;
         }
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).
-            OnStart( () => _bossCube.transform.DOPlay()).
+            OnStart(() => _bossCube.transform.DOPlay()).
             OnComplete(() =>
             {
                 emission.enabled = false;
@@ -117,7 +118,7 @@ public class BossBBehaviour : BossBase
         _seq.Append(
             _bossCube.transform.DORotate(1800 * Vector3.one, duration, RotateMode.FastBeyond360).
             SetEase(Ease.InOutSine).
-            OnStart(() => 
+            OnStart(() =>
             {
                 StartCoroutine(ShootLaser(duration, laserInterval));
                 _particlePattern.Play();
@@ -159,7 +160,7 @@ public class BossBBehaviour : BossBase
         _seq.Append(
             _bossCube.transform.DORotate(1800 * Vector3.one, duration, RotateMode.FastBeyond360).
             SetEase(Ease.InOutSine).
-            OnStart(() => 
+            OnStart(() =>
             {
                 _tweens.Add(
                     this.transform.DOMove(new Vector2(-_pos[3].position.x, _pos[3].position.y), duration / 4).
@@ -178,12 +179,6 @@ public class BossBBehaviour : BossBase
             }
             ));
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
-    }
-
-
-    public override void Death()
-    {
-        throw new System.NotImplementedException();
     }
 
     public override void PhaseSecondStart()
@@ -248,6 +243,37 @@ public class BossBBehaviour : BossBase
             }
             ));
     }
+
+    public override void Death()
+    {
+        float duration = 4f;
+        GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
+        FindObjectOfType<GameManager>().IsTimeStop = true;
+        _seAus.PlayOneShot(_deathChargeSE);
+        _seq?.Kill();
+        transform.DOKill();
+        _bossCube.transform.DOKill();
+        this.transform.position = new Vector2(0, _startPos.y);
+        Destroy(_particleTr.gameObject);
+        StartCoroutine(Flash());
+        _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360).
+            SetEase(Ease.InExpo).
+            OnComplete(() => StartCoroutine(Explode()));
+        StartCoroutine(FindObjectOfType<LightRay>().EmitLightRay(duration, 10));
+    }
+    private IEnumerator Explode()
+    {
+        yield return new WaitForSeconds(0.2f);
+        CameraShaker.Instance.Shake(3, 0, 1, 0.4f);
+        StartCoroutine(Flash());
+        _bossCube.SetActive(false);
+        FindObjectOfType<LightRay>().gameObject.SetActive(false);
+        _seAus.PlayOneShot(_deathExplodeSE);
+        Instantiate(_explodePrefab, this.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene("StageClear");
+    }
+
     private IEnumerator Flash()
     {
         var flash = GameObject.Find("FlashPanel").GetComponent<Image>();

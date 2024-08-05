@@ -66,22 +66,25 @@ public class LaserBeam : MonoBehaviour
 
         _healthController = FindObjectOfType<HealthController>();
         _targetPos = GameObject.Find("Player").transform;
-        if (_isTargetAtPlayer) transform.up = Vector3.up;
         PrewarnLaser();
     }
     private void PrewarnLaser()
     {
+        if (_isTargetAtPlayer)
+        {
+            transform.up = _targetPos.position - this.transform.position;
+        }
         _seAus.PlayOneShot(_warnSE);
-        _endPos = (_isTargetAtPlayer) ? (_targetPos.position - this.transform.position) * 5 : Vector3.up * 1000;
+        _endPos = Vector3.up * 100;
         _prewarnLr.SetPosition(0, Vector2.zero);
         _prewarnLr.SetPosition(1, _endPos);
         Invoke(nameof(ShootLaser), _prewarnDuration);
     }
     private void ShootLaser()
     {
-        FindFirstObjectByType<CinemachineImpulseSource>().GenerateImpulse();
+        CameraShaker.Instance.Shake(_damage / 2f, _startLaser, _laserDuration, _endLaser);
         _seAus.PlayOneShot(_beamSE);
-        _laserLr.SetPosition(0, Vector2.zero);
+          _laserLr.SetPosition(0, Vector2.zero);
         _laserLr.SetPosition(1, _endPos);
         _hitBox.enabled = _laserLr.enabled = true;
         _prewarnLr.SetPosition(1, Vector2.zero);
@@ -115,14 +118,14 @@ public class LaserBeam : MonoBehaviour
     }
     private void SetCollider()
     {
-        if (_hitBox.enabled && _currentLaserWidth > 0.1f)
+        if (_hitBox.enabled && _currentLaserWidth > 0.01f)
         {
             _laserLr.widthMultiplier = _currentLaserWidth;
-            Vector2 midPos = (_isTargetAtPlayer) ? _endPos / 2 : transform.up * 500;
+            Vector2 midPos = _endPos / 2;
             float length = Vector2.Distance(Vector2.zero, _endPos);
-            Vector2 direction = (_isTargetAtPlayer) ? _endPos.normalized : transform.up.normalized;
+            Vector2 direction = transform.up.normalized;
             _hitBox.size = new Vector2(_currentLaserWidth * 0.15f, length);
-            _hitBox.transform.position = midPos + (Vector2)this.transform.position;
+            _hitBox.transform.localPosition = midPos;
             _hitBox.transform.up = direction;
         }
     }

@@ -39,6 +39,10 @@ public class BulletPatternRandomizer : MonoBehaviour
             {
                 StartCoroutine(PatternSwitcher());
             }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4943319458988987044
+--- !u!1001 &3913246031048100911
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -50,12 +50,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 795258873947668354, guid: 775eced25fefedc49b27f3208f56734a, type: 3}
       propertyPath: m_Name
-      value: Laser_Large_Red_Normal
+      value: Laser_Large_Blue_Normal
       objectReference: {fileID: 0}
+    - target: {fileID: 1405452081842768243, guid: 775eced25fefedc49b27f3208f56734a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f2314ecc16eaa1489340846e2361c25, type: 2}
     - target: {fileID: 4992306744956770060, guid: 775eced25fefedc49b27f3208f56734a, type: 3}
       propertyPath: _isTargetAtPlayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7985966254619423186, guid: 775eced25fefedc49b27f3208f56734a, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 547240914c891234d8a14461134983ac, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

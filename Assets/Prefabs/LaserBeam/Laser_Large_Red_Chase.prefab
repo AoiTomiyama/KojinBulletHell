@@ -50,16 +50,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e8d54a6212ef349b123821b173eaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _laserWidth: 130
+  _laserWidth: 150
   _startLaser: 0.5
-  _endLaser: 0.8
+  _endLaser: 0.5
   _laserDuration: 0.5
   _prewarnDuration: 1.5
   _damage: 5
   _isLoop: 0
   _isTargetAtPlayer: 1
   _warnSE: {fileID: 8300000, guid: 76aa2d3664b0e794492f72f0f942734a, type: 3}
-  _beamSE: {fileID: 8300000, guid: c891a2f3cfa012a4fadf02b416f3a7df, type: 3}
+  _beamSE: {fileID: 8300000, guid: 5102d406e3e65fd41b33a51517fd49ea, type: 3}
 --- !u!50 &8809069121681090873
 Rigidbody2D:
   serializedVersion: 4
@@ -199,14 +199,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795258873947668354}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.8
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -214,7 +214,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 1.6
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -264,9 +264,9 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -274,7 +274,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -326,9 +326,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 170
+      minScalar: 130
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -445,7 +445,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 70
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -498,7 +498,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -761,10 +761,10 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    gravitySource: 0
+    gravitySource: 1
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
-    size3D: 0
+    size3D: 1
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
@@ -821,8 +821,8 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 0
-    type: 4
+    enabled: 1
+    type: 12
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -909,7 +909,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 17
       mode: 0
       spread: 0
       speed:
@@ -966,7 +966,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 180
       mode: 0
       spread: 0
       speed:
@@ -1023,12 +1023,12 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1134,7 +1134,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1146,23 +1146,14 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 8.242923
-          outSlope: 8.242923
+          inSlope: 5.2552075
+          outSlope: 5.2552075
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.45454273
+          outWeight: 0.3482424
         - serializedVersion: 3
-          time: 0.102672294
-          value: 1
-          inSlope: 0.0026768958
-          outSlope: 0.0026768958
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.38618723
+          time: 0.27321115
           value: 1
           inSlope: 0.027511122
           outSlope: 0.027511122
@@ -1171,13 +1162,22 @@ ParticleSystem:
           inWeight: 0.42395845
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.9336853
-          value: 0
-          inSlope: -2
-          outSlope: -2
+          time: 0.56600976
+          value: 1
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.9336853
+          value: 0
+          inSlope: -5.0637264
+          outSlope: -5.0637264
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.21048988
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1663,7 +1663,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: 2d666f10018697a4f8a8171655302749, type: 3}
+    - sprite: {fileID: 21300000, guid: 6425ba2a194d304488599cc79e73a899, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4973,15 +4973,15 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
-  m_RenderMode: 0
+  m_SortingOrder: 1
+  m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 9999
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 2
+  m_LengthScale: 1
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0

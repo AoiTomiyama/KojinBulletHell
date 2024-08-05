@@ -271,9 +271,7 @@ public class BossABehaviour : BossBase
     }
     private IEnumerator Explode()
     {
-        var shaker = FindObjectOfType<CinemachineImpulseSource>();
-        shaker.GenerateImpulseWithForce(5);
-        yield return new WaitForSeconds(0.2f);
+        CameraShaker.Instance.Shake(3, 0, 1, 0.4f);
         StartCoroutine(Flash());
         _bossCube.SetActive(false);
         FindObjectOfType<LightRay>().gameObject.SetActive(false);

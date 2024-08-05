@@ -44,10 +44,10 @@ public class GameManager : MonoBehaviour
         if (!_isTimeStop)
         {
             _time += Time.deltaTime;
-        }
-        if (_timerText != null)
-        {
-            _timerText.text = _time.ToString("F2");
+            if (_timerText != null)
+            {
+                _timerText.text = _time.ToString("F2");
+            }
         }
     }
 

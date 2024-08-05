@@ -87,9 +87,4 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("SEVolume", _seVolume);
         PlayerPrefs.Save();
     }
-
-    public void OnSETesterButtonClicked()
-    {
-        _seAus.Play();
-    }
 }

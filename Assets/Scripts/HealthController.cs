@@ -1,4 +1,5 @@
 using Cinemachine;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,7 +80,7 @@ public class HealthController : MonoBehaviour
                 }
                 _health -= damage;
                 _aus.PlayOneShot(_damageSE, _aus.volume * _seVolume);
-                FindObjectOfType<CinemachineImpulseSource>().GenerateImpulse();
+                CameraShaker.Instance.Shake(1f, 0, 0.3f, 0);
                 Debug.Log($"Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
             }
             if (_health == 0)

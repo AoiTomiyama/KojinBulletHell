@@ -1058,6 +1058,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 636427091}
+  - {fileID: 2120213744}
   m_Father: {fileID: 1735844727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963322506
@@ -1154,7 +1155,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7e1a6815d5abc3e468c7cc9461fcdfd0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b7ee7a36902d0804a9c77462ae73e099, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1970,7 +1971,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963322505}
-  - {fileID: 2120213744}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1747755990
@@ -2197,15 +2197,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5989129335722775046, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.9526402
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5989129335722775046, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.555345
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5989129335722775046, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.597773
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5989129335722775046, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2307,7 +2307,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874395094}
-  m_Mesh: {fileID: -5820193132980138969, guid: 68bc7fac8159064478085733e8e4aad9, type: 3}
+  m_Mesh: {fileID: -5792937081110711498, guid: f65228a0c6639c24eb6fae7ec340d57d, type: 3}
 --- !u!4 &1874395098
 Transform:
   m_ObjectHideFlags: 0
@@ -2402,6 +2402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2120213744}
   - component: {fileID: 2120213745}
+  - component: {fileID: 2120213746}
   m_Layer: 0
   m_Name: Shaker
   m_TagString: Untagged
@@ -2418,11 +2419,11 @@ Transform:
   m_GameObject: {fileID: 2120213743}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.687416, y: -0.59671235, z: -95.94539}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1735844727}
+  m_Father: {fileID: 963322505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2120213745
 MonoBehaviour:
@@ -2477,6 +2478,18 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 1, y: 1, z: 0}
+--- !u!114 &2120213746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120213743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3aa347df07a8b24ea6355f5af7bd36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1595030353831399157
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2064,7 +2064,7 @@ MonoBehaviour:
   _deathExplodeSE: {fileID: 0}
   _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
   _laser: {fileID: 9137676577201794955, guid: c5b4da3db3611e34aa02870bdd52efc7, type: 3}
-  _laserLarge: {fileID: 0}
+  _laserLarge: {fileID: 4415769759442072493, guid: 100b0f399822b5744916e36906a64adb, type: 3}
 --- !u!198 &1603850488
 ParticleSystem:
   m_ObjectHideFlags: 0

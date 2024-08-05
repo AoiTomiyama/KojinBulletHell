@@ -7,7 +7,7 @@ public class BossBBehaviour : BossBase
 {
     [Header("ÉåÅ[ÉUÅ[ÇÃPrefab")]
     [SerializeField]
-    protected private GameObject _laserLarge;
+    private GameObject _laserLarge;
     private void Start()
     {
         _difficulty = PlayerPrefs.GetString("DIFF");
@@ -188,7 +188,65 @@ public class BossBBehaviour : BossBase
 
     public override void PhaseSecondStart()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Phase 2 Start");
+        StartCoroutine(Flash());
+        _seq?.Kill();
+        _bossCube.transform.DOPause();
+        this.transform.DOKill();
+
+        if (_particlePattern != null)
+        {
+            Destroy(_particlePattern.gameObject);
+        }
+        _particlePattern = Instantiate(_particles[3]).GetComponent<ParticleSystem>();
+        var emission = _particlePattern.emission;
+
+        _shield.SetActive(true);
+        var tw = _shield.transform.DORotate(new Vector3(0, 0, -360), 3, RotateMode.FastBeyond360).
+            SetLoops(-1, LoopType.Incremental).
+            SetEase(Ease.Linear);
+        _tweens.Add(tw);
+        this.transform.position = _pos[4].position;
+        _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        float shieldDuration = 20f;
+        if (_difficulty == "expert")
+        {
+            shieldDuration = 25f;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            shieldDuration = 30f;
+        }
+
+        float laserInterval = 4f;
+        if (_difficulty == "expert")
+        {
+            laserInterval = 3.5f;
+        }
+        else if (_difficulty == "ruthless")
+        {
+            laserInterval = 3f;
+        }
+
+        StartCoroutine(ShootLaser(shieldDuration, laserInterval, true));
+
+        _tweens.Add(_bossCube.transform.DORotate(new Vector3(Random.Range(-3600, 3600), Random.Range(-3600, 3600), Random.Range(-3600, 3600)), shieldDuration, RotateMode.FastBeyond360).
+            SetEase(Ease.Linear).
+            OnComplete(() =>
+            {
+                emission.enabled = false;
+                foreach (var go in transform.GetComponentsInChildren<LaserBeam>())
+                {
+                    Destroy(go.gameObject);
+                }
+                StartCoroutine(Flash());
+                tw.Kill();
+                _shield.SetActive(false);
+                _bossCube.transform.DOPlay();
+                this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove());
+            }
+            ));
     }
     private IEnumerator Flash()
     {
@@ -198,11 +256,18 @@ public class BossBBehaviour : BossBase
         flash.enabled = false;
     }
 
-    private IEnumerator ShootLaser(float duration, float interval)
+    private IEnumerator ShootLaser(float duration, float interval, bool isLarseLaser = false)
     {
         for (float i = duration - interval; i > 0; i -= interval)
         {
-            Instantiate(_laser, transform);
+            if (isLarseLaser)
+            {
+                Instantiate(_laserLarge, new Vector2(Random.Range(_startPos.x, -_startPos.x), 25), Quaternion.Euler(0, 0, 180), transform);
+            }
+            else
+            {
+                Instantiate(_laser, transform);
+            }
             yield return new WaitForSeconds(interval);
         }
     }

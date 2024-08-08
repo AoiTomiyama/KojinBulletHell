@@ -23,12 +23,8 @@ public class BulletPatternRandomizer : MonoBehaviour
     /// <summary> 現在の弾幕パターンを保存。 </summary>
     private GameObject _curretnPattern;
 
-    /// <summary> パターン切り替わる時に表示するパネル </summary>
-    private Image _flashPanel;
     private void Start()
     {
-        _flashPanel = GameObject.Find("FlashPanel").GetComponent<Image>();
-        _flashPanel.enabled = false;
         string difficulty = PlayerPrefs.GetString("DIFF");
         if (_patterns != null)
         {
@@ -48,10 +44,8 @@ public class BulletPatternRandomizer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_waitSeconds - 0.1f);
-            _flashPanel.enabled = true;
             Destroy(_curretnPattern);
-            yield return new WaitForSeconds(0.1f);
-            _flashPanel.enabled = false;
+            FlashEffect.Instance.Flash();
             var pickedPattern = _patterns[Random.Range(0, _patterns.Length)];
             var spawnPos = this.transform.position;
             if (pickedPattern.name == "RainShot")

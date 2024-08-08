@@ -1703,6 +1703,7 @@ MonoBehaviour:
   - {fileID: 2772450030705432852, guid: a874ad541822378438805938f67b1836, type: 3}
   - {fileID: 8510297749152905686, guid: 8184b95007d099a46a6cfb0b7461f4a6, type: 3}
   - {fileID: 8002026987802222995, guid: a5c5bebeb129d23468b2c08aa65f56dd, type: 3}
+  - {fileID: 800267305326127791, guid: 35aac9ba18e35ae46a99d5484e32c04f, type: 3}
   _deathChargeSE: {fileID: 8300000, guid: e105b08a0a7d6884a9f9ff2aa0c98090, type: 3}
   _deathExplodeSE: {fileID: 8300000, guid: e93d82bc8aeeabe428690a32617cdbc7, type: 3}
   _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}

@@ -196,6 +196,9 @@ public class BossABehaviour : BossBase
         {
             Destroy(_particlePattern.gameObject);
         }
+        _particlePattern = Instantiate(_particles[3], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
+        var emission = _particlePattern.emission;
+
         _shield.SetActive(true);
         Tween tw = _shield.transform.DORotate(new Vector3(0, 0, 360), 3, RotateMode.FastBeyond360).
             SetLoops(-1, LoopType.Incremental).
@@ -229,6 +232,7 @@ public class BossABehaviour : BossBase
             SetEase(Ease.Linear).
             OnComplete(() =>
             {
+                emission.enabled = false;
                 foreach (var go in transform.GetComponentsInChildren<LaserBeam>())
                 {
                     Destroy(go.gameObject);

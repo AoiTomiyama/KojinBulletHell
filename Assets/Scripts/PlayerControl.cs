@@ -127,21 +127,23 @@ public class PlayerControl : MonoBehaviour
             _isJumpPresed = false;
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            _remainingJumpCount = _jumpCount;
             Debug.Log("On Floor");
+            _remainingJumpCount = _jumpCount;
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor") && _remainingJumpCount == _jumpCount)
+        if (collision.gameObject.CompareTag("Floor"))
         {
-            _remainingJumpCount--;
             Debug.Log("Leave Floor");
+            if (_remainingJumpCount == _jumpCount)
+            {
+                _remainingJumpCount--;
+            }
         }
     }
     private void OnParticleCollision(GameObject other)

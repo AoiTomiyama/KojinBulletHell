@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
             _time += Time.deltaTime;
             if (_timerText != null)
             {
-                _timerText.text = _time.ToString("F2");
+                _timerText.text = _time.ToString("000.00");
             }
         }
     }

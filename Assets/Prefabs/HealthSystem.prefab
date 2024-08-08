@@ -108,7 +108,7 @@ RectTransform:
   m_GameObject: {fileID: 6657270789531395702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 861554675162915108}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff4aa17cc76460449325d4f7282975f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
+  _health: 8
   _healthPadding: 55
   _healthPrefab: {fileID: 2363130133814040043, guid: 1173bfa15b67b8c4f98974960ea807c0, type: 3}
   _damageSE: {fileID: 8300000, guid: 0697c8307425a464f93b517ce76f9ebc, type: 3}

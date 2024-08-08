@@ -13,10 +13,6 @@ public class HealthController : MonoBehaviour
     [Header("HP‚Ì—Ê(-1‚Å‘Ì—Í‡)")]
     [SerializeField]
     private int _health = 5;
-    [SerializeField]
-    private int _healthAtExpert = 5;
-    [SerializeField]
-    private int _healthAtRuthless = 5;
 
     [Header("‘Ì—ÍƒQ[ƒW1‚Â‚¨‚«‚Ì•")]
     [SerializeField]
@@ -42,14 +38,6 @@ public class HealthController : MonoBehaviour
         _aus = GetComponent<AudioSource>();
         if (_health != -1)
         {
-            if (PlayerPrefs.GetString("DIFF") == "expert")
-            {
-                _health = _healthAtExpert;
-            }
-            if (PlayerPrefs.GetString("DIFF") == "ruthless")
-            {
-                _health = _healthAtRuthless;
-            }
             _healthBar = new GameObject[_health];
             for (int i = 0; i < _health; i++)
             {

@@ -428,6 +428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunShot
       objectReference: {fileID: 0}
+    - target: {fileID: 7012107333041349192, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: _shootSE
       value: 

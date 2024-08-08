@@ -7,13 +7,14 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemyHealthController : MonoBehaviour
 {
-    [Header("“G‚ÌÅ‘å‘Ì—Í")]
-    [SerializeField]
+    [SerializeField, Header("“G‚ÌÅ‘å‘Ì—Í")]
     private float _maxHealth = 30f;
 
-    [Header("“Gƒqƒbƒg‚ÌSE")]
-    [SerializeField]
+    [SerializeField, Header("“Gƒqƒbƒg‚ÌSE")]
     private AudioClip _hitAtEnemySE;
+
+    [SerializeField, Header("’†‰›‚©‚ç‚Ç‚ê‚¾‚¯Y²‚ğ‚¸‚ç‚·‚©")]
+    private float _offsetFromCenter = 6f;
 
     /// <summary>Œ»İ‚Ì‘Ì—Í‚ğ•Û‘¶</summary>
     private float _health;
@@ -48,8 +49,7 @@ public class EnemyHealthController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float offsetFromCenter = 6f;
-        this.transform.position = Camera.main.WorldToScreenPoint(_boss.transform.position + Vector3.up * offsetFromCenter);
+        this.transform.position = Camera.main.WorldToScreenPoint(_boss.transform.position + Vector3.up * _offsetFromCenter);
     }
     public void EnemyDamage(int damage)
     {

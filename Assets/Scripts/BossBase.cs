@@ -10,15 +10,19 @@ public abstract class BossBase : MonoBehaviour
     [Header("弾幕パターン")]
     [SerializeField]
     protected private GameObject[] _particles;
+
     [Header("死亡時の音（チャージ音）")]
     [SerializeField]
     protected private AudioClip _deathChargeSE;
+
     [Header("死亡時の音（爆発）")]
     [SerializeField]
     protected private AudioClip _deathExplodeSE;
+
     [Header("死亡時のエフェクト（爆発）")]
     [SerializeField]
     protected private GameObject _explodePrefab;
+
     [Header("レーザーのPrefab")]
     [SerializeField]
     protected private GameObject _laser;
@@ -43,6 +47,10 @@ public abstract class BossBase : MonoBehaviour
     protected List<Tween> _tweens = new();
     /// <summary>難易度</summary>
     protected private string _difficulty;
+
+    /// <summary>
+    /// 攻撃パターンの抽選
+    /// </summary>
     public void Attack()
     {
         int index = Random.Range(0, 3);
@@ -59,10 +67,25 @@ public abstract class BossBase : MonoBehaviour
             AttackPatternThree();
         }
     }
+    /// <summary>
+    /// 攻撃パターンその1
+    /// </summary>
     public abstract void AttackPatternOne();
+    /// <summary>
+    /// 攻撃パターンその2
+    /// </summary>
     public abstract void AttackPatternTwo();
+    /// <summary>
+    /// 攻撃パターンその3
+    /// </summary>
     public abstract void AttackPatternThree();
+    /// <summary>
+    /// 体力半分時の攻撃パターン
+    /// </summary>
     public abstract void PhaseSecondStart();
+    /// <summary>
+    /// 死亡時の演出
+    /// </summary>
     public abstract void Death();
     public void OnDisable()
     {

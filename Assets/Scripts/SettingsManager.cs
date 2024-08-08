@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,24 +7,19 @@ using UnityEngine.UI;
 /// </summary>
 public class SettingsManager : MonoBehaviour
 {
-    [Header("ここに設定パネルを入れる")]
-    [SerializeField]
+    [SerializeField, Header("ここに設定パネルを入れる")]
     Image _settingsPanel;
 
-    [Header("ここにスライダーを入れる")]
-    [SerializeField]
+    [SerializeField, Header("ここにスライダーを入れる")]
     Slider[] _sliders;
 
-    [Header("ここにスライダーの値を表示するテキストフィールドを入れる")]
-    [SerializeField]
+    [SerializeField, Header("ここにスライダーの値を表示するテキストフィールドを入れる")]
     TextMeshProUGUI[] _settingsText;
 
-    [Header("設定パネルを開くときのSE")]
-    [SerializeField]
+    [SerializeField, Header("設定パネルを開くときのSE")]
     AudioClip _openSettingsSE;
 
-    [Header("設定パネルを閉じるときのSE")]
-    [SerializeField]
+    [SerializeField, Header("設定パネルを閉じるときのSE")]
     AudioClip _closeSettingsSE;
 
     /// <summary> BGM音量の値を一時的に入れる変数 </summary>
@@ -77,7 +70,7 @@ public class SettingsManager : MonoBehaviour
         _seAus.PlayOneShot(_openSettingsSE);
         _settingsPanel.gameObject.SetActive(true);
     }
-    
+
     public void OnCancelButtonClicked()
     {
         _seAus.PlayOneShot(_closeSettingsSE);

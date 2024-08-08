@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
@@ -8,8 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class FadeInOut : MonoBehaviour
 {
-    [Header("フェードインにかかる時間")]
-    [SerializeField]
+    [SerializeField, Header("フェードインにかかる時間")]
     private float _fadeInTimer = 1f;
 
     /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
@@ -17,6 +15,10 @@ public class FadeInOut : MonoBehaviour
     /// <summary>Imageコンポーネントを取得</summary>
     private Image _image;
     void Start()
+    {
+        FadeOut();
+    }
+    void FadeOut()
     {
         _image = GetComponent<Image>();
         _image.enabled = true;

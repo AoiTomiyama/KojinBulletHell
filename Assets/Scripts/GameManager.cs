@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private Text _timerText;
     /// <summary> ボス撃破時にタイマーを止める用</summary>
     private bool _isTimeStop;
-    public bool IsTimeStop { set { _isTimeStop = value; } }
+    public bool IsTimeStop { set => _isTimeStop = value; }
     private void Start()
     {
         //BGMとSEを設定画面で決めた値にする。

@@ -7,18 +7,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class RetryManager : MonoBehaviour
 {
-    [Header("時間の記録を出力するテキスト")]
-    [SerializeField]
+    [SerializeField, Header("時間の記録を出力するテキスト")]
     private TextMeshProUGUI _timeRecordText;
-    [Header("選んだ難易度を出力するテキスト")]
-    [SerializeField]
+
+    [SerializeField, Header("選んだ難易度を出力するテキスト")]
     private TextMeshProUGUI _difficultyText;
-    [Header("クリア表示")]
-    [SerializeField]
+
+    [SerializeField, Header("クリア表示")]
     private TextMeshProUGUI _clearText;
-    [Header("上2つを使用するか")]
-    [SerializeField]
+
+    [SerializeField, Header("上2つを使用するか")]
     private bool _isClearScene;
+
     /// <summary>直前のシーン名を入れる変数</summary>
     private string _oneBeforeSceneName;
     private void Start()

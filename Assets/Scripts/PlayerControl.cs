@@ -6,36 +6,28 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerControl : MonoBehaviour
 {
-    [Header("プレイヤーの移動速度")]
-    [SerializeField]
+    [SerializeField, Header("プレイヤーの移動速度")]
     private float _moveSpeed = 1f;
 
-    [Header("プレイヤーのジャンプ力")]
-    [SerializeField]
+    [SerializeField, Header("プレイヤーのジャンプ力")]
     private float _jumpPower = 1f;
 
-    [Header("何回ジャンプ可能か(-1でジャンプ回数∞)")]
-    [SerializeField]
+    [SerializeField, Header("何回ジャンプ可能か(-1でジャンプ回数∞)")]
     private int _jumpCount = 2;
 
-    [Header("二回目以降のジャンプ力")]
-    [SerializeField]
+    [SerializeField, Header("二回目以降のジャンプ力")]
     private float _jumpPowerAfterOneJump = 1f;
 
-    [Header("発射時のSE")]
-    [SerializeField]
+    [SerializeField, Header("発射時のSE")]
     private AudioClip _bulletShotSE;
 
-    [Header("一段ジャンプのSE")]
-    [SerializeField]
+    [SerializeField, Header("一段ジャンプのSE")]
     private AudioClip _oneJumpSE;
 
-    [Header("二段ジャンプのSE")]
-    [SerializeField]
+    [SerializeField, Header("二段ジャンプのSE")]
     private AudioClip _twoJumpSE;
 
-    [Header("弾を撃った後のインターバル時間")]
-    [SerializeField]
+    [SerializeField, Header("弾を撃った後のインターバル時間")]
     private float _shootInterval = 1f;
 
     /// <summary> 弾発射後の経過時間 </summary>

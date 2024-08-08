@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class TitleManager : MonoBehaviour
 {
-    [Header("クリック時のSE")]
-    [SerializeField]
+    [SerializeField, Header("クリック時のSE")]
     private AudioClip _pressedSE;
-    [Header("キャンセル時のSE")]
-    [SerializeField]
+
+    [SerializeField, Header("キャンセル時のSE")]
     private AudioClip _cancelledSE;
-    [Header("ここにMainMenuPanelを入れる")]
-    [SerializeField]
+
+    [SerializeField, Header("ここにMainMenuPanelを入れる")]
     private GameObject _mainMenuPanel;
 
     /// <summary>選択されたステージ名を取得</summary>

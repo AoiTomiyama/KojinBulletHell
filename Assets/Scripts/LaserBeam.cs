@@ -1,4 +1,3 @@
-using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 /// <summary>
@@ -7,36 +6,32 @@ using UnityEngine;
 
 public class LaserBeam : MonoBehaviour
 {
-    [Header("レーザーの幅")]
-    [SerializeField]
+    [SerializeField, Header("レーザーの幅")]
     private float _laserWidth = 30f;
-    [Header("レーザーの展開秒数")]
-    [SerializeField]
+
+    [SerializeField, Header("レーザーの展開秒数")]
     private float _startLaser = 0.5f;
-    [Header("レーザーの停止秒数")]
-    [SerializeField]
+
+    [SerializeField, Header("レーザーの停止秒数")]
     private float _endLaser = 0.5f;
-    [Header("レーザーの継続秒数")]
-    [SerializeField]
+
+    [SerializeField, Header("レーザーの継続秒数")]
     private float _laserDuration = 0.1f;
-    [Header("予測線の継続秒数")]
-    [SerializeField]
+
+    [SerializeField, Header("予測線の継続秒数")]
     private float _prewarnDuration = 0.5f;
-    [Header("レーザーの火力")]
-    [SerializeField]
+
+    [SerializeField, Header("レーザーの火力")]
     private int _damage = 3;
-    [Header("ループさせるか")]
-    [SerializeField]
-    private bool _isLoop = false;
-    [Header("プレイヤーを狙うか")]
-    [SerializeField]
+
+    [SerializeField, Header("プレイヤーを狙うか")]
     private bool _isTargetAtPlayer = false;
-    [Header("予測線のSE")]
-    [SerializeField]
-    AudioClip _warnSE;
-    [Header("発射時のSE")]
-    [SerializeField]
-    AudioClip _beamSE;
+
+    [SerializeField, Header("予測線のSE")]
+    private AudioClip _warnSE;
+
+    [SerializeField, Header("発射時のSE")]
+    private AudioClip _beamSE;
 
     /// <summary> 予測線のLineRendererを取得 </summary>
     private LineRenderer _prewarnLr;
@@ -84,7 +79,7 @@ public class LaserBeam : MonoBehaviour
     {
         CameraShaker.Instance.Shake(_damage / 2f, _startLaser, _laserDuration, _endLaser);
         _seAus.PlayOneShot(_beamSE);
-          _laserLr.SetPosition(0, Vector2.zero);
+        _laserLr.SetPosition(0, Vector2.zero);
         _laserLr.SetPosition(1, _endPos);
         _hitBox.enabled = _laserLr.enabled = true;
         _prewarnLr.SetPosition(1, Vector2.zero);
@@ -99,14 +94,7 @@ public class LaserBeam : MonoBehaviour
                 OnComplete(() =>
                 {
                     _hitBox.enabled = _laserLr.enabled = false;
-                    if (_isLoop)
-                    {
-                        PrewarnLaser();
-                    }
-                    else
-                    {
-                        Destroy(this.gameObject);
-                    }
+                    Destroy(this.gameObject);
                 });
             }
             );

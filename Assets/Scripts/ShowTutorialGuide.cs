@@ -7,8 +7,7 @@ using UnityEngine;
 /// </summary>
 public class ShowTutorialGuide : MonoBehaviour
 {
-    [Header("表示させるテキスト")]
-    [SerializeField]
+    [SerializeField, Header("表示させるテキスト")]
     private TextMeshProUGUI _text;
     /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
     private List<Tween> _tweens = new();

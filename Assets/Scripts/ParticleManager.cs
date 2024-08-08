@@ -4,32 +4,26 @@ using UnityEngine;
 
 /// <summary>
 /// 弾幕のヒット時に体力を削ったり、弾幕生成時に効果音を鳴らすスクリプト。
-/// FollowCursorのプレイヤーの方向を向く機能と、RandomDirectionのランダムな方向に向く機能を統合させ1つのスクリプトにまとめた。。
+/// FollowCursorのプレイヤーの方向を向く機能と、RandomDirectionのランダムな方向に向く機能を統合させ1つのスクリプトにまとめた。
 /// </summary>
 public class ParticleManager : MonoBehaviour
 {
-    [Header("パーティクルのダメージ量")]
-    [SerializeField]
+    [SerializeField, Header("パーティクルのダメージ量")]
     private int _particleDamage = 1;
 
-    [Header("弾幕の挙動")]
-    [SerializeField]
+    [SerializeField, Header("弾幕の挙動")]
     private ParticleBehaviour _particleBehaviour = ParticleBehaviour.None;
 
-    [Header("方向を変える周期（RandomDirection時のみ有効）")]
-    [SerializeField]
+    [SerializeField, Header("方向を変える周期（RandomDirection時のみ有効）")]
     private float _waitTime;
 
-    [Header("方向の最大値（RandomDirection時のみ有効）")]
-    [SerializeField]
+    [SerializeField, Header("方向の最大値（RandomDirection時のみ有効）")]
     private float _maxAngular = 360;
 
-    [Header("方向の最小値（RandomDirection時のみ有効）")]
-    [SerializeField]
+    [SerializeField, Header("方向の最小値（RandomDirection時のみ有効）")]
     private float _minAngular = 0;
 
-    [Header("発射時の効果音")]
-    [SerializeField]
+    [SerializeField, Header("発射時の効果音")]
     private AudioClip _shootSE;
 
     /// <summary> 体力を管理しているHealthControllerを取得 </summary>

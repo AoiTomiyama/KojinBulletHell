@@ -5,8 +5,7 @@ using UnityEngine;
 /// </summary>
 public class LightRay : MonoBehaviour
 {
-    [Header("Œõü")]
-    [SerializeField]
+    [SerializeField, Header("Œõü")]
     private GameObject _ray;
     /// <summary>
     /// “G‚ª€‚ñ‚¾‚Æ‚«‚È‚Ç‚Éo‚éŒõ‚Ì˜Ro‚ğ”­¶‚³‚¹‚é

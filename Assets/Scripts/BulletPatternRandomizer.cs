@@ -7,20 +7,17 @@ using UnityEngine.UI;
 /// </summary>
 public class BulletPatternRandomizer : MonoBehaviour
 {
-    [Header("どの難易度で有効にするかどうか")]
-    [SerializeField]
+    [SerializeField, Header("どの難易度で有効にするかどうか")]
     private bool _enableAtNormal;
     [SerializeField]
     private bool _enableAtExpert;
     [SerializeField]
     private bool _enableAtRuthless;
 
-    [Header("待機秒数")]
-    [SerializeField]
+    [SerializeField, Header("待機秒数")]
     float _waitSeconds = 5;
 
-    [Header("弾幕のパターン")]
-    [SerializeField]
+    [SerializeField, Header("弾幕のパターン")]
     private GameObject[] _patterns;
 
     /// <summary> 現在の弾幕パターンを保存。 </summary>

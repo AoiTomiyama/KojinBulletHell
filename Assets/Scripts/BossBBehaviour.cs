@@ -3,12 +3,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+/// <summary>
+/// ボスBの動き
+/// </summary>
 
 public class BossBBehaviour : BossBase
 {
-    [Header("レーザーのPrefab")]
-    [SerializeField]
+    [SerializeField, Header("レーザー（大）のPrefab")]
     private GameObject _laserLarge;
+
     private void Start()
     {
         _difficulty = PlayerPrefs.GetString("DIFF");

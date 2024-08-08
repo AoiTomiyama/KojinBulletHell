@@ -1,7 +1,3 @@
-using Cinemachine;
-using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,21 +6,18 @@ using UnityEngine.UI;
 /// </summary>
 public class HealthController : MonoBehaviour
 {
-    [Header("HPの量(-1で体力∞)")]
-    [SerializeField]
+    [SerializeField, Header("HPの量(-1で体力∞)")]
     private int _health = 5;
 
-    [Header("体力ゲージ1つおきの幅")]
-    [SerializeField]
+    [SerializeField, Header("体力ゲージ1つおきの幅")]
     private int _healthPadding = 5;
 
-    [Header("体力ゲージの見た目")]
-    [SerializeField]
+    [SerializeField, Header("体力ゲージの見た目")]
     private GameObject _healthPrefab;
 
-    [Header("ダメージ時のSE")]
-    [SerializeField]
+    [SerializeField, Header("ダメージ時のSE")]
     private AudioClip _damageSE;
+
     /// <summary> 画面上の体力ゲージを管理する配列 </summary>
     private GameObject[] _healthBar;
     /// <summary> 音源となるAudioSourceを取得 </summary>

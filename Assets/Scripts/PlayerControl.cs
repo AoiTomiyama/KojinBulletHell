@@ -130,7 +130,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Contains("Floor"))
+        if (collision.gameObject.CompareTag("Floor"))
         {
             _remainingJumpCount = _jumpCount;
             Debug.Log("On Floor");
@@ -138,7 +138,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Contains("Floor") && _remainingJumpCount == _jumpCount)
+        if (collision.gameObject.CompareTag("Floor") && _remainingJumpCount == _jumpCount)
         {
             _remainingJumpCount--;
             Debug.Log("Leave Floor");
@@ -146,7 +146,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        if (other.name.Contains("Boss") && _enemyHealthController != null)
+        if (other.CompareTag("Boss") && _enemyHealthController != null)
         {
             _enemyHealthController.EnemyDamage(1);
         }

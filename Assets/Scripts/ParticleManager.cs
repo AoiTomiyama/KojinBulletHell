@@ -90,7 +90,7 @@ public class ParticleManager : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.name == "Player")
+        if (other.CompareTag("Player"))
         {
             _healthController.RemoveHealth(_particleDamage);
         }

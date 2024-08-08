@@ -20,7 +20,7 @@ public class ShowTutorialGuide : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             _tweens.Add(_text.transform.DOMoveY(_text.transform.position.y - 30f, 0.7f));
             _tweens.Add(_text.DOFade(1, 0.8f).OnComplete(() => Destroy(this.gameObject)));

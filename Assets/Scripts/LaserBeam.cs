@@ -131,7 +131,7 @@ public class LaserBeam : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             _healthController.RemoveHealth(_damage);
         }

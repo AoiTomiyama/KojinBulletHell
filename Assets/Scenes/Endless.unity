@@ -16483,6 +16483,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: ShapeModule.arc.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: ShapeModule.arc.speed.scalar
+      value: 12.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: InitialModule.startColor.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key0.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key1.a
+      value: 0.003921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4068420639029125371, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_Name
       value: WallAndFloor

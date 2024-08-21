@@ -7045,6 +7045,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: ShapeModule.arc.speed.scalar
+      value: 10.79
+      objectReference: {fileID: 0}
     - target: {fileID: 719160015961814790, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_Color.b
       value: 1

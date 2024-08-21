@@ -710,18 +710,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5099501799899483640, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
-      propertyPath: m_Radius
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 9165422158276614601, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
-      propertyPath: _interval
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9165422158276614601, guid: c12f9daa3ea3bee4a92f3672a063de35, type: 3}
-      propertyPath: _dashPower
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1789,7 +1777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1603850485}
   - component: {fileID: 1603850484}
-  - component: {fileID: 1603850483}
+  - component: {fileID: 1603850487}
   - component: {fileID: 1603850486}
   m_Layer: 0
   m_Name: BossCCore
@@ -1798,26 +1786,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1603850483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603850482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ea6bf418429bc4ab179e917bd0fd59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particles:
-  - {fileID: 2772450030705432852, guid: a874ad541822378438805938f67b1836, type: 3}
-  - {fileID: 8510297749152905686, guid: 8184b95007d099a46a6cfb0b7461f4a6, type: 3}
-  - {fileID: 8002026987802222995, guid: a5c5bebeb129d23468b2c08aa65f56dd, type: 3}
-  _deathChargeSE: {fileID: 8300000, guid: e105b08a0a7d6884a9f9ff2aa0c98090, type: 3}
-  _deathExplodeSE: {fileID: 8300000, guid: e93d82bc8aeeabe428690a32617cdbc7, type: 3}
-  _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
-  _laser: {fileID: 795258873947668354, guid: 83cdea5a2e9da274fbd9aa511f10f15f, type: 3}
 --- !u!58 &1603850484
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1968,6 +1936,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1603850487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603850482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa78255b500eae4eb3b2e3796249e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particles: []
+  _deathChargeSE: {fileID: 8300000, guid: e105b08a0a7d6884a9f9ff2aa0c98090, type: 3}
+  _deathExplodeSE: {fileID: 8300000, guid: e93d82bc8aeeabe428690a32617cdbc7, type: 3}
+  _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
+  _laser: {fileID: 0}
+  _laserLarge: {fileID: 0}
 --- !u!1001 &1679125809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2304,6 +2290,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 322112621456606583, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: ShapeModule.arc.speed.scalar
+      value: 9.15
+      objectReference: {fileID: 0}
     - target: {fileID: 719160015961814790, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_Color.b
       value: 0.46226406
@@ -2336,6 +2330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallAndFloor
       objectReference: {fileID: 0}
+    - target: {fileID: 4107128525623534596, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4344175188040269092, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_Color.b
       value: 0.46226406
@@ -2347,6 +2345,14 @@ PrefabInstance:
     - target: {fileID: 4344175188040269092, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_Color.r
       value: 0.48471862
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520019706690822125, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630376239559211702, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5989129335722775046, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_LocalPosition.x

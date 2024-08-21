@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using UnityEngine;
 
 /// <summary>
@@ -30,6 +31,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField, Header("弾を撃った後のインターバル時間")]
     private float _shootInterval = 1f;
 
+    /// <summary> 攻撃ボタンが押されているか </summary>
+    private bool _isFiring;
     /// <summary> 弾発射後の経過時間 </summary>
     private float _intervalTimer;
     /// <summary> 残りあと何回ジャンプできるか </summary>
@@ -93,12 +96,17 @@ public class PlayerControl : MonoBehaviour
         {
             _pressedJumpButtonTime += Time.deltaTime;
         }
-        if (Input.GetButtonDown("Fire1") && _bulletCount < 3 && _intervalTimer <= 0 || Input.GetKey(KeyCode.P))
+        if (Input.GetButtonDown("Fire1"))
         {
-            _ps.Emit(1);
-            _aus.PlayOneShot(_bulletShotSE);
-            _bulletCount++;
-            _intervalTimer = _shootInterval;
+            _isFiring = true;
+        }
+        else if (Input.GetButtonUp("Fire1"))
+        {
+            _isFiring = false;
+        }
+        if (_isFiring && _bulletCount < 3 && _intervalTimer <= 0 || Input.GetKey(KeyCode.P))
+        {
+            ShootBullet();
         }
     }
 
@@ -118,6 +126,13 @@ public class PlayerControl : MonoBehaviour
         {
             _isJumpPresed = false;
         }
+    }
+    private void ShootBullet()
+    {
+        _ps.Emit(1);
+        _aus.PlayOneShot(_bulletShotSE);
+        _bulletCount++;
+        _intervalTimer = _shootInterval;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -186,6 +186,7 @@ public class BossBBehaviour : BossBase
     public override void PhaseSecondStart()
     {
         Debug.Log("Phase 2 Start");
+        _effectImage.enabled = true;
         FlashEffect.Instance.Flash();
         _seq?.Kill();
         _bossCube.transform.DOPause();
@@ -233,6 +234,7 @@ public class BossBBehaviour : BossBase
             OnComplete(() =>
             {
                 emission.enabled = false;
+                _effectImage.enabled = false;
                 foreach (var go in transform.GetComponentsInChildren<LaserBeam>())
                 {
                     Destroy(go.gameObject);

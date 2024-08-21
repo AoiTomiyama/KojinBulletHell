@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 /// <summary>
 /// ボスの基底クラス
@@ -26,6 +27,9 @@ public abstract class BossBase : MonoBehaviour
     [Header("レーザーのPrefab")]
     [SerializeField]
     protected private GameObject _laser;
+
+    [SerializeField, Header("第二形態突入後に全体の色を変える為のパネル")]
+    protected private Image _effectImage;
 
     /// <summary>移動先の場所</summary>
     protected private Transform[] _pos;

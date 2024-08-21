@@ -47,8 +47,6 @@ public class PlayerControl : MonoBehaviour
     private bool _isJumpPresed;
     /// <summary> 弾の発射口 </summary>
     private ParticleSystem _ps;
-    /// <summary> 画面上の弾数</summary>
-    private float _bulletCount;
     /// <summary> AudioSourceコンポーネントを取得</summary>
     private AudioSource _aus;
     /// <summary> ジャンプしたときにEmitさせるParticleSystem</summary>
@@ -104,7 +102,7 @@ public class PlayerControl : MonoBehaviour
         {
             _isFiring = false;
         }
-        if (_isFiring && _bulletCount < 3 && _intervalTimer <= 0 || Input.GetKey(KeyCode.P))
+        if (_isFiring && _intervalTimer <= 0 || Input.GetKey(KeyCode.P))
         {
             ShootBullet();
         }
@@ -131,7 +129,6 @@ public class PlayerControl : MonoBehaviour
     {
         _ps.Emit(1);
         _aus.PlayOneShot(_bulletShotSE);
-        _bulletCount++;
         _intervalTimer = _shootInterval;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -158,10 +155,6 @@ public class PlayerControl : MonoBehaviour
         if (other.CompareTag("Boss") && _enemyHealthController != null)
         {
             _enemyHealthController.EnemyDamage(1);
-        }
-        if (_bulletCount > 0)
-        {
-            _bulletCount--;
         }
     }
 }

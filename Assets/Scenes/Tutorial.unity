@@ -192,6 +192,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 719160015961814790, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.56078434
+      objectReference: {fileID: 0}
     - target: {fileID: 4068420639029125371, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_Name
       value: WallAndFloor
@@ -1352,7 +1356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5855868415132932878, guid: d3839f0b64d2afc43838573cc029f641, type: 3}
       propertyPath: m_text
-      value: '[Z / K] - shoot
+      value: 'Hold [Z / K] - shoot
 
         [V] - go back to title
 

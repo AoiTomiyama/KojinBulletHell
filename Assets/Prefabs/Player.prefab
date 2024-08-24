@@ -4943,7 +4943,7 @@ MonoBehaviour:
   _bulletShotSE: {fileID: 8300000, guid: 34f1bd519f13fef47adc6dc909c8eb21, type: 3}
   _oneJumpSE: {fileID: 8300000, guid: 440c7b1e3b1f1aa4eb03643d7960b11d, type: 3}
   _twoJumpSE: {fileID: 8300000, guid: c275a4524c74af544938d2fd3c6a7c98, type: 3}
-  _shootInterval: 0.13
+  _shootInterval: 0.2
 --- !u!58 &5343573656671455794
 CircleCollider2D:
   m_ObjectHideFlags: 0

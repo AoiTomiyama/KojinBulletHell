@@ -19,9 +19,10 @@ public class FadeInOut : MonoBehaviour
     /// <summary>
     /// フェードイン後、シーンを移動する。
     /// </summary>
-    /// <param name="sceneName"></param>
+    /// <param name="sceneName">移動先のシーン名</param>
     public void FadeInAndChangeScene(string sceneName)
     {
+        if (_sceneName != null) return;
         _anim.Play("FadeIn");
         _sceneName = sceneName;
     }

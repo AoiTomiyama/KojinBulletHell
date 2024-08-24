@@ -273,7 +273,7 @@ public class BossCBehaviour : BossBase
         _seAus.PlayOneShot(_deathExplodeSE);
         Instantiate(_explodePrefab, this.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2.5f);
-        SceneManager.LoadScene("StageClear");
+        FindObjectOfType<FadeInOut>().FadeInAndChangeScene("StageClear");
     }
 
     private IEnumerator ShootLaser(float duration, float interval, bool isLarseLaser = false)

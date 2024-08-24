@@ -78,7 +78,8 @@ public class LaserBeam : MonoBehaviour
     private void ShootLaser()
     {
         CameraShaker.Instance.Shake(_damage / 2f, _startLaser, _laserDuration, _endLaser);
-        _seAus.PlayOneShot(_beamSE);
+        _seAus.clip = _beamSE;
+        _seAus.Play();
         _laserLr.SetPosition(0, Vector2.zero);
         _laserLr.SetPosition(1, _endPos);
         _hitBox.enabled = _laserLr.enabled = true;

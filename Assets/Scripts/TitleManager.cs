@@ -46,13 +46,13 @@ public class TitleManager : MonoBehaviour
     }
     public void OnTutorialButtonClicked()
     {
-        SceneManager.LoadScene("Tutorial");
+        FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Tutorial");
     }
     public void OnDifficultyButtonClicked(string difficulty)
     {
         PlayerPrefs.SetString("DIFF", difficulty);
         PlayerPrefs.Save();
-        SceneManager.LoadScene(_selectedLevel);
+        FindObjectOfType<FadeInOut>().FadeInAndChangeScene(_selectedLevel);
     }
     public void OnSelectLevelClicked(string selectedLevel)
     {

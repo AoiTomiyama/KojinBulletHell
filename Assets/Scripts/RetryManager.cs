@@ -38,12 +38,12 @@ public class RetryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(_oneBeforeSceneName);
+            FindObjectOfType<FadeInOut>().FadeInAndChangeScene(_oneBeforeSceneName);
             PlayerPrefs.DeleteKey("Time");
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.LoadScene("Title");
+            FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Title");
             PlayerPrefs.DeleteKey("Time");
         }
     }

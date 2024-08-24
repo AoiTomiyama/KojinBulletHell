@@ -77,6 +77,6 @@ public class HealthController : MonoBehaviour
     void Gameover()
     {
         Debug.Log("Gameover");
-        SceneManager.LoadScene("Gameover");
+        FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Gameover");
     }
 }

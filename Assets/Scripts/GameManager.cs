@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            SceneManager.LoadScene("Title");
+            FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Title");
         }
     }
     void FixedUpdate()

@@ -49,7 +49,14 @@ public class EnemyHealthController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        this.transform.position = Camera.main.WorldToScreenPoint(_boss.transform.position + Vector3.up * _offsetFromCenter);
+        if (_boss != null)
+        {
+            this.transform.position = Camera.main.WorldToScreenPoint(_boss.transform.position + Vector3.up * _offsetFromCenter);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
     public void EnemyDamage(int damage)
     {

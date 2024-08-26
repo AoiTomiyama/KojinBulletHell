@@ -3,16 +3,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 /// <summary>
-/// ボスBの動き
+/// ボスCの動き
 /// </summary>
 
 public class BossCBehaviour : BossBase
 {
-    [SerializeField, Header("レーザー（大）のPrefab")]
-    private GameObject _laserLarge;
+    [SerializeField, Header("第二形態時の攻撃")]
+    private GameObject _secondPhaseLaserAttack;
 
     private void Start()
     {
+        _flashEffector = FindObjectOfType<FlashEffect>();
         _difficulty = PlayerPrefs.GetString("DIFF");
         _shield = transform.Find("Shield").gameObject;
         _shield.SetActive(false);
@@ -47,43 +48,36 @@ public class BossCBehaviour : BossBase
     public override void AttackPatternOne()
     {
         float duration = 0.55f;
-        float count;
         _particlePattern = Instantiate(_particles[0], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
         var emission = _particlePattern.emission;
         emission.enabled = false;
         var main = _particlePattern.main;
-        int burstCount = (int)emission.GetBurst(0).count.constant;
 
         if (_difficulty == "expert")
         {
-            count = 6;
+            
         }
         else if (_difficulty == "ruthless")
         {
-            count = 8;
+            
         }
         else
         {
-            count = 5;
+            
         }
         _seq = DOTween.Sequence();
         _seq.Append(
             _bossCube.transform.DORotate(new Vector3(0, 720, 0), 0.5f, RotateMode.FastBeyond360).
             OnComplete(() => _particlePattern.Play())
             );
-        while (count > 0)
-        {
-            _seq.Append(_bossCube.transform.DORotate(Vector3.up * 720, duration, RotateMode.FastBeyond360).
-                SetEase(Ease.Linear).
-                OnStart(() =>
-                {
-                    FlashEffect.Instance.Flash();
-                    transform.position = new Vector3(Random.Range(_pos[1].position.x, -_pos[1].position.x), _pos[1].position.y, this.transform.position.z);
-                    _particlePattern.Emit(burstCount);
+        _seq.Append(_bossCube.transform.DORotate(Vector3.up * 720, duration, RotateMode.FastBeyond360).
+            SetEase(Ease.Linear).
+            OnStart(() =>
+            {
+                _flashEffector.Flash();
+                transform.position = new Vector3(Random.Range(_pos[1].position.x, -_pos[1].position.x), _pos[1].position.y, this.transform.position.z);
                 }
-                ));
-            count--;
-        }
+            ));
         _seq.Append(this.transform.DOMove(_startPos, 0.5f).
             OnStart(() => _bossCube.transform.DOPlay()).
             OnComplete(() =>
@@ -101,17 +95,16 @@ public class BossCBehaviour : BossBase
         _particlePattern = Instantiate(_particles[1], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
         _particlePattern.Stop();
         var emission = _particlePattern.emission;
-        float laserInterval = 1.2f;
         if (_difficulty == "expert")
         {
-            laserInterval = 0.9f;
+
         }
         else if (_difficulty == "ruthless")
         {
-            laserInterval = 0.5f;
+
         }
         float moveToPosTime = 0.5f;
-        FlashEffect.Instance.Flash();
+        _flashEffector.Flash();
         this.transform.position = _pos[2].position;
         _seq = DOTween.Sequence();
         _seq.Append(
@@ -122,7 +115,6 @@ public class BossCBehaviour : BossBase
             SetEase(Ease.InOutSine).
             OnStart(() =>
             {
-                StartCoroutine(ShootLaser(duration, laserInterval));
                 _particlePattern.Play();
             })
             );
@@ -155,7 +147,7 @@ public class BossCBehaviour : BossBase
         }
         float moveToPosTime = 0.5f;
 
-        FlashEffect.Instance.Flash();
+        _flashEffector.Flash();
         this.transform.position = _pos[3].position;
         _seq = DOTween.Sequence();
         _seq.Append(_bossCube.transform.DORotate(new Vector3(0, 0, 720), moveToPosTime, RotateMode.FastBeyond360));
@@ -186,7 +178,7 @@ public class BossCBehaviour : BossBase
     public override void PhaseSecondStart()
     {
         Debug.Log("Phase 2 Start");
-        FlashEffect.Instance.Flash();
+        _flashEffector.Flash();
         _seq?.Kill();
         _bossCube.transform.DOPause();
         this.transform.DOKill();
@@ -216,17 +208,14 @@ public class BossCBehaviour : BossBase
             shieldDuration = 30f;
         }
 
-        float laserInterval = 4f;
         if (_difficulty == "expert")
         {
-            laserInterval = 3.5f;
+
         }
         else if (_difficulty == "ruthless")
         {
-            laserInterval = 3f;
-        }
 
-        StartCoroutine(ShootLaser(shieldDuration, laserInterval, true));
+        }
 
         _tweens.Add(_bossCube.transform.DORotate(new Vector3(Random.Range(-3600, 3600), Random.Range(-3600, 3600), Random.Range(-3600, 3600)), shieldDuration, RotateMode.FastBeyond360).
             SetEase(Ease.Linear).
@@ -237,7 +226,7 @@ public class BossCBehaviour : BossBase
                 {
                     Destroy(go.gameObject);
                 }
-                FlashEffect.Instance.Flash();
+                _flashEffector.Flash();
                 tw.Kill();
                 _shield.SetActive(false);
                 _bossCube.transform.DOPlay();
@@ -257,7 +246,7 @@ public class BossCBehaviour : BossBase
         _bossCube.transform.DOKill();
         this.transform.position = new Vector2(0, _startPos.y);
         Destroy(_particleTr.gameObject);
-        FlashEffect.Instance.Flash();
+        _flashEffector.Flash();
         _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360).
             SetEase(Ease.InExpo).
             OnComplete(() => StartCoroutine(Explode()));
@@ -266,29 +255,13 @@ public class BossCBehaviour : BossBase
     private IEnumerator Explode()
     {
         yield return new WaitForSeconds(0.2f);
-        CameraShaker.Instance.Shake(3, 0, 1, 0.4f);
-        FlashEffect.Instance.Flash();
+        FindObjectOfType<CameraShaker>().Shake(3, 0, 1, 0.4f);
+        _flashEffector.Flash();
         _bossCube.SetActive(false);
         FindObjectOfType<LightRay>().gameObject.SetActive(false);
         _seAus.PlayOneShot(_deathExplodeSE);
         Instantiate(_explodePrefab, this.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2.5f);
         FindObjectOfType<FadeInOut>().FadeInAndChangeScene("StageClear");
-    }
-
-    private IEnumerator ShootLaser(float duration, float interval, bool isLarseLaser = false)
-    {
-        for (float i = duration - interval; i > 0; i -= interval)
-        {
-            if (isLarseLaser)
-            {
-                Instantiate(_laserLarge, new Vector2(Random.Range(_startPos.x, -_startPos.x), 25), Quaternion.Euler(0, 0, 180), transform);
-            }
-            else
-            {
-                Instantiate(_laser, transform);
-            }
-            yield return new WaitForSeconds(interval);
-        }
     }
 }

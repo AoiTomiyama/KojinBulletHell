@@ -45,7 +45,7 @@ public class BulletPatternRandomizer : MonoBehaviour
         {
             yield return new WaitForSeconds(_waitSeconds - 0.1f);
             Destroy(_curretnPattern);
-            FlashEffect.Instance.Flash();
+            FindObjectOfType<FlashEffect>().Flash();
             var pickedPattern = _patterns[Random.Range(0, _patterns.Length)];
             var spawnPos = this.transform.position;
             if (pickedPattern.name == "RainShot")

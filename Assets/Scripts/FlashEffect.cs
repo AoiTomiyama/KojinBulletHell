@@ -7,12 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class FlashEffect : MonoBehaviour
 {
-    public static FlashEffect Instance { get; private set; }
     private Image _image;
-    private void Awake()
-    {
-        Instance = this;
-    }
     private void Start()
     {
         _image = GetComponent<Image>();

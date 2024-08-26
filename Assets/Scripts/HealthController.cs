@@ -61,7 +61,7 @@ public class HealthController : MonoBehaviour
                 }
                 _health -= damage;
                 _aus.PlayOneShot(_damageSE, _aus.volume * _seVolume);
-                CameraShaker.Instance.Shake(1f, 0, 0.3f, 0);
+                FindObjectOfType<CameraShaker>().Shake(1f, 0, 0.3f, 0);
                 Debug.Log($"Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
             }
             if (_health == 0)

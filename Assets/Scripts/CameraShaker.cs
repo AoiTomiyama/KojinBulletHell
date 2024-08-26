@@ -3,14 +3,12 @@ using UnityEngine;
 
 public class CameraShaker : MonoBehaviour
 {
-    public static CameraShaker Instance { get; private set; }
 
     private CinemachineImpulseSource _source;
 
     //このスクリプトをインスタンス化
     private void Awake()
     {
-        Instance = this;
         _source = FindObjectOfType<CinemachineImpulseSource>();
     }
 

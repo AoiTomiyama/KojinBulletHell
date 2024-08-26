@@ -10,6 +10,7 @@ public class BossABehaviour : BossBase
 {
     private void Start()
     {
+        _flashEffector = FindObjectOfType<FlashEffect>();
         _difficulty = PlayerPrefs.GetString("DIFF");
         _shield = transform.Find("Shield").gameObject;
         _shield.SetActive(false);
@@ -187,7 +188,7 @@ public class BossABehaviour : BossBase
     {
         Debug.Log("Phase 2 Start");
         _effectImage.enabled = true;
-        FlashEffect.Instance.Flash();
+        _flashEffector.Flash();
         _seq?.Kill();
         _bossCube.transform.DOPause();
         this.transform.DOKill();
@@ -237,7 +238,7 @@ public class BossABehaviour : BossBase
                 {
                     Destroy(go.gameObject);
                 }
-                FlashEffect.Instance.Flash();
+                _flashEffector.Flash();
                 tw.Kill();
                 _shield.SetActive(false);
                 _bossCube.transform.DOPlay();
@@ -256,7 +257,7 @@ public class BossABehaviour : BossBase
         _bossCube.transform.DOKill();
         this.transform.position = new Vector2(0, _startPos.y);
         Destroy(_particleTr.gameObject);
-        FlashEffect.Instance.Flash();
+        _flashEffector.Flash();
         _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360).
             SetEase(Ease.InExpo).
             OnComplete(() => StartCoroutine(Explode()));
@@ -269,8 +270,8 @@ public class BossABehaviour : BossBase
     private IEnumerator Explode()
     {
         yield return new WaitForSeconds(0.2f);
-        CameraShaker.Instance.Shake(3, 0, 1, 0.4f);
-        FlashEffect.Instance.Flash();
+        FindObjectOfType<CameraShaker>().Shake(3, 0, 1, 0.4f);
+        _flashEffector.Flash();
         _bossCube.SetActive(false);
         FindObjectOfType<LightRay>().gameObject.SetActive(false);
         _seAus.PlayOneShot(_deathExplodeSE);

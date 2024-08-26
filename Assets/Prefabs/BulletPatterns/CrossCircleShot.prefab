@@ -874,7 +874,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4914,10 +4914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleDamage: 1
   _particleBehaviour: 0
-  _waitTime: 0
-  _maxAngular: 360
-  _minAngular: 0
-  _shootSE: {fileID: 8300000, guid: 070188885dc834741b1e299fc108339f, type: 3}
+  _shootSE: {fileID: 8300000, guid: 136301e3528a7da4c80414b4cd8296ad, type: 3}
 --- !u!82 &3893669579678665625
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25458,7 +25455,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -28456,7 +28453,7 @@ ParticleSystem:
     colliderQueryMode: 0
     radiusScale: 1
     primitives:
-    - {fileID: 0}
+    - {fileID: 4461484263671131403}
   SubModule:
     serializedVersion: 2
     enabled: 1
@@ -29498,10 +29495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleDamage: 1
   _particleBehaviour: 0
-  _waitTime: 0
-  _maxAngular: 360
-  _minAngular: 0
-  _shootSE: {fileID: 8300000, guid: 070188885dc834741b1e299fc108339f, type: 3}
+  _shootSE: {fileID: 8300000, guid: 136301e3528a7da4c80414b4cd8296ad, type: 3}
 --- !u!82 &4648440863067940631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29768,7 +29762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
@@ -29915,6 +29909,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0
   _randomized: 1
+  _maxAngle: 360
+  _minAngle: 0
 --- !u!4 &4461484263671131403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 49902937269532179, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}

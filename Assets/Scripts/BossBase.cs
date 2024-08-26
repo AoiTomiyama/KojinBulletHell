@@ -47,6 +47,8 @@ public abstract class BossBase : MonoBehaviour
     protected private ParticleSystem _particlePattern;
     /// <summary>シールドのGameObject</summary>
     protected private GameObject _shield;
+    /// <summary>画面全体を光らせるスクリプト</summary>
+    protected private FlashEffect _flashEffector;
     /// <summary>Tweenを保存してこのスクリプトが破壊されたときにTweenを止める用</summary>
     protected List<Tween> _tweens = new();
     /// <summary>難易度</summary>

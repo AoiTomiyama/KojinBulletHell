@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: lengthInSec
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 659315165550039226, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: NoiseModule.damping
@@ -378,7 +378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672219121899193315, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: m_Name
-      value: WeakShot
+      value: TriShot
       objectReference: {fileID: 0}
     - target: {fileID: 7282525828875577053, guid: 2f18d20feaa09054092c9a82848e723c, type: 3}
       propertyPath: _waitTime

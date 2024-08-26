@@ -54,7 +54,7 @@ MonoBehaviour:
   _startLaser: 0.5
   _endLaser: 0.5
   _laserDuration: 0.5
-  _prewarnDuration: 3
+  _prewarnDuration: 2
   _damage: 5
   _isTargetAtPlayer: 1
   _warnSE: {fileID: 8300000, guid: 76aa2d3664b0e794492f72f0f942734a, type: 3}

@@ -1459,7 +1459,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: be51f128967cd644fabfe5dffcd645a8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4d3eed2a142bed74cb2c21f555243d59, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -7131,6 +7131,10 @@ PrefabInstance:
     - target: {fileID: 563586547893866100, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: ShapeModule.arc.speed.scalar
       value: 10.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 719160015961814790, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
       objectReference: {fileID: 0}
     - target: {fileID: 719160015961814790, guid: 693a460580b62cd498c864059e4a46a6, type: 3}
       propertyPath: m_Color.b

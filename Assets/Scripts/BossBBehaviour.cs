@@ -288,7 +288,7 @@ public class BossBBehaviour : BossBase
             }
             else
             {
-                Instantiate(_laser, transform);
+                Instantiate(_laser, transform.position, Quaternion.identity);
             }
             yield return new WaitForSeconds(interval);
         }

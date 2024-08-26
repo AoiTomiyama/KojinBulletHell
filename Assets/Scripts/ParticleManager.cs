@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 弾幕のヒット時に体力を削ったり、弾幕生成時に効果音を鳴らすスクリプト。
-/// FollowCursorのプレイヤーの方向を向く機能と、RandomDirectionのランダムな方向に向く機能を統合させ1つのスクリプトにまとめた。
+/// 通常・自機狙いの二種類のタイプをもつ。
 /// </summary>
 public class ParticleManager : MonoBehaviour
 {
@@ -13,15 +13,6 @@ public class ParticleManager : MonoBehaviour
 
     [SerializeField, Header("弾幕の挙動")]
     private ParticleBehaviour _particleBehaviour = ParticleBehaviour.None;
-
-    [SerializeField, Header("方向を変える周期（RandomDirection時のみ有効）")]
-    private float _waitTime;
-
-    [SerializeField, Header("方向の最大値（RandomDirection時のみ有効）")]
-    private float _maxAngular = 360;
-
-    [SerializeField, Header("方向の最小値（RandomDirection時のみ有効）")]
-    private float _minAngular = 0;
 
     [SerializeField, Header("発射時の効果音")]
     private AudioClip _shootSE;
@@ -37,19 +28,15 @@ public class ParticleManager : MonoBehaviour
     /// <summary> ParticleSystemを取得 </summary>
     private ParticleSystem _ps;
     /// <summary> OnParticleTriggerで検知したParticleを保存する</summary>
-    private HashSet<int> triggeredParticles = new();
+    private readonly HashSet<int> triggeredParticles = new();
 
     private void Start()
     {
         _ps = GetComponent<ParticleSystem>();
-        _seVolume = PlayerPrefs.GetFloat("SEVolume");
-        _healthController = FindObjectOfType<HealthController>();
         _aus = GetComponent<AudioSource>();
-        _player = GameObject.Find("Player");
-        if (_particleBehaviour == ParticleBehaviour.RandomDirection)
-        {
-            StartCoroutine(RandomRotateRepeat());
-        }
+        _healthController = FindObjectOfType<HealthController>();
+        _player = FindObjectOfType<PlayerControl>().gameObject;
+        _seVolume = PlayerPrefs.GetFloat("SEVolume");
     }
 
     private void FixedUpdate()
@@ -89,20 +76,10 @@ public class ParticleManager : MonoBehaviour
             _healthController.RemoveHealth(_particleDamage);
         }
     }
-    IEnumerator RandomRotateRepeat()
-    {
-        while (true)
-        {
-            float randomZRotation = Random.Range(_minAngular, _maxAngular);
-            transform.rotation = Quaternion.Euler(0f, 0f, randomZRotation);
-            yield return new WaitForSeconds(_waitTime);
-        }
-    }
 
     enum ParticleBehaviour
     {
         None,
-        FollowPlayer,
-        RandomDirection,
+        FollowPlayer
     }
 }

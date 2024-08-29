@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("Scene", SceneManager.GetActiveScene().name);
         _time = 0f;
         _timerText = GameObject.Find("TimeField").GetComponent<Text>();
+        _timerText.text = _time.ToString("000.00");
     }
     private void Update()
     {
@@ -53,7 +54,10 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerPrefs.SetFloat("Time", _time);
-        PlayerPrefs.Save();
+        if (_isTimeStop)
+        {
+            PlayerPrefs.SetFloat("Time", _time);
+            PlayerPrefs.Save();
+        }
     }
 }

@@ -47,7 +47,7 @@ public class HealthController : MonoBehaviour
     {
         if (_health != -1)
         {
-            if (_health - damage < 0)
+            if (_health - damage <= 0)
             {
                 Gameover();
                 return;
@@ -63,10 +63,6 @@ public class HealthController : MonoBehaviour
                 _aus.PlayOneShot(_damageSE, _aus.volume * _seVolume);
                 FindObjectOfType<CameraShaker>().Shake(1f, 0, 0.3f, 0);
                 Debug.Log($"Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
-            }
-            if (_health == 0)
-            {
-                Gameover();
             }
         }
         else

@@ -6,7 +6,6 @@ public class CameraShaker : MonoBehaviour
 
     private CinemachineImpulseSource _source;
 
-    //このスクリプトをインスタンス化
     private void Awake()
     {
         _source = FindObjectOfType<CinemachineImpulseSource>();

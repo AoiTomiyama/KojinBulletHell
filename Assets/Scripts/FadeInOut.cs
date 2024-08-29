@@ -29,5 +29,5 @@ public class FadeInOut : MonoBehaviour
     /// <summary>
     /// アニメーションイベント用のメソッド。
     /// </summary>
-    void ChangeScene() { SceneManager.LoadScene(_sceneName); }
+    private void ChangeScene() => SceneManager.LoadScene(_sceneName);
 }

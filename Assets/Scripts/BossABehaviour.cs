@@ -63,10 +63,11 @@ public class BossABehaviour : BossBase
             main.duration = 0.75f;
         }
 
+        const float moveToPosTime = 0.5f;
         _seq = DOTween.Sequence();
         _seq.Append(
-            _bossCube.transform.DORotate(new Vector3(0, 720, 0), 0.5f, RotateMode.FastBeyond360).
-            OnStart(() => _tweens.Add(this.transform.DOMove(_pos[1].position, 0.5f)))
+            _bossCube.transform.DORotate(new Vector3(0, 720, 0), moveToPosTime, RotateMode.FastBeyond360).
+            OnStart(() => _tweens.Add(this.transform.DOMove(_pos[1].position, moveToPosTime)))
             );
         _seq.Append(
             this.transform.DOMove(new Vector2(-_pos[1].position.x, _pos[1].position.y), duration).
@@ -139,9 +140,9 @@ public class BossABehaviour : BossBase
                 _particleTr.DetachChildren();
                 Destroy(_particlePattern.gameObject, burstCount);
                 _bossCube.transform.DOPlay();
-            }
-            ));
-        _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
+            }).
+            OnComplete(() => WanderingMove())
+            );
     }
     public override void AttackPatternThree()
     {
@@ -179,9 +180,9 @@ public class BossABehaviour : BossBase
                 _particleTr.DetachChildren();
                 Destroy(_particlePattern.gameObject, duration);
                 _bossCube.transform.DOPlay();
-            }
-            ));
-        _seq.Append(this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove()));
+            }).
+            OnComplete(() => WanderingMove())
+            );
     }
 
     public override void PhaseSecondStart()

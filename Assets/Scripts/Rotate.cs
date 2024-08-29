@@ -22,26 +22,27 @@ public class Rotate : MonoBehaviour
     {
         if (_randomized)
         {
-            StartCoroutine(RamdomizedRotation());
+            StartCoroutine(RandomizedRotation());
         }
     }
     void FixedUpdate()
     {
-        if (!_randomized)
+        float newZAngle = transform.eulerAngles.z + _speed;
+
+        // Šp“x‚ª”ÍˆÍŠO‚Ìê‡‚Ìˆ—
+        if (newZAngle < _minAngle)
         {
-            if (transform.eulerAngles.z + _speed < _minAngle)
-            {
-                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - _minAngle + _maxAngle);
-            }
-            else if (transform.eulerAngles.z + _speed > _maxAngle)
-            {
-                transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z % _maxAngle + _minAngle);
-            }
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + _speed);
-            Debug.Log(transform.eulerAngles.z);
+            newZAngle = _maxAngle - (_minAngle - newZAngle);
         }
+        else if (newZAngle > _maxAngle)
+        {
+            newZAngle = _minAngle + (newZAngle - _maxAngle);
+        }
+
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, newZAngle);
+        Debug.Log(transform.eulerAngles.z);
     }
-    IEnumerator RamdomizedRotation()
+    IEnumerator RandomizedRotation()
     {
         while (true)
         {

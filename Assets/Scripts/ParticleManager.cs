@@ -41,7 +41,7 @@ public class ParticleManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_particleBehaviour == ParticleBehaviour.FollowPlayer)
+        if (_particleBehaviour == ParticleBehaviour.FollowPlayer && _player != null)
         {
             transform.up = _player.transform.position - transform.position;
         }

@@ -40,7 +40,6 @@ public class Rotate : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, newZAngle);
-        Debug.Log(transform.eulerAngles.z);
     }
     IEnumerator RandomizedRotation()
     {

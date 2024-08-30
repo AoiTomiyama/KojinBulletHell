@@ -10,6 +10,8 @@ public class BossCBehaviour : BossBase
     [SerializeField, Header("ëÊìÒå`ë‘éûÇÃçUåÇ")]
     private GameObject _secondPhaseLaserAttack;
 
+    private ParticleSystem _subParticlePattern;
+
     private void Start()
     {
         _flashEffector = FindObjectOfType<FlashEffect>();
@@ -94,10 +96,10 @@ public class BossCBehaviour : BossBase
     {
         float duration = 7f;
         _particlePattern = Instantiate(_particles[1], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
-        var subParticle = Instantiate(_particles[2], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
+        _subParticlePattern = Instantiate(_particles[2], _particleTr.position, Quaternion.identity, _particleTr).GetComponent<ParticleSystem>();
 
         _particlePattern.Stop();
-        subParticle.Stop();
+        _subParticlePattern.Stop();
 
         var emission = _particlePattern.emission;
         if (_difficulty != "normal")
@@ -129,13 +131,13 @@ public class BossCBehaviour : BossBase
             OnStart(() =>
             {
                 _particlePattern.Play();
-                subParticle.Play();
+                _subParticlePattern.Play();
             })
             );
         _seq.Append(this.transform.DOMove(_startPos, moveToPosTime).
             OnStart(() =>
             {
-                var subParticleEmission = subParticle.emission;
+                var subParticleEmission = _subParticlePattern.emission;
                 subParticleEmission.enabled = false;
                 emission.enabled = false;
                 _particleTr.DetachChildren();
@@ -201,13 +203,20 @@ public class BossCBehaviour : BossBase
         {
             Destroy(_particlePattern.gameObject);
         }
+        if (_subParticlePattern != null)
+        {
+            Destroy(_subParticlePattern.gameObject);
+        }
+        ParticleSystem.EmissionModule emission;
+        if (_difficulty == "ruthless")
+        {
+            _particlePattern = Instantiate(_particles[4], _pos[4].position, Quaternion.identity).GetComponent<ParticleSystem>();
+            emission = _particlePattern.emission;
+        }
+
         var secondAttack = Instantiate(_secondPhaseLaserAttack);
 
         _shield.SetActive(true);
-        var tw = _shield.transform.DORotate(new Vector3(0, 0, -360), 3, RotateMode.FastBeyond360).
-            SetLoops(-1, LoopType.Incremental).
-            SetEase(Ease.Linear);
-        _tweens.Add(tw);
         this.transform.position = _pos[4].position;
         _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
 
@@ -225,10 +234,15 @@ public class BossCBehaviour : BossBase
             SetEase(Ease.Linear).
             OnComplete(() =>
             {
+                if (_difficulty == "ruthless")
+                {
+                    Destroy(_particlePattern.gameObject, 5);
+                    emission.enabled = false;
+                }
+
                 Destroy(secondAttack);
                 _effectImage.enabled = false;
                 _flashEffector.Flash();
-                tw.Kill();
                 _shield.SetActive(false);
                 _bossCube.transform.DOPlay();
                 this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove());

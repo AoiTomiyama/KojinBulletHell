@@ -39,7 +39,7 @@ public class BossABehaviour : BossBase
                     _bossCube.transform.DOPause();
                     Attack();
                 }
-                )
+            )
         );
     }
     public override void AttackPatternOne()
@@ -201,10 +201,6 @@ public class BossABehaviour : BossBase
         var emission = _particlePattern.emission;
 
         _shield.SetActive(true);
-        Tween tw = _shield.transform.DORotate(new Vector3(0, 0, 360), 3, RotateMode.FastBeyond360).
-            SetLoops(-1, LoopType.Incremental).
-            SetEase(Ease.Linear);
-        _tweens.Add(tw);
         this.transform.position = _pos[3].position;
         _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
         float shieldDuration = 10f;
@@ -240,7 +236,6 @@ public class BossABehaviour : BossBase
                     Destroy(go.gameObject);
                 }
                 _flashEffector.Flash();
-                tw.Kill();
                 _shield.SetActive(false);
                 _bossCube.transform.DOPlay();
                 this.transform.DOMove(_startPos, 0.5f).OnComplete(() => WanderingMove());

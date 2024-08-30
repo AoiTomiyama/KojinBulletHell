@@ -28,6 +28,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField, Header("二段ジャンプのSE")]
     private AudioClip _twoJumpSE;
 
+    [SerializeField, Header("死亡時のパーティクル")]
+    private GameObject _playerDeathEffect;
+
     [SerializeField, Header("弾を撃った後のインターバル時間")]
     private float _shootInterval = 1f;
 
@@ -63,6 +66,12 @@ public class PlayerControl : MonoBehaviour
         _jumpEffect = transform.Find("JumpEffect").GetComponent<ParticleSystem>();
         _enemyHealthController = FindObjectOfType<EnemyHealthController>();
         _aus.volume *= PlayerPrefs.GetFloat("SEVolume");
+
+        FindAnyObjectByType<HealthController>().OnGameOver += () =>
+        {
+            Instantiate(_playerDeathEffect, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
+        };
     }
     // Update is called once per frame
     void Update()

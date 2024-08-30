@@ -1,3 +1,6 @@
+using DG.Tweening;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,12 +21,17 @@ public class HealthController : MonoBehaviour
     [SerializeField, Header("ダメージ時のSE")]
     private AudioClip _damageSE;
 
+    [SerializeField, Header("死亡時のSE")]
+    private AudioClip _deathSE;
+
     /// <summary> 画面上の体力ゲージを管理する配列 </summary>
     private GameObject[] _healthBar;
     /// <summary> 音源となるAudioSourceを取得 </summary>
     private AudioSource _aus;
     /// <summary> SE音量の値を一時的に入れる変数 </summary>
     private float _seVolume;
+    /// <summary>自機の体力がゼロになった時に実行するデリゲート</summary>
+    public event Action OnGameOver;
 
     private void Start()
     {
@@ -49,7 +57,7 @@ public class HealthController : MonoBehaviour
         {
             if (_health - damage <= 0)
             {
-                Gameover();
+                StartCoroutine(Gameover());
                 return;
             }
             else
@@ -70,9 +78,14 @@ public class HealthController : MonoBehaviour
             Debug.Log("Bullet Hit!");
         }
     }
-    void Gameover()
+    private IEnumerator Gameover()
     {
+        Array.ForEach(_healthBar, Destroy);
         Debug.Log("Gameover");
-        FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Gameover");
+        _aus.PlayOneShot(_deathSE);
+        GameObject.Find("BGM").GetComponent<AudioSource>().DOPitch(0, 1.5f);
+        OnGameOver();
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Gameover");
     }
 }

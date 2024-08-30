@@ -20,8 +20,5 @@ public class LightRay : MonoBehaviour
             yield return new WaitForSeconds(duration / count);
         }
     }
-    private void Update()
-    {
-        transform.rotation = Quaternion.Euler(0, 0, 10 * Time.time);
-    }
+    private void Update() => transform.rotation = Quaternion.Euler(0, 0, 10 * Time.time);
 }

@@ -51,13 +51,9 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     private void OnDisable()
     {
-        if (_isTimeStop)
-        {
-            PlayerPrefs.SetFloat("Time", _time);
-            PlayerPrefs.Save();
-        }
+        PlayerPrefs.SetFloat("Time", _time);
+        PlayerPrefs.Save();
     }
 }

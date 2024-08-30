@@ -60,7 +60,12 @@ public class LaserBeam : MonoBehaviour
         _prewarnLr = transform.Find("Prewarn").GetComponent<LineRenderer>();
 
         _healthController = FindObjectOfType<HealthController>();
-        _targetPos = GameObject.Find("Player").transform;
+
+        var player = FindObjectOfType<PlayerControl>();
+        if (player != null)
+        {
+            _targetPos = player.transform;
+        }
         PrewarnLaser();
     }
     private void PrewarnLaser()

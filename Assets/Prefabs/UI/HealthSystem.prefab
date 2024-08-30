@@ -135,6 +135,7 @@ MonoBehaviour:
   _healthPadding: 55
   _healthPrefab: {fileID: 2363130133814040043, guid: 1173bfa15b67b8c4f98974960ea807c0, type: 3}
   _damageSE: {fileID: 8300000, guid: 0697c8307425a464f93b517ce76f9ebc, type: 3}
+  _deathSE: {fileID: 8300000, guid: 56b536ea1446c8e4d96cbd9639d34ac7, type: 3}
 --- !u!222 &2301529664022451752
 CanvasRenderer:
   m_ObjectHideFlags: 0

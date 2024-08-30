@@ -16,10 +16,7 @@ public class FlashEffect : MonoBehaviour
     /// ‰æ–Ê‘S‘Ì‚ğŒõ‚ç‚¹‚éB
     /// –ˆ‰ñStartCoroutine‘‚­‚Ì–Ê“|‚¾‚©‚ç‘Îô‚µ‚½B
     /// </summary>
-    public void Flash()
-    {
-        StartCoroutine(FlashEumerator());
-    }
+    public void Flash() => StartCoroutine(FlashEumerator());
     private IEnumerator FlashEumerator()
     {
         _image.enabled = true;

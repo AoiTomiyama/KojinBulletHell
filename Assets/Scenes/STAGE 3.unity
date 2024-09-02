@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 797881032}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2201,6 +2201,7 @@ MonoBehaviour:
   _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
   _laser: {fileID: 162027745505943989, guid: 7da965a39878b084395d8f7e6e3747f1, type: 3}
   _effectImage: {fileID: 1731294633}
+  _finalAttack: {fileID: 903252784636104206, guid: b501f97b894b7eb4ab0deffd583a910b, type: 3}
   _state: 0
   _secondPhaseLaserAttack: {fileID: 7868306113460468374, guid: 80871aed73ef63842ba323127ef9f627, type: 3}
 --- !u!1001 &1679125809

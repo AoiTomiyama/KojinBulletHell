@@ -7,10 +7,7 @@ public class UIPanelAnimationController : MonoBehaviour
 {
     [SerializeField, Header("‚±‚±‚ÉInteractionBlocker‚ð“ü‚ê‚é")]
     private GameObject _interactionBlocker;
-    private void OnExitAnimationStart()
-    {
-        _interactionBlocker.SetActive(true);
-    }
+    private void OnExitAnimationStart() => _interactionBlocker.SetActive(true);
     private void OnExitAnimationComplete()
     {
         _interactionBlocker.SetActive(false);

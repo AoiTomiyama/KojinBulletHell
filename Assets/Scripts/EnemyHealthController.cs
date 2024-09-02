@@ -62,6 +62,7 @@ public class EnemyHealthController : MonoBehaviour
     {
         if (_health - damage == 0)
         {
+            _seAus.PlayOneShot(_hitAtEnemySE);
             _boss.Death();
             Destroy(this.gameObject);
         }

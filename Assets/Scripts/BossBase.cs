@@ -26,6 +26,9 @@ public abstract class BossBase : MonoBehaviour
     [SerializeField, Header("第二形態突入後に全体の色を変える為のパネル")]
     protected private Image _effectImage;
 
+    [SerializeField, Header("最終攻撃")]
+    protected private GameObject _finalAttack;
+
     [SerializeField, Header("ボスの状態")]
     protected private BossState _state = BossState.Normal;
 
@@ -57,7 +60,11 @@ public abstract class BossBase : MonoBehaviour
     /// </summary>
     public void Attack()
     {
-        if (_state == BossState.DebugAttack1)
+        if (_state == BossState.StartFinalAttackAtBeginning)
+        {
+            FinalAttack();
+        }
+        else if (_state == BossState.DebugAttack1)
         {
             AttackPatternOne();
         }
@@ -116,6 +123,7 @@ public abstract class BossBase : MonoBehaviour
         DebugAttack1,
         DebugAttack2,
         DebugAttack3,
+        StartFinalAttackAtBeginning,
     }
     public void OnDisable()
     {

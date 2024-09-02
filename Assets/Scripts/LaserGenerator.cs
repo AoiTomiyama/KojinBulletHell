@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class LaserGenerator : MonoBehaviour
 {
-    [SerializeField, Header("インターバル")] 
+    [SerializeField, Header("インターバル")]
     private float _interval;
 
-    [SerializeField, Header("生成する個数")] 
+    [SerializeField, Header("生成する個数")]
     private int _count;
 
-    [SerializeField, Header("生成するレーザー")] 
+    [SerializeField, Header("生成するレーザー")]
     private GameObject _laser;
 
     private BoxCollider2D _collider;

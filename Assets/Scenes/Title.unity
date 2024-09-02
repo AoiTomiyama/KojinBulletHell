@@ -1375,27 +1375,22 @@ Transform:
   - {fileID: 1841581180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &289155191
-Animator:
-  serializedVersion: 5
+--- !u!114 &289155191
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289155188}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f47747d566e786f44ae3bd6605a97374, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158318e1c8eb9ea459839cf3c40d7f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0.4
+  _randomized: 0
+  _maxAngle: 360
+  _minAngle: 0
 --- !u!1 &289593906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,7 +1478,7 @@ MonoBehaviour:
       - m_Target: {fileID: 684984222}
         m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
         m_MethodName: OnDifficultyButtonClicked
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2077,7 +2072,7 @@ MonoBehaviour:
       - m_Target: {fileID: 684984222}
         m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
         m_MethodName: OnDifficultyButtonClicked
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2576,7 +2571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 735121696}
   - component: {fileID: 735121695}
-  - component: {fileID: 735121694}
+  - component: {fileID: 735121697}
   m_Layer: 0
   m_Name: Magic (3)
   m_TagString: Untagged
@@ -2584,27 +2579,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &735121694
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735121693}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f47747d566e786f44ae3bd6605a97374, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &735121695
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2672,6 +2646,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2096371584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &735121697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735121693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158318e1c8eb9ea459839cf3c40d7f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0.4
+  _randomized: 0
+  _maxAngle: 360
+  _minAngle: 0
 --- !u!1 &742438351
 GameObject:
   m_ObjectHideFlags: 0
@@ -4172,7 +4162,7 @@ MonoBehaviour:
       - m_Target: {fileID: 684984222}
         m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
         m_MethodName: OnDifficultyButtonClicked
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5019,7 +5009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1357389894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6490,7 +6480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1841581180}
   - component: {fileID: 1841581179}
-  - component: {fileID: 1841581178}
+  - component: {fileID: 1841581181}
   m_Layer: 0
   m_Name: Magic (1)
   m_TagString: Untagged
@@ -6498,27 +6488,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1841581178
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841581177}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f47747d566e786f44ae3bd6605a97374, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1841581179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6587,6 +6556,22 @@ Transform:
   - {fileID: 2096371584}
   m_Father: {fileID: 289155190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1841581181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841581177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158318e1c8eb9ea459839cf3c40d7f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0.4
+  _randomized: 0
+  _maxAngle: 360
+  _minAngle: 0
 --- !u!1 &1849701564
 GameObject:
   m_ObjectHideFlags: 0
@@ -11866,7 +11851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2096371584}
   - component: {fileID: 2096371583}
-  - component: {fileID: 2096371582}
+  - component: {fileID: 2096371585}
   m_Layer: 0
   m_Name: Magic (2)
   m_TagString: Untagged
@@ -11874,27 +11859,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &2096371582
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096371581}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f47747d566e786f44ae3bd6605a97374, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &2096371583
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11963,6 +11927,22 @@ Transform:
   - {fileID: 735121696}
   m_Father: {fileID: 1841581180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &2096371585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096371581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158318e1c8eb9ea459839cf3c40d7f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0.4
+  _randomized: 0
+  _maxAngle: 360
+  _minAngle: 0
 --- !u!1 &2127997638
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// タイトル画面の管理を行う。
@@ -29,6 +28,7 @@ public class TitleManager : MonoBehaviour
         //タイトルに戻ってきたときに、不要なPlayerPrefsを破棄
         PlayerPrefs.DeleteKey("Scene");
         PlayerPrefs.DeleteKey("DIFF");
+        PlayerPrefs.DeleteKey("DIFF_INT");
     }
     public void PanelMove(GameObject panel)
     {
@@ -48,9 +48,10 @@ public class TitleManager : MonoBehaviour
     {
         FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Tutorial");
     }
-    public void OnDifficultyButtonClicked(string difficulty)
+    public void OnDifficultyButtonClicked(int difficulty)
     {
-        PlayerPrefs.SetString("DIFF", difficulty);
+        PlayerPrefs.SetString("DIFF", ((Enums.Difficulties)difficulty).ToString());
+        PlayerPrefs.SetInt("DIFF_INT", difficulty);
         PlayerPrefs.Save();
         FindObjectOfType<FadeInOut>().FadeInAndChangeScene(_selectedLevel);
     }

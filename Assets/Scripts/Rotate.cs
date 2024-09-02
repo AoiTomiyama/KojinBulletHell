@@ -12,10 +12,10 @@ public class Rotate : MonoBehaviour
     [SerializeField, Header("ランダム化するか")]
     private bool _randomized;
 
-    [SerializeField, Header("方向の最大値"),Range(0, 360)]
+    [SerializeField, Header("方向の最大値"), Range(0, 360)]
     private float _maxAngle = 360;
 
-    [SerializeField, Header("方向の最小値"),Range(0, 360)]
+    [SerializeField, Header("方向の最小値"), Range(0, 360)]
     private float _minAngle = 0;
 
     private void Start()

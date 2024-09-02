@@ -50,7 +50,7 @@ public abstract class BossBase : MonoBehaviour
     /// <summary>Tweenを保存してこのスクリプトが破壊されたときにTweenを止める用</summary>
     protected List<Tween> _tweens = new();
     /// <summary>難易度</summary>
-    protected private string _difficulty;
+    protected private Enums.Difficulties _difficulty;
 
     /// <summary>
     /// 攻撃パターンの抽選
@@ -101,6 +101,10 @@ public abstract class BossBase : MonoBehaviour
     /// <summary>
     /// 体力半分時の攻撃パターン
     /// </summary>
+    public virtual void FinalAttack()
+    {
+        Debug.LogError("Final attack isn't implemented!");
+    }
     public abstract void PhaseSecondStart();
     /// <summary>
     /// 死亡時の演出

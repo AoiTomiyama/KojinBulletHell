@@ -27,18 +27,18 @@ public class EnemyHealthController : MonoBehaviour
     /// <summary>SE‚ÌAudiosource‚ðŽæ“¾</summary>
     private AudioSource _seAus;
     /// <summary>‘æ“ñŒ`‘Ô‚É“Ë“ü‚µ‚½‚©‚Ç‚¤‚©</summary>
-    private bool _isPhaseSecondStarted;
+    private HealthStatus _healthStatus = HealthStatus.Normal;
     private void Start()
     {
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
         _boss = FindObjectOfType<BossBase>();
         _healthSlider = GetComponent<Slider>();
-        var difficulty = PlayerPrefs.GetString("DIFF");
-        if (difficulty == "expert")
+        var difficulty = (Enums.Difficulties)PlayerPrefs.GetInt("DIFF_INT");
+        if (difficulty == Enums.Difficulties.Expert)
         {
             _maxHealth *= 1.5f;
         }
-        else if (difficulty == "ruthless")
+        else if (difficulty == Enums.Difficulties.Ruthless)
         {
             _maxHealth *= 2f;
         }
@@ -71,11 +71,22 @@ public class EnemyHealthController : MonoBehaviour
             _health -= damage;
             _healthSlider.value = _health / _maxHealth;
             _healthText.text = $"{_maxHealth}/{_health}";
-            if (_health <= _maxHealth / 2 && _isPhaseSecondStarted == false)
+            if (_health <= _maxHealth / 2 && _healthStatus == HealthStatus.Normal)
             {
                 _boss.PhaseSecondStart();
-                _isPhaseSecondStarted = true;
+                _healthStatus = HealthStatus.Half;
+            }
+            else if (_health == 1 && _healthStatus == HealthStatus.Half)
+            {
+                _boss.FinalAttack();
+                _healthStatus = HealthStatus.Last;
             }
         }
+    }
+    public enum HealthStatus
+    {
+        Normal,
+        Half,
+        Last
     }
 }

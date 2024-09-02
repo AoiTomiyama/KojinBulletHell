@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 /// <summary>
 /// ボスBの動き
 /// </summary>
@@ -14,7 +13,7 @@ public class BossBBehaviour : BossBase
     private void Start()
     {
         _flashEffector = FindObjectOfType<FlashEffect>();
-        _difficulty = PlayerPrefs.GetString("DIFF");
+        _difficulty = (Enums.Difficulties)PlayerPrefs.GetInt("DIFF_INT");
         _shield = transform.Find("Shield").gameObject;
         _shield.SetActive(false);
         _startPos = this.transform.position;
@@ -55,11 +54,11 @@ public class BossBBehaviour : BossBase
         var main = _particlePattern.main;
         int burstCount = (int)emission.GetBurst(0).count.constant;
 
-        if (_difficulty == "expert")
+        if (_difficulty == Enums.Difficulties.Expert)
         {
             count = 6;
         }
-        else if (_difficulty == "ruthless")
+        else if (_difficulty == Enums.Difficulties.Ruthless)
         {
             count = 8;
         }
@@ -103,11 +102,11 @@ public class BossBBehaviour : BossBase
         _particlePattern.Stop();
         var emission = _particlePattern.emission;
         float laserInterval = 1.2f;
-        if (_difficulty == "expert")
+        if (_difficulty == Enums.Difficulties.Expert)
         {
             laserInterval = 0.9f;
         }
-        else if (_difficulty == "ruthless")
+        else if (_difficulty == Enums.Difficulties.Ruthless)
         {
             laserInterval = 0.5f;
         }
@@ -146,11 +145,11 @@ public class BossBBehaviour : BossBase
         _particlePattern.Stop();
         var main = _particlePattern.main;
         var emission = _particlePattern.emission;
-        if (_difficulty == "expert")
+        if (_difficulty == Enums.Difficulties.Expert)
         {
             main.duration -= 0.1f;
         }
-        else if (_difficulty == "ruthless")
+        else if (_difficulty == Enums.Difficulties.Ruthless)
         {
             main.duration -= 0.25f;
         }
@@ -187,45 +186,55 @@ public class BossBBehaviour : BossBase
     public override void PhaseSecondStart()
     {
         Debug.Log("Phase 2 Start");
+
+        //画面を光らせ、全体の色を変える。
         _effectImage.enabled = true;
         _flashEffector.Flash();
+
+        //実行中のTweenを破棄または停止
         _seq?.Kill();
-        _bossCube.transform.DOPause();
         this.transform.DOKill();
+        _bossCube.transform.DOPause();
 
-        if (_particlePattern != null)
-        {
-            Destroy(_particlePattern.gameObject);
-        }
-        _particlePattern = Instantiate(_particles[3]).GetComponent<ParticleSystem>();
-        var emission = _particlePattern.emission;
-
+        //シールドを展開し、場所移動。
         _shield.SetActive(true);
         this.transform.position = _pos[4].position;
         _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
 
+        //既存の弾幕を破棄
+        if (_particlePattern != null)
+        {
+            Destroy(_particlePattern.gameObject);
+        }
+
+        //第二形態の攻撃を生成
+        _particlePattern = Instantiate(_particles[3]).GetComponent<ParticleSystem>();
+        var emission = _particlePattern.emission;
+
+        //シールド展開時間
         float shieldDuration = 20f;
-        if (_difficulty == "expert")
+        if (_difficulty == Enums.Difficulties.Expert)
         {
             shieldDuration = 25f;
         }
-        else if (_difficulty == "ruthless")
+        else if (_difficulty == Enums.Difficulties.Ruthless)
         {
             shieldDuration = 30f;
         }
 
+        //レーザーの生成
         float laserInterval = 4f;
-        if (_difficulty == "expert")
+        if (_difficulty == Enums.Difficulties.Expert)
         {
             laserInterval = 3.5f;
         }
-        else if (_difficulty == "ruthless")
+        else if (_difficulty == Enums.Difficulties.Ruthless)
         {
             laserInterval = 3f;
         }
-
         StartCoroutine(ShootLaser(shieldDuration, laserInterval, true));
 
+        //展開時間だけ回転し、完了したら攻撃を破棄して通常周期に戻る。
         _tweens.Add(_bossCube.transform.DORotate(new Vector3(Random.Range(-3600, 3600), Random.Range(-3600, 3600), Random.Range(-3600, 3600)), shieldDuration, RotateMode.FastBeyond360).
             SetEase(Ease.Linear).
             OnComplete(() =>
@@ -274,11 +283,11 @@ public class BossBBehaviour : BossBase
         FindObjectOfType<FadeInOut>().FadeInAndChangeScene("StageClear");
     }
 
-    private IEnumerator ShootLaser(float duration, float interval, bool isLarseLaser = false)
+    private IEnumerator ShootLaser(float duration, float interval, bool isLargeLaser = false)
     {
         for (float i = duration - interval; i > 0; i -= interval)
         {
-            if (isLarseLaser)
+            if (isLargeLaser)
             {
                 Instantiate(_laserLarge, new Vector2(Random.Range(_startPos.x, -_startPos.x), 25), Quaternion.Euler(0, 0, 180), transform);
             }

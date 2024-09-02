@@ -1,4 +1,3 @@
-using System.Data.SqlTypes;
 using UnityEngine;
 
 /// <summary>
@@ -47,7 +46,7 @@ public class PlayerControl : MonoBehaviour
     /// <summary> コンポーネントを取得 </summary>
     private Rigidbody2D _rb;
     /// <summary> ジャンプボタンが押されたかどうか </summary>
-    private bool _isJumpPresed;
+    private bool _isJumpPressed;
     /// <summary> 弾の発射口 </summary>
     private ParticleSystem _ps;
     /// <summary> AudioSourceコンポーネントを取得</summary>
@@ -81,7 +80,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (_remainingJumpCount > 0 || _jumpCount == -1)
             {
-                _isJumpPresed = true;
+                _isJumpPressed = true;
                 _remainingJumpCount--;
                 _jumpEffect.Emit(1);
                 if (_remainingJumpCount == _jumpCount - 1)
@@ -97,9 +96,9 @@ public class PlayerControl : MonoBehaviour
         else if (Input.GetButtonUp("Jump"))
         {
             _pressedJumpButtonTime = 0;
-            _isJumpPresed = false;
+            _isJumpPressed = false;
         }
-        if (_isJumpPresed)
+        if (_isJumpPressed)
         {
             _pressedJumpButtonTime += Time.deltaTime;
         }
@@ -125,13 +124,13 @@ public class PlayerControl : MonoBehaviour
         }
         _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
 
-        if (_isJumpPresed && _pressedJumpButtonTime < 0.2f)
+        if (_isJumpPressed && _pressedJumpButtonTime < 0.2f)
         {
             _rb.velocity = (_remainingJumpCount == _jumpCount - 1) ? new Vector2(_rb.velocity.x, _jumpPower) : new Vector2(_rb.velocity.x, _jumpPowerAfterOneJump);
         }
         else
         {
-            _isJumpPresed = false;
+            _isJumpPressed = false;
         }
     }
     private void ShootBullet()

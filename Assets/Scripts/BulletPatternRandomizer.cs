@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// 弾幕パターンを配列からランダムに選出し、生成するスクリプト。
@@ -21,14 +20,16 @@ public class BulletPatternRandomizer : MonoBehaviour
     private GameObject[] _patterns;
 
     /// <summary> 現在の弾幕パターンを保存。 </summary>
-    private GameObject _curretnPattern;
+    private GameObject _currentPattern;
 
     private void Start()
     {
-        string difficulty = PlayerPrefs.GetString("DIFF");
-        if (_patterns != null)
+        var difficulty = (Enums.Difficulties)PlayerPrefs.GetInt("DIFF_INT");
+        if (_patterns != null && _patterns.Length > 0)
         {
-            if (difficulty == "normal" && _enableAtNormal || difficulty == "expert" && _enableAtExpert || difficulty == "ruthless" && _enableAtRuthless)
+            if ((difficulty == Enums.Difficulties.Normal && _enableAtNormal) ||
+                (difficulty == Enums.Difficulties.Expert && _enableAtExpert) ||
+                (difficulty == Enums.Difficulties.Ruthless && _enableAtRuthless))
             {
                 StartCoroutine(PatternSwitcher());
             }
@@ -44,7 +45,7 @@ public class BulletPatternRandomizer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(_waitSeconds - 0.1f);
-            Destroy(_curretnPattern);
+            Destroy(_currentPattern);
             FindObjectOfType<FlashEffect>().Flash();
             var pickedPattern = _patterns[Random.Range(0, _patterns.Length)];
             var spawnPos = this.transform.position;
@@ -52,7 +53,7 @@ public class BulletPatternRandomizer : MonoBehaviour
             {
                 spawnPos = pickedPattern.transform.position;
             }
-            _curretnPattern = Instantiate(pickedPattern, spawnPos, Quaternion.identity);
+            _currentPattern = Instantiate(pickedPattern, spawnPos, Quaternion.identity);
         }
     }
 }

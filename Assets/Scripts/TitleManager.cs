@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// タイトル画面の管理を行う。
@@ -32,16 +33,17 @@ public class TitleManager : MonoBehaviour
     }
     public void PanelMove(GameObject panel)
     {
-        _currentActivePanel.SetActive(false);
+        _currentActivePanel.GetComponent<Animator>().Play("UIExit");
         _currentActivePanel = panel;
         panel.SetActive(true);
         _seAus.PlayOneShot(_pressedSE);
     }
     public void PanelCancel(GameObject panel)
     {
-        _currentActivePanel.SetActive(false);
+        _currentActivePanel.GetComponent<Animator>().Play("UIExit");
         _currentActivePanel = panel;
         panel.SetActive(true);
+        panel.GetComponent<Animator>().Play("UIEnter");
         _seAus.PlayOneShot(_cancelledSE);
     }
     public void OnTutorialButtonClicked()

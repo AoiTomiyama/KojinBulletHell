@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 154109076}
   - component: {fileID: 154109075}
   - component: {fileID: 154109078}
+  - component: {fileID: 154109079}
   m_Layer: 5
   m_Name: TutorialButton
   m_TagString: Untagged
@@ -499,6 +500,96 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &154109079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154109073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
+--- !u!1 &160308983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160308984}
+  - component: {fileID: 160308986}
+  - component: {fileID: 160308985}
+  m_Layer: 5
+  m_Name: InteractionBlocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &160308984
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160308983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 979286204}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &160308985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160308983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &160308986
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160308983}
+  m_CullTransparentMesh: 1
 --- !u!1 &176919529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1495,7 @@ GameObject:
   - component: {fileID: 289593909}
   - component: {fileID: 289593908}
   - component: {fileID: 289593911}
+  - component: {fileID: 289593912}
   m_Layer: 5
   m_Name: RuthlessButton
   m_TagString: Untagged
@@ -1546,6 +1638,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &289593912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289593906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &293641953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1875,7 @@ GameObject:
   - component: {fileID: 379576095}
   - component: {fileID: 379576094}
   - component: {fileID: 379576097}
+  - component: {fileID: 379576098}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1910,6 +2018,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &379576098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379576092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &429685957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,6 +2121,7 @@ GameObject:
   - component: {fileID: 561638842}
   - component: {fileID: 561638841}
   - component: {fileID: 561638844}
+  - component: {fileID: 561638845}
   m_Layer: 5
   m_Name: NormalButton
   m_TagString: Untagged
@@ -2140,6 +2264,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &561638845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561638839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &594005736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3324,6 +3463,7 @@ GameObject:
   - component: {fileID: 924430819}
   - component: {fileID: 924430818}
   - component: {fileID: 924430821}
+  - component: {fileID: 924430822}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -3340,15 +3480,15 @@ RectTransform:
   m_GameObject: {fileID: 924430816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.8611, y: 5.8611, z: 5.8611}
+  m_LocalScale: {x: 2.6634955, y: 2.6634955, z: 2.6634955}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 293641954}
-  m_Father: {fileID: 1125767121}
+  m_Father: {fileID: 979286204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -127.7, y: 127.5}
+  m_AnchoredPosition: {x: -58.02858, y: 57.93982}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &924430818
@@ -3466,6 +3606,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &924430822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924430816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &960723591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3479,6 +3634,7 @@ GameObject:
   - component: {fileID: 960723594}
   - component: {fileID: 960723593}
   - component: {fileID: 960723596}
+  - component: {fileID: 960723597}
   m_Layer: 5
   m_Name: Endless
   m_TagString: Untagged
@@ -3633,6 +3789,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &960723597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960723591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &979286200
 GameObject:
   m_ObjectHideFlags: 0
@@ -3728,11 +3899,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 36943990}
+  - {fileID: 924430817}
   - {fileID: 1125767121}
-  - {fileID: 207153442}
   - {fileID: 1249873149}
   - {fileID: 1357389894}
+  - {fileID: 207153442}
   - {fileID: 225947340}
+  - {fileID: 160308984}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3753,6 +3926,7 @@ GameObject:
   - component: {fileID: 996718434}
   - component: {fileID: 996718433}
   - component: {fileID: 996718436}
+  - component: {fileID: 996718437}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -3895,6 +4069,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &996718437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996718431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &999187169
 GameObject:
   m_ObjectHideFlags: 0
@@ -3979,6 +4168,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1125767121}
+  - component: {fileID: 1125767122}
+  - component: {fileID: 1125767123}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -3999,7 +4190,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2039107923}
-  - {fileID: 924430817}
   m_Father: {fileID: 979286204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4007,6 +4197,40 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0014648438, y: -0.00036621094}
   m_SizeDelta: {x: 960.43, y: 540.24}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1125767122
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125767120}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 801d867e189b3904b9d48e29f3c4a7c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1125767123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125767120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c2e679bb5aabd43abf2f3740487470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionBlocker: {fileID: 160308983}
 --- !u!1 &1136539952
 GameObject:
   m_ObjectHideFlags: 0
@@ -4088,6 +4312,7 @@ GameObject:
   - component: {fileID: 1160041717}
   - component: {fileID: 1160041716}
   - component: {fileID: 1160041719}
+  - component: {fileID: 1160041720}
   m_Layer: 5
   m_Name: ExpertButton
   m_TagString: Untagged
@@ -4230,6 +4455,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1160041720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160041714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1161303500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,6 +4942,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1249873149}
+  - component: {fileID: 1249873150}
+  - component: {fileID: 1249873151}
   m_Layer: 5
   m_Name: LevelSelectPanel
   m_TagString: Untagged
@@ -4732,6 +4974,40 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00048828125, y: 0.0021362305}
   m_SizeDelta: {x: 1254.4, y: 705.61}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1249873150
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249873148}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 801d867e189b3904b9d48e29f3c4a7c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1249873151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249873148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c2e679bb5aabd43abf2f3740487470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionBlocker: {fileID: 160308983}
 --- !u!1 &1285085762
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,13 +5279,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1357389894}
+  - component: {fileID: 1357389895}
+  - component: {fileID: 1357389896}
   m_Layer: 5
   m_Name: DifficultyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1357389894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5033,6 +5311,40 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00048828125, y: 0}
   m_SizeDelta: {x: 1254.4, y: 705.6}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1357389895
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357389893}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 801d867e189b3904b9d48e29f3c4a7c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1357389896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357389893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c2e679bb5aabd43abf2f3740487470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionBlocker: {fileID: 160308983}
 --- !u!1 &1375891269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,6 +6005,7 @@ GameObject:
   - component: {fileID: 1684942326}
   - component: {fileID: 1684942325}
   - component: {fileID: 1684942328}
+  - component: {fileID: 1684942329}
   m_Layer: 5
   m_Name: STAGE 1
   m_TagString: Untagged
@@ -5847,6 +6160,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1684942329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684942323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1695231552
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,6 +6188,7 @@ GameObject:
   - component: {fileID: 1695231555}
   - component: {fileID: 1695231554}
   - component: {fileID: 1695231557}
+  - component: {fileID: 1695231558}
   m_Layer: 5
   m_Name: STAGE 3
   m_TagString: Untagged
@@ -6014,6 +6343,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1695231558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695231552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1740857548
 GameObject:
   m_ObjectHideFlags: 0
@@ -6027,6 +6371,7 @@ GameObject:
   - component: {fileID: 1740857551}
   - component: {fileID: 1740857550}
   - component: {fileID: 1740857553}
+  - component: {fileID: 1740857554}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -6169,6 +6514,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1740857554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740857548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1785370042
 GameObject:
   m_ObjectHideFlags: 0
@@ -6182,6 +6542,7 @@ GameObject:
   - component: {fileID: 1785370045}
   - component: {fileID: 1785370044}
   - component: {fileID: 1785370047}
+  - component: {fileID: 1785370048}
   m_Layer: 5
   m_Name: STAGE 2
   m_TagString: Untagged
@@ -6336,6 +6697,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1785370048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785370042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1819989444
 GameObject:
   m_ObjectHideFlags: 0
@@ -11543,6 +11919,7 @@ GameObject:
   - component: {fileID: 2039107925}
   - component: {fileID: 2039107924}
   - component: {fileID: 2039107927}
+  - component: {fileID: 2039107928}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -11685,6 +12062,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2039107928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039107922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2082507826
 GameObject:
   m_ObjectHideFlags: 0
@@ -11698,6 +12090,7 @@ GameObject:
   - component: {fileID: 2082507829}
   - component: {fileID: 2082507828}
   - component: {fileID: 2082507831}
+  - component: {fileID: 2082507832}
   m_Layer: 5
   m_Name: SETester
   m_TagString: Untagged
@@ -11841,6 +12234,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2082507832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082507826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.033870444, b: 0, a: 1}
+  m_EffectDistance: {x: 1.5, y: 1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2096371581
 GameObject:
   m_ObjectHideFlags: 0

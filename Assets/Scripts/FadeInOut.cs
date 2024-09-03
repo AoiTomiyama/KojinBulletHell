@@ -25,10 +25,10 @@ public class FadeInOut : MonoBehaviour
     {
         if (_sceneName != null)
         {
-            Debug.LogWarning($"Started FadeIn is already exists, Ongoing FadeIn is {_sceneName}");
+            Debug.LogWarning($"<color=lime>[Fade]</color> Started FadeIn is already exists, Ongoing FadeIn is {_sceneName}");
             return;
         }
-        Debug.Log($"FadeIn started, Next scene is {sceneName}");
+        Debug.Log($"<color=lime>[Fade]</color> FadeIn started, Next scene is {sceneName}");
         _anim.Play("FadeIn");
         _sceneName = sceneName;
     }

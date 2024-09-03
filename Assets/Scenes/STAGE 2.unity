@@ -901,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: ShapeModule.arc.speed.scalar
-      value: 9
+      value: 8.78
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: VelocityModule.orbitalX.scalar
@@ -949,15 +949,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.98742133
+      value: 0.98039216
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.21425167
+      value: 0.7254902
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.3762059
+      value: 0.24313726
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
@@ -986,6 +986,10 @@ PrefabInstance:
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: VelocityModule.speedModifier.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
+      propertyPath: InitialModule.startColor.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: VelocityModule.orbitalOffsetX.scalar
@@ -2157,6 +2161,89 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1460779342
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1603850485}
+    m_Modifications:
+    - target: {fileID: 1143944510920996154, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143944510920996154, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143944510920996154, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5741231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497987610639805570, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Name
+      value: MagicEffect1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035394949156896781, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 547240914c891234d8a14461134983ac, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+--- !u!1 &1460779343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7497987610639805570, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+  m_PrefabInstance: {fileID: 1460779342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1460779344 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+  m_PrefabInstance: {fileID: 1460779342}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1574217189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2320,7 +2407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &1603850484
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2373,6 +2460,7 @@ Transform:
   - {fileID: 1765763622}
   - {fileID: 125072506}
   - {fileID: 797881029}
+  - {fileID: 1460779344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1603850486
@@ -2494,6 +2582,7 @@ MonoBehaviour:
   _laser: {fileID: 9137676577201794955, guid: c5b4da3db3611e34aa02870bdd52efc7, type: 3}
   _effectImage: {fileID: 184648902}
   _finalAttack: {fileID: 0}
+  _magicEffector: {fileID: 1460779343}
   _state: 0
   _laserLarge: {fileID: 4415769759442072493, guid: 100b0f399822b5744916e36906a64adb, type: 3}
 --- !u!1 &1735844726
@@ -2586,7 +2675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: ShapeModule.arc.speed.scalar
-      value: 9
+      value: 8.78
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: VelocityModule.orbitalX.scalar
@@ -2671,6 +2760,10 @@ PrefabInstance:
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: VelocityModule.speedModifier.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
+      propertyPath: InitialModule.startColor.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2048785901295157115, guid: 4c54a1d64eecdbc44a406ab0354e7ab4, type: 3}
       propertyPath: VelocityModule.orbitalOffsetX.scalar

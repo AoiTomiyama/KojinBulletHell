@@ -143,7 +143,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            Debug.Log("On Floor");
+            Debug.Log("<color=red>[PlayerHealth]</color> On Floor");
             _remainingJumpCount = _jumpCount;
         }
     }
@@ -151,7 +151,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            Debug.Log("Leave Floor");
+            Debug.Log("<color=red>[PlayerHealth]</color> Leave Floor");
             if (_remainingJumpCount == _jumpCount)
             {
                 _remainingJumpCount--;

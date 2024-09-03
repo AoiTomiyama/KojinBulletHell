@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,9 @@ public abstract class BossBase : MonoBehaviour
     [SerializeField, Header("最終攻撃")]
     protected private GameObject _finalAttack;
 
+    [SerializeField, Header("最終攻撃時に展開する魔法陣")]
+    protected private GameObject _magicEffector;
+
     [SerializeField, Header("ボスの状態")]
     protected private BossState _state = BossState.Normal;
 
@@ -54,26 +58,54 @@ public abstract class BossBase : MonoBehaviour
     protected List<Tween> _tweens = new();
     /// <summary>難易度</summary>
     protected private Enums.Difficulties _difficulty;
+    
+    /// <summary>
+    /// Startが呼び出されたときに時の処理。
+    /// </summary>
+    public void OnStartSetUp()
+    {
+        _flashEffector = FindObjectOfType<FlashEffect>();
+        _difficulty = (Enums.Difficulties)PlayerPrefs.GetInt("DIFF_INT");
+        _shield = GameObject.FindWithTag("Shield");
+        _shield.SetActive(false);
+        _magicEffector.SetActive(false);
+        _startPos = this.transform.position;
+        _particleTr = this.transform.Find("ParticlePosition").transform;
+        _bossCube = this.transform.Find("BossCube").gameObject;
+        _pos = GameObject.Find("Positions").transform.GetComponentsInChildren<Transform>();
+        _seAus = GetComponent<AudioSource>();
+        _seAus.volume *= PlayerPrefs.GetFloat("SEVolume");
+        _tweens.Add(
+            _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
+            SetLoops(-1, LoopType.Incremental).
+            SetEase(Ease.Linear)
+        );
+        WanderingMove();
+    }
 
     /// <summary>
     /// 攻撃パターンの抽選
     /// </summary>
-    public void Attack()
+    public void ChooseAttack()
     {
         if (_state == BossState.StartFinalAttackAtBeginning)
         {
+            Debug.Log("<color=yellow>[Boss]</color> Final Attack Start");
             FinalAttack();
         }
         else if (_state == BossState.DebugAttack1)
         {
+            Debug.Log("<color=yellow>[Boss]</color> Attack One Start");
             AttackPatternOne();
         }
         else if (_state == BossState.DebugAttack2)
         {
+            Debug.Log("<color=yellow>[Boss]</color> Attack Two Start");
             AttackPatternTwo();
         }
         else if (_state == BossState.DebugAttack3)
         {
+            Debug.Log("<color=yellow>[Boss]</color> Attack Three Start");
             AttackPatternThree();
         }
         else
@@ -81,17 +113,36 @@ public abstract class BossBase : MonoBehaviour
             int index = Random.Range(0, 3);
             if (index == 0)
             {
+                Debug.Log("<color=yellow>[Boss]</color> Attack One Start");
                 AttackPatternOne();
             }
             else if (index == 1)
             {
+                Debug.Log("<color=yellow>[Boss]</color> Attack Two Start");
                 AttackPatternTwo();
             }
             else
             {
+                Debug.Log("<color=yellow>[Boss]</color> Attack Three Start");
                 AttackPatternThree();
             }
         }
+    }
+    /// <summary>
+    /// 攻撃後・攻撃前の徘徊移動
+    /// </summary>
+    public void WanderingMove()
+    {
+        _tweens.Add(
+            this.transform.DOMove(new Vector2(-_startPos.x, _startPos.y), 3).
+            SetLoops(2, LoopType.Yoyo).
+            SetEase(Ease.InOutQuad).
+            OnComplete(() =>
+            {
+                _bossCube.transform.DOPause();
+                ChooseAttack();
+            })
+        );
     }
     /// <summary>
     /// 攻撃パターンその1
@@ -110,13 +161,46 @@ public abstract class BossBase : MonoBehaviour
     /// </summary>
     public virtual void FinalAttack()
     {
-        Debug.LogError("Final attack isn't implemented!");
+        Debug.LogError("<color=yellow>[BossBase]</color> Final attack isn't implemented!");
     }
     public abstract void PhaseSecondStart();
     /// <summary>
     /// 死亡時の演出
     /// </summary>
-    public abstract void Death();
+    public void Death()
+    {
+        const float duration = 4f;
+        GameObject.Find("BGM").GetComponent<AudioSource>().Pause();
+        FindObjectOfType<GameManager>().IsTimeStop = true;
+        _seAus.PlayOneShot(_deathChargeSE);
+        _seq?.Kill();
+        transform.DOKill();
+        _bossCube.transform.DOKill();
+        this.transform.position = new Vector2(0, _startPos.y);
+        Destroy(_particleTr.gameObject);
+        _flashEffector.Flash();
+        _tweens.Add(
+            _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360).
+            SetEase(Ease.InExpo).
+            OnComplete(() => StartCoroutine(Explode()))
+        );
+        StartCoroutine(FindObjectOfType<LightRay>().EmitLightRay(duration, 10));
+    }
+    /// <summary>
+    /// 爆発エフェクト関連。
+    /// </summary>
+    private IEnumerator Explode()
+    {
+        yield return new WaitForSeconds(0.2f);
+        FindObjectOfType<CameraShaker>().Shake(3, 0, 1, 0.4f);
+        _flashEffector.Flash();
+        _bossCube.SetActive(false);
+        FindObjectOfType<LightRay>().gameObject.SetActive(false);
+        _seAus.PlayOneShot(_deathExplodeSE);
+        Instantiate(_explodePrefab, this.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2.5f);
+        FindObjectOfType<FadeInOut>().FadeInAndChangeScene("StageClear");
+    }
     public enum BossState
     {
         Normal,

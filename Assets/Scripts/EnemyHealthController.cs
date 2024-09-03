@@ -74,11 +74,13 @@ public class EnemyHealthController : MonoBehaviour
             _healthText.text = $"{_maxHealth}/{_health}";
             if (_health <= _maxHealth / 2 && _healthStatus == HealthStatus.Normal)
             {
+                Debug.Log("<color=yellow>[Boss]</color> Phase 2 Start");
                 _boss.PhaseSecondStart();
                 _healthStatus = HealthStatus.Half;
             }
             else if (_health == 1 && _healthStatus == HealthStatus.Half)
             {
+                Debug.Log("<color=yellow>[Boss]</color> Final Attack Start");
                 _boss.FinalAttack();
                 _healthStatus = HealthStatus.Last;
             }

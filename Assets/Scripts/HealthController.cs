@@ -70,18 +70,18 @@ public class HealthController : MonoBehaviour
                 _health -= damage;
                 _aus.PlayOneShot(_damageSE, _aus.volume * _seVolume);
                 FindObjectOfType<CameraShaker>().Shake(1f, 0, 0.3f, 0);
-                Debug.Log($"Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
+                Debug.Log($"<color=purple>[PlayerHealth]</color> Bullet Hit! Took {damage} damage! Remaining health is {_health} !");
             }
         }
         else
         {
-            Debug.Log("Bullet Hit!");
+            Debug.Log("<color=purple>[PlayerHealth][DEBUG]</color> Bullet Hit!");
         }
     }
     private IEnumerator Gameover()
     {
         Array.ForEach(_healthBar, Destroy);
-        Debug.Log("Gameover");
+        Debug.Log("<color=purple>[PlayerHealth]</color> Gameover");
         _aus.PlayOneShot(_deathSE);
         GameObject.Find("BGM").GetComponent<AudioSource>().DOPitch(0, 1.5f);
         OnGameOver();

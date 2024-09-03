@@ -340,6 +340,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &328981191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7497987610639805570, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+  m_PrefabInstance: {fileID: 8932749145203509017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &328981192 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+  m_PrefabInstance: {fileID: 8932749145203509017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &368867266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2080,6 +2090,7 @@ Transform:
   - {fileID: 1765763622}
   - {fileID: 125072506}
   - {fileID: 797881029}
+  - {fileID: 328981192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1603850486
@@ -2202,6 +2213,7 @@ MonoBehaviour:
   _laser: {fileID: 162027745505943989, guid: 7da965a39878b084395d8f7e6e3747f1, type: 3}
   _effectImage: {fileID: 1731294633}
   _finalAttack: {fileID: 903252784636104206, guid: b501f97b894b7eb4ab0deffd583a910b, type: 3}
+  _magicEffector: {fileID: 328981191}
   _state: 0
   _secondPhaseLaserAttack: {fileID: 7868306113460468374, guid: 80871aed73ef63842ba323127ef9f627, type: 3}
 --- !u!1001 &1679125809
@@ -3105,6 +3117,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
+--- !u!1001 &8932749145203509017
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1603850485}
+    m_Modifications:
+    - target: {fileID: 1143944510920996154, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Color.b
+      value: 0.56666696
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143944510920996154, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143944510920996154, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163433686711634831, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497987610639805570, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: m_Name
+      value: MagicEffect1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035394949156896781, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c97efe16a2fac32469f6b9ff43561ff2, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4482e695ad7281e438ddc469aa9c2663, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -300,7 +300,7 @@ public class BossCBehaviour : BossBase
         var shapeModule = _particlePattern.shape;
 
         //シールド展開時間
-        float shieldDuration = 20f;
+        float shieldDuration = 25f;
         FindObjectOfType<CameraShaker>().Shake(0.5f, 0, shieldDuration, 0);
 
         //展開時間だけ回転する。

@@ -258,6 +258,54 @@ public class BossABehaviour : BossBase
             })
         );
     }
+    public override void FinalAttack()
+    {
+        Debug.Log("Phase 2 Start");
+
+        //画面を光らせ、全体の色を変える。
+        _effectImage.enabled = true;
+        _flashEffector.Flash();
+
+        //実行中のTweenを破棄または停止
+        _seq?.Kill();
+        this.transform.DOKill();
+        _bossCube.transform.DOPause();
+
+        //シールドを展開し、場所移動。
+        _shield.SetActive(true);
+        this.transform.position = _pos[4].position;
+        _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        //既存の弾幕を破棄
+        if (_particlePattern != null)
+        {
+            Destroy(_particlePattern.gameObject);
+        }
+
+        var finalAttack = Instantiate(_finalAttack);
+
+        //シールド展開時間
+        float shieldDuration = 30f;
+        FindObjectOfType<CameraShaker>().Shake(0.5f, 0, shieldDuration, 0);
+
+        //展開時間だけ回転する。
+        _tweens.Add(
+            _bossCube.transform.DORotate(new Vector3(0, 3600, 3600), shieldDuration, RotateMode.FastBeyond360).
+            SetEase(Ease.Linear).
+            OnComplete(() =>
+            {
+                Destroy(finalAttack);
+                _effectImage.enabled = false;
+                _shield.SetActive(false);
+                _flashEffector.Flash();
+                _tweens.Add(
+                    _bossCube.transform.DORotate(new Vector3(0, 180, 180), 5, RotateMode.FastBeyond360).
+                    SetEase(Ease.Linear).
+                    SetLoops(-1, LoopType.Incremental)
+                );
+            })
+        );
+    }
     public override void Death()
     {
         float duration = 4f;

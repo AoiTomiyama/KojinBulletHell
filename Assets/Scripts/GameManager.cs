@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +17,9 @@ public class GameManager : MonoBehaviour
     public bool IsTimeStop { set => _isTimeStop = value; }
     private void Start()
     {
+        //カメラの振動を初期化。
+        CinemachineImpulseManager.Instance.Clear();
+
         //BGMとSEを設定画面で決めた値にする。
         var bgm = GameObject.Find("BGM");
         if (bgm != null)

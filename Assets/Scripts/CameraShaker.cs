@@ -24,6 +24,5 @@ public class CameraShaker : MonoBehaviour
         _source.m_ImpulseDefinition.m_TimeEnvelope.m_SustainTime = shakeDuration;
         _source.m_ImpulseDefinition.m_TimeEnvelope.m_DecayTime = shakeFadeOutTime;
         _source.GenerateImpulse(force);
-
     }
 }

@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9294270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9294271}
+  m_Layer: 0
+  m_Name: pos4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9294271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9294270}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 9.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 490415503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &125072505
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +676,7 @@ Transform:
   - {fileID: 452029149}
   - {fileID: 1747755991}
   - {fileID: 1919165002}
+  - {fileID: 9294271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &544453170
@@ -1803,8 +1835,8 @@ MonoBehaviour:
   _explodePrefab: {fileID: 5074533849029434932, guid: 2184e3e14986d414faa220bd1c8c31e8, type: 3}
   _laser: {fileID: 795258873947668354, guid: e251c76fef0339b41b146709abd9071b, type: 3}
   _effectImage: {fileID: 1281369346}
-  _finalAttack: {fileID: 0}
-  _state: 0
+  _finalAttack: {fileID: 3414550776816550853, guid: d753bbf1b0f10164da6668d74be7f5a6, type: 3}
+  _state: 4
 --- !u!58 &1603850484
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -70,7 +70,7 @@ public class LaserBeam : MonoBehaviour
     }
     private void PrewarnLaser()
     {
-        if (_isTargetAtPlayer)
+        if (_isTargetAtPlayer && _targetPos != null)
         {
             transform.up = _targetPos.position - this.transform.position;
         }
@@ -82,9 +82,14 @@ public class LaserBeam : MonoBehaviour
     }
     private void ShootLaser()
     {
-        FindObjectOfType<CameraShaker>().Shake(_damage / 2f, _startLaser, _laserDuration, _endLaser);
-        _seAus.clip = _beamSE;
+        FindObjectOfType<CameraShaker>().Shake(_damage / 3f, _startLaser, _laserDuration, _endLaser);
+
+        if (_seAus.clip != _beamSE)
+        {
+            _seAus.clip = _beamSE;
+        }
         _seAus.Play();
+
         _laserLr.SetPosition(0, Vector2.zero);
         _laserLr.SetPosition(1, _endPos);
         _hitBox.enabled = _laserLr.enabled = true;

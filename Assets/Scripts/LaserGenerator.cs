@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class LaserGenerator : MonoBehaviour
 {
     [SerializeField, Header("インターバル")]

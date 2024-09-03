@@ -4947,7 +4947,7 @@ MonoBehaviour:
   _damage: 3
   _isTargetAtPlayer: 1
   _warnSE: {fileID: 8300000, guid: 76aa2d3664b0e794492f72f0f942734a, type: 3}
-  _beamSE: {fileID: 8300000, guid: c891a2f3cfa012a4fadf02b416f3a7df, type: 3}
+  _beamSE: {fileID: 8300000, guid: ac453d5ad2bfad4449524bbe105e73f0, type: 3}
 --- !u!50 &8809069121681090873
 Rigidbody2D:
   serializedVersion: 4

@@ -13,6 +13,7 @@ public class FadeInOut : MonoBehaviour
     private string _sceneName;
     private void Awake()
     {
+        _sceneName = null;
         _anim = GetComponent<Animator>();
         if (_isStartFadeOut) _anim.Play("FadeOut");
     }
@@ -22,7 +23,12 @@ public class FadeInOut : MonoBehaviour
     /// <param name="sceneName">à⁄ìÆêÊÇÃÉVÅ[Éìñº</param>
     public void FadeInAndChangeScene(string sceneName)
     {
-        if (_sceneName != null) return;
+        if (_sceneName != null)
+        {
+            Debug.LogWarning($"Started FadeIn is already exists, Ongoing FadeIn is {_sceneName}");
+            return;
+        }
+        Debug.Log($"FadeIn started, Next scene is {sceneName}");
         _anim.Play("FadeIn");
         _sceneName = sceneName;
     }

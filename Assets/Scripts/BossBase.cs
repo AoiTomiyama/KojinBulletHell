@@ -36,6 +36,8 @@ public abstract class BossBase : MonoBehaviour
     [SerializeField, Header("ボスの状態")]
     protected private BossState _state = BossState.Normal;
 
+    /// <summary>前回の攻撃パターンのインデックス</summary>
+    protected private int _lastIndexOfAttack = -1;
     /// <summary>移動先の場所</summary>
     protected private Transform[] _pos;
     /// <summary>攻撃時の動きを入れる。完了前にシーン移動した際にKillできるように保存</summary>
@@ -110,21 +112,34 @@ public abstract class BossBase : MonoBehaviour
         }
         else
         {
-            int index = Random.Range(0, 3);
-            if (index == 0)
+            int currentIndex = Random.Range(0, 3);
+
+            //攻撃パターンが連続しないように再抽選を行う。
+            while (currentIndex == _lastIndexOfAttack)
+            {
+                currentIndex = Random.Range(0, 3);
+            }
+            _lastIndexOfAttack = currentIndex;
+
+            if (currentIndex == 0)
             {
                 Debug.Log("<color=yellow>[Boss]</color> Attack One Start");
                 AttackPatternOne();
             }
-            else if (index == 1)
+            else if (currentIndex == 1)
             {
                 Debug.Log("<color=yellow>[Boss]</color> Attack Two Start");
                 AttackPatternTwo();
             }
-            else
+            else if (currentIndex == 2)
             {
                 Debug.Log("<color=yellow>[Boss]</color> Attack Three Start");
                 AttackPatternThree();
+            }
+            else
+            {
+                Debug.LogWarning("Attack pattern index was out of range!");
+                ChooseAttack();
             }
         }
     }

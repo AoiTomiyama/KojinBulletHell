@@ -277,7 +277,7 @@ public class BossABehaviour : BossBase
     }
     private IEnumerator ShootLaser(float duration, float interval)
     {
-        for (float i = duration; i > 0; i -= interval)
+        for (float i = duration - interval; i > 0; i -= interval)
         {
             Instantiate(_laser, transform);
             yield return new WaitForSeconds(interval);

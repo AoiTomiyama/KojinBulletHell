@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// ボスの基底クラス
 /// </summary>
-public abstract class BossBase : MonoBehaviour
+public abstract class BossBase : MonoBehaviour, IPausable
 {
     [SerializeField, Header("弾幕パターン")]
     protected private GameObject[] _particles;
@@ -232,4 +232,7 @@ public abstract class BossBase : MonoBehaviour
             t.Kill();
         }
     }
+
+    public abstract void Pause();
+    public abstract void Resume();
 }

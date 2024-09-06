@@ -18,7 +18,7 @@ public class LaserGenerator : MonoBehaviour
     private GameObject _laser;
 
     private BoxCollider2D _collider;
-    private List<Vector2> _generatedPositions = new();
+    private readonly List<Vector2> _generatedPositions = new();
     void Start()
     {
         _collider = GetComponent<BoxCollider2D>();

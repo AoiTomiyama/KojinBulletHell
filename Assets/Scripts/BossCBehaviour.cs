@@ -291,4 +291,16 @@ public class BossCBehaviour : BossBase
             })
         );
     }
+
+    public override void Pause()
+    {
+        _seq.Pause();
+        _tweens.ForEach(t => t.Pause());
+    }
+
+    public override void Resume()
+    {
+        _seq.Play();
+        _tweens.ForEach(t => t.Play());
+    }
 }

@@ -1,4 +1,5 @@
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// ゲーム画面自体を管理するスクリプト
 /// </summary>
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IPausable
 {
     /// <summary> 経過時間。 </summary>
     private float _time;
@@ -39,13 +40,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Title");
-        }
-    }
-    void FixedUpdate()
-    {
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Title");
+        //}
         if (!_isTimeStop)
         {
             _time += Time.deltaTime;
@@ -59,5 +57,24 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Time", _time);
         PlayerPrefs.Save();
+    }
+
+    public void Pause()
+    {
+        _isTimeStop = true;
+    }
+
+    public void Resume()
+    {
+        _isTimeStop = false;
+    }
+}
+public static class Enums
+{
+    public enum Difficulties
+    {
+        Normal,
+        Expert,
+        Ruthless
     }
 }

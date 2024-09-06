@@ -2266,7 +2266,7 @@ MonoBehaviour:
   _effectImage: {fileID: 184648902}
   _finalAttack: {fileID: 3630436721993779896, guid: 5b6ff011550807c4e917b5bee3d2618e, type: 3}
   _magicEffector: {fileID: 1460779343}
-  _state: 4
+  _state: 0
   _laserLarge: {fileID: 4415769759442072493, guid: 100b0f399822b5744916e36906a64adb, type: 3}
 --- !u!1 &1735844726
 GameObject:
@@ -7525,7 +7525,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4151811672555866667, guid: cf54087d669555549b6f851e392b835d, type: 3}
       propertyPath: _health
-      value: -1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6657270789531395702, guid: cf54087d669555549b6f851e392b835d, type: 3}
       propertyPath: m_Name

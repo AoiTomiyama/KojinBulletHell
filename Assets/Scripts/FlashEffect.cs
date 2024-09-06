@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,13 +14,15 @@ public class FlashEffect : MonoBehaviour
     }
     /// <summary>
     /// ‰æ–Ê‘S‘Ì‚ğŒõ‚ç‚¹‚éB
-    /// –ˆ‰ñStartCoroutine‘‚­‚Ì–Ê“|‚¾‚©‚ç‘Îô‚µ‚½B
     /// </summary>
-    public void Flash() => StartCoroutine(FlashEumerator());
-    private IEnumerator FlashEumerator()
+    public void Flash(float duration = 0.2f)
     {
         _image.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        _image.enabled = false;
+        var c = _image.color;
+        c.a = 1;
+        _image.color = c;
+        _image.DOFade(0, duration).
+        SetEase(Ease.OutExpo).
+        OnComplete(() => _image.enabled = false);
     }
 }

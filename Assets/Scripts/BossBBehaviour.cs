@@ -288,4 +288,14 @@ public class BossBBehaviour : BossBase
             yield return new WaitForSeconds(interval);
         }
     }
+
+    public override void Pause()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Resume()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -80,6 +80,9 @@ public class HealthController : MonoBehaviour
     }
     private IEnumerator Gameover()
     {
+        //死亡演出中はポーズができないようにする。
+        FindObjectOfType<PauseManager>().EnablePause = false;
+
         Array.ForEach(_healthBar, Destroy);
         Debug.Log("<color=purple>[PlayerHealth]</color> Gameover");
         _aus.PlayOneShot(_deathSE);

@@ -8,14 +8,14 @@ public class ShowStageInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _anim.Play("ShowInfo");
+        _anim.Play("InfoEnter");
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        _anim.Play("HideInfo");
+        _anim.Play("InfoExit");
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        _anim.Play("HideInfo");
+        _anim.Play("InfoExit");
     }
 }

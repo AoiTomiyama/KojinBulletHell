@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// レーザービームを断続的に生成するスクリプト
+/// </summary>
 [RequireComponent(typeof(BoxCollider2D))]
-public class LaserGenerator : MonoBehaviour
+public class LaserGenerator : MonoBehaviour, IPausable
 {
     [SerializeField, Header("インターバル")]
     private float _interval;
@@ -17,12 +19,17 @@ public class LaserGenerator : MonoBehaviour
     [SerializeField, Header("生成するレーザー")]
     private GameObject _laser;
 
+    /// <summary>生成範囲を決めるBoxCollider</summary>
     private BoxCollider2D _collider;
+    /// <summary>ポーズ時に生成を中断する為の変数</summary>
+    private IEnumerator _coroutine;
+    /// <summary>生成位置が重ならないように、生成位置を記憶しておく変数</summary>
     private readonly List<Vector2> _generatedPositions = new();
     void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
-        StartCoroutine(ShootEnumerator());
+        _coroutine = ShootEnumerator();
+        StartCoroutine(_coroutine);
     }
     IEnumerator ShootEnumerator()
     {
@@ -32,7 +39,7 @@ public class LaserGenerator : MonoBehaviour
             for (int i = 0; i < _count; i++)
             {
                 Vector2 currentPos = default;
-                if (_generatedPositions.Count > 0)
+                if (_generatedPositions.Count > 0 && _distance > 0)
                 {
                     int attempts = 0;
                     int maxAttempt = 50;
@@ -73,8 +80,24 @@ public class LaserGenerator : MonoBehaviour
                 }
                 _generatedPositions.Add(currentPos);
                 Instantiate(_laser, currentPos, transform.rotation, transform.parent);
+
+                var timer = 0f;
+                while (timer < _interval)
+                {
+                    timer += Time.deltaTime;
+                    yield return null;
+                }
             }
-            yield return new WaitForSeconds(_interval);
         }
+    }
+
+    public void Pause()
+    {
+        if (_coroutine != null) StopCoroutine(_coroutine);
+    }
+
+    public void Resume()
+    {
+        if (_coroutine != null) StartCoroutine(_coroutine);
     }
 }

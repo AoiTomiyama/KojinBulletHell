@@ -4,7 +4,7 @@ using UnityEngine;
 /// プレイヤーの動きを制御するスクリプト。
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour, IPausable
 {
     [SerializeField, Header("プレイヤーの移動速度")]
     private float _moveSpeed = 1f;
@@ -56,6 +56,11 @@ public class PlayerControl : MonoBehaviour
     /// <summary> 敵体力を管理しているコンポーネントを取得 </summary>
     private EnemyHealthController _enemyHealthController;
 
+    /// <summary>ポーズ中に保持するプレイヤーの速度</summary>
+    private Vector2 _velocity;
+    /// <summary>ポーズ中かどうか</summary>
+    private bool _isPaused;
+
 
     private void Start()
     {
@@ -75,62 +80,68 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _h = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump"))
+        if (!_isPaused)
         {
-            if (_remainingJumpCount > 0 || _jumpCount == -1)
+            _h = Input.GetAxisRaw("Horizontal");
+            if (Input.GetButtonDown("Jump"))
             {
-                _isJumpPressed = true;
-                _remainingJumpCount--;
-                _jumpEffect.Emit(1);
-                if (_remainingJumpCount == _jumpCount - 1)
+                if (_remainingJumpCount > 0 || _jumpCount == -1)
                 {
-                    _aus.PlayOneShot(_oneJumpSE);
-                }
-                else
-                {
-                    _aus.PlayOneShot(_twoJumpSE);
+                    _isJumpPressed = true;
+                    _remainingJumpCount--;
+                    _jumpEffect.Emit(1);
+                    if (_remainingJumpCount == _jumpCount - 1)
+                    {
+                        _aus.PlayOneShot(_oneJumpSE);
+                    }
+                    else
+                    {
+                        _aus.PlayOneShot(_twoJumpSE);
+                    }
                 }
             }
-        }
-        else if (Input.GetButtonUp("Jump"))
-        {
-            _pressedJumpButtonTime = 0;
-            _isJumpPressed = false;
-        }
-        if (_isJumpPressed)
-        {
-            _pressedJumpButtonTime += Time.deltaTime;
-        }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            _isFiring = true;
-        }
-        else if (Input.GetButtonUp("Fire1"))
-        {
-            _isFiring = false;
-        }
-        if (_isFiring && _intervalTimer <= 0 || Input.GetKey(KeyCode.P))
-        {
-            ShootBullet();
+            else if (Input.GetButtonUp("Jump"))
+            {
+                _pressedJumpButtonTime = 0;
+                _isJumpPressed = false;
+            }
+            if (_isJumpPressed)
+            {
+                _pressedJumpButtonTime += Time.deltaTime;
+            }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                _isFiring = true;
+            }
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                _isFiring = false;
+            }
+            if (_isFiring && _intervalTimer <= 0 || Input.GetKey(KeyCode.P))
+            {
+                ShootBullet();
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (_intervalTimer > 0)
+        if (!_isPaused)
         {
-            _intervalTimer -= Time.deltaTime;
-        }
-        _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
+            if (_intervalTimer > 0)
+            {
+                _intervalTimer -= Time.deltaTime;
+            }
+            _rb.velocity = new Vector2(_h * _moveSpeed, _rb.velocity.y);
 
-        if (_isJumpPressed && _pressedJumpButtonTime < 0.2f)
-        {
-            _rb.velocity = (_remainingJumpCount == _jumpCount - 1) ? new Vector2(_rb.velocity.x, _jumpPower) : new Vector2(_rb.velocity.x, _jumpPowerAfterOneJump);
-        }
-        else
-        {
-            _isJumpPressed = false;
+            if (_isJumpPressed && _pressedJumpButtonTime < 0.2f)
+            {
+                _rb.velocity = (_remainingJumpCount == _jumpCount - 1) ? new Vector2(_rb.velocity.x, _jumpPower) : new Vector2(_rb.velocity.x, _jumpPowerAfterOneJump);
+            }
+            else
+            {
+                _isJumpPressed = false;
+            }
         }
     }
     private void ShootBullet()
@@ -164,5 +175,19 @@ public class PlayerControl : MonoBehaviour
         {
             _enemyHealthController.EnemyDamage(1);
         }
+    }
+
+    public void Pause()
+    {
+        _isPaused = true;
+        _velocity = _rb.velocity;
+        _rb.Sleep();
+    }
+
+    public void Resume()
+    {
+        _isPaused = false;
+        _rb.WakeUp();
+        _rb.velocity = _velocity;
     }
 }

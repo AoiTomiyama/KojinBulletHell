@@ -62,6 +62,9 @@ public class EnemyHealthController : MonoBehaviour
     {
         if (_health - damage == 0)
         {
+            //死亡演出中はポーズができないようにする。
+            FindObjectOfType<PauseManager>().EnablePause = false;
+
             _seAus.PlayOneShot(_hitAtEnemySE);
             _boss.Death();
             Destroy(this.gameObject);

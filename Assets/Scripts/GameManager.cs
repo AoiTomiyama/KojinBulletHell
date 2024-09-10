@@ -40,10 +40,6 @@ public class GameManager : MonoBehaviour, IPausable
     }
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    FindObjectOfType<FadeInOut>().FadeInAndChangeScene("Title");
-        //}
         if (!_isTimeStop)
         {
             _time += Time.deltaTime;

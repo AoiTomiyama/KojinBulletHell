@@ -78,9 +78,9 @@ public abstract class BossBase : MonoBehaviour, IPausable
         _seAus = GetComponent<AudioSource>();
         _seAus.volume *= PlayerPrefs.GetFloat("SEVolume");
         _tweens.Add(
-            _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360).
-            SetLoops(-1, LoopType.Incremental).
-            SetEase(Ease.Linear)
+            _bossCube.transform.DORotate(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1.5f, RotateMode.FastBeyond360)
+            .SetLoops(-1, LoopType.Incremental)
+            .SetEase(Ease.Linear)
         );
         WanderingMove();
     }
@@ -149,10 +149,10 @@ public abstract class BossBase : MonoBehaviour, IPausable
     public void WanderingMove()
     {
         _tweens.Add(
-            this.transform.DOMove(new Vector2(-_startPos.x, _startPos.y), 3).
-            SetLoops(2, LoopType.Yoyo).
-            SetEase(Ease.InOutQuad).
-            OnComplete(() =>
+            this.transform.DOMove(new Vector2(-_startPos.x, _startPos.y), 3)
+            .SetLoops(2, LoopType.Yoyo)
+            .SetEase(Ease.InOutQuad)
+            .OnComplete(() =>
             {
                 _bossCube.transform.DOPause();
                 ChooseAttack();
@@ -195,9 +195,9 @@ public abstract class BossBase : MonoBehaviour, IPausable
         Destroy(_particleTr.gameObject);
         _flashEffector.Flash();
         _tweens.Add(
-            _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360).
-            SetEase(Ease.InExpo).
-            OnComplete(() => StartCoroutine(Explode()))
+            _bossCube.transform.DORotate(360 * Random.Range(4.6f, 5.1f) * Vector3.one, duration, RotateMode.FastBeyond360)
+            .SetEase(Ease.InExpo)
+            .OnComplete(() => StartCoroutine(Explode()))
         );
         StartCoroutine(FindObjectOfType<LightRay>().EmitLightRay(duration, 10));
     }

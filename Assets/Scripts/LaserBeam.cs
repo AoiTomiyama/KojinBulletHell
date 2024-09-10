@@ -4,7 +4,7 @@ using UnityEngine;
 /// レーザービームを撃つスクリプト
 /// </summary>
 
-public class LaserBeam : MonoBehaviour
+public class LaserBeam : MonoBehaviour, IPausable
 {
     [SerializeField, Header("レーザーの幅")]
     private float _laserWidth = 30f;
@@ -39,16 +39,14 @@ public class LaserBeam : MonoBehaviour
     private LineRenderer _laserLr;
     /// <summary> レーザーが狙う敵のTransformを取得 </summary>
     private Transform _targetPos;
-    /// <summary> 現在のレーザーの太さを取得 </summary>
-    private float _currentLaserWidth;
     /// <summary> レーザーの終点となる座標 </summary>
-    private Vector2 _endPos;
+    private readonly Vector2 _endPos = Vector3.up * 100;
     /// <summary> 当たり判定</summary>
     private BoxCollider2D _hitBox;
     /// <summary> 体力を管理しているHealthControllerを取得 </summary>
     private HealthController _healthController;
-    /// <summary> Tweenerを保存してこのスクリプトが破壊されたときにTweenerを止める用 </summary>
-    private Tweener _tweener;
+    /// <summary> Tweenを保存してこのスクリプトが破壊されたときにTweenを止める用 </summary>
+    private Tween _tweener;
     /// <summary>SEのAudiosourceを取得</summary>
     private AudioSource _seAus;
     private void Start()
@@ -75,58 +73,51 @@ public class LaserBeam : MonoBehaviour
             transform.up = _targetPos.position - this.transform.position;
         }
         _seAus.PlayOneShot(_warnSE);
-        _endPos = Vector3.up * 100;
         _prewarnLr.SetPosition(0, Vector2.zero);
         _prewarnLr.SetPosition(1, _endPos);
-        Invoke(nameof(ShootLaser), _prewarnDuration);
+        ShootLaser();
     }
     private void ShootLaser()
     {
-        FindObjectOfType<CameraShaker>().Shake(_damage / 3f, _startLaser, _laserDuration, _endLaser);
-
-        if (_seAus.clip != _beamSE)
-        {
-            _seAus.clip = _beamSE;
-        }
-        _seAus.Play();
-
-        _laserLr.SetPosition(0, Vector2.zero);
-        _laserLr.SetPosition(1, _endPos);
-        _hitBox.enabled = _laserLr.enabled = true;
-        _prewarnLr.SetPosition(1, Vector2.zero);
-        GetComponent<ParticleSystem>().Emit(1);
-        _tweener = DOVirtual.Float(0, _laserWidth, _startLaser, (value) => _currentLaserWidth = value).
-            OnComplete(
-            () =>
+        _tweener = DOTween.To(() => _laserLr.widthMultiplier, x => _laserLr.widthMultiplier = x, _laserWidth, _startLaser)
+            .SetDelay(_prewarnDuration)
+            .OnStart(() =>
             {
-                _tweener = DOVirtual.Float(_laserWidth, 0, _endLaser, (value) => _currentLaserWidth = value).
-                SetEase(Ease.InQuad).
-                SetDelay(_laserDuration).
-                OnComplete(() =>
+                FindObjectOfType<CameraShaker>().Shake(_damage / 3f, _startLaser, _laserDuration, _endLaser);
+
+                if (_seAus.clip != _beamSE)
                 {
-                    _hitBox.enabled = _laserLr.enabled = false;
-                    Destroy(this.gameObject);
-                });
-            }
-            );
+                    _seAus.clip = _beamSE;
+                }
+                _seAus.Play();
+
+                _laserLr.SetPosition(0, Vector2.zero);
+                _laserLr.SetPosition(1, _endPos);
+                _hitBox.enabled = _laserLr.enabled = true;
+                _prewarnLr.SetPosition(1, Vector2.zero);
+                GetComponent<ParticleSystem>().Emit(1);
+            })
+            .OnUpdate(SetCollider)
+            .OnComplete(() =>
+            {
+                _tweener = DOTween.To(() => _laserLr.widthMultiplier, x => _laserLr.widthMultiplier = x, 0, _endLaser)
+                .OnUpdate(SetCollider)
+                .SetDelay(_laserDuration)
+                .SetEase(Ease.InQuad)
+                .OnComplete(() => Destroy(this.gameObject));
+            });
     }
 
-    private void FixedUpdate()
-    {
-        SetCollider();
-    }
     private void SetCollider()
     {
-        if (_hitBox.enabled && _currentLaserWidth > 0.01f)
-        {
-            _laserLr.widthMultiplier = _currentLaserWidth;
-            Vector2 midPos = _endPos / 2;
-            float length = Vector2.Distance(Vector2.zero, _endPos);
-            Vector2 direction = transform.up.normalized;
-            _hitBox.size = new Vector2(_currentLaserWidth * 0.15f, length);
-            _hitBox.transform.localPosition = midPos;
-            _hitBox.transform.up = direction;
-        }
+        const float lineWidthToColliderMultiplier = 0.15f;
+
+        Vector2 midPos = _endPos / 2;
+        float length = Vector2.Distance(Vector2.zero, _endPos);
+        Vector2 direction = transform.up.normalized;
+        _hitBox.size = new Vector2(_laserLr.widthMultiplier * lineWidthToColliderMultiplier, length);
+        _hitBox.transform.localPosition = midPos;
+        _hitBox.transform.up = direction;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -138,5 +129,15 @@ public class LaserBeam : MonoBehaviour
     private void OnDisable()
     {
         _tweener?.Kill();
+    }
+
+    public void Pause()
+    {
+        _tweener?.Pause();
+    }
+
+    public void Resume()
+    {
+        _tweener?.Play();
     }
 }

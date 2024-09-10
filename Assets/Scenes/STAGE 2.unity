@@ -8780,6 +8780,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1543933051723752734, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
+      propertyPath: _maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3954522143579728476, guid: ecf48ce9e29a4c349b752f70e15cecd0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

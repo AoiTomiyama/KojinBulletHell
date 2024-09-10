@@ -57,7 +57,7 @@ public abstract class BossBase : MonoBehaviour, IPausable
     /// <summary>画面全体を光らせるスクリプト</summary>
     protected private FlashEffect _flashEffector;
     /// <summary>Tweenを保存してこのスクリプトが破壊されたときにTweenを止める用</summary>
-    protected List<Tween> _tweens = new();
+    protected private List<Tween> _tweens = new();
     /// <summary>難易度</summary>
     protected private Enums.Difficulties _difficulty;
     

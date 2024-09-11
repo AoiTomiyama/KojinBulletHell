@@ -21,6 +21,9 @@ public class TitleManager : MonoBehaviour
     private GameObject _currentActivePanel;
     /// <summary>SE‚ÌAudiosource‚ðŽæ“¾</summary>
     private AudioSource _seAus;
+
+    public string SelectedLevel { get => _selectedLevel; set => _selectedLevel = value; }
+
     private void Start()
     {
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();

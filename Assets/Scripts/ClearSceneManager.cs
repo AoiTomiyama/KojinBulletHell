@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// リトライ画面を管理するスクリプト
@@ -25,26 +20,12 @@ public class ClearSceneManager : MonoBehaviour
 
     private void Start()
     {
-
         //GameManagerがメイン画面時に記録していたシーン名をPlayerPrefsから持ってくる
         _oneBeforeSceneName = PlayerPrefs.GetString("Scene");
         GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SEVolume");
 
         var record = PlayerPrefs.GetFloat("Time");
-        var recordList = SaveDateManager.LoadData();
-        var tempData = new SaveDateManager.Record(_oneBeforeSceneName, PlayerPrefs.GetInt("DIFF_INT"), record);
-
-        recordList.Add(tempData);
-        if (recordList.Where(data => data._stage == tempData._stage && data._difficulty == tempData._difficulty).Count() >= 4)
-        {
-            Debug.LogWarning("個数が多くなりすぎないように要素を削除");
-
-            var tempList = recordList.Where(data => data._stage == tempData._stage && data._difficulty == tempData._difficulty).OrderBy(data => data._time).Take(3).ToList();
-            var tempList2 = recordList.Where(data => data._stage != tempData._stage || data._difficulty != tempData._difficulty).OrderBy(data => data._time).ToList();
-            recordList = tempList.Concat(tempList2).ToList();
-        }
-
-        SaveDateManager.SaveData(recordList);
+        SaveDateManager.Instance.AddData(new SaveDateManager.Record(_oneBeforeSceneName, PlayerPrefs.GetInt("DIFF_INT"), record));
 
         _timeRecordText.text = "Time: " + record.ToString("F2");
 

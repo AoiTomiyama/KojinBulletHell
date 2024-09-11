@@ -1045,6 +1045,10 @@ PrefabInstance:
       propertyPath: m_text
       value: '[< / >] or [a / d] - move'
       objectReference: {fileID: 0}
+    - target: {fileID: 5855868415132932878, guid: d3839f0b64d2afc43838573cc029f641, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7433568605502953237, guid: d3839f0b64d2afc43838573cc029f641, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1839,15 +1843,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Hold [Z / K] - shoot
 
-        [V] - Pause / Resume
-
-
-        Tutorial
-        is done.
-
-        You can use these keys
-
-        in every stage.'
+        [V] - Pause / Resume'
       objectReference: {fileID: 0}
     - target: {fileID: 5855868415132932878, guid: d3839f0b64d2afc43838573cc029f641, type: 3}
       propertyPath: m_margin.z
@@ -1931,7 +1927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7433568605502953237, guid: d3839f0b64d2afc43838573cc029f641, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -64
+      value: -91.9
       objectReference: {fileID: 0}
     - target: {fileID: 7433568605502953237, guid: d3839f0b64d2afc43838573cc029f641, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

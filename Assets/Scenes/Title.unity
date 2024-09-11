@@ -951,6 +951,7 @@ GameObject:
   - component: {fileID: 215239820}
   - component: {fileID: 215239819}
   - component: {fileID: 215239821}
+  - component: {fileID: 215239822}
   m_Layer: 5
   m_Name: RankingDisplay
   m_TagString: Untagged
@@ -978,8 +979,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 693.5729, y: -104.21306}
-  m_SizeDelta: {x: 214.0002, y: 168.05}
+  m_AnchoredPosition: {x: 693.5729, y: -108.12785}
+  m_SizeDelta: {x: 214.0002, y: 165.0012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215239819
 MonoBehaviour:
@@ -1045,6 +1046,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &215239822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215239816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf0eb94da41dd64daeaf32be9bc4be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _texts:
+  - {fileID: 692963007}
+  - {fileID: 580538421}
+  - {fileID: 479814280}
 --- !u!224 &225947340 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6573620534576466271, guid: f47067acd44f6b645acc570f6c954055, type: 3}
@@ -1602,6 +1619,7 @@ GameObject:
   - component: {fileID: 289593908}
   - component: {fileID: 289593911}
   - component: {fileID: 289593912}
+  - component: {fileID: 289593913}
   m_Layer: 5
   m_Name: RuthlessButton
   m_TagString: Untagged
@@ -1759,6 +1777,33 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 1, b: 0.43220472, a: 0}
   m_EffectDistance: {x: 1.5, y: 1.5}
   m_UseGraphicAlpha: 1
+--- !u!114 &289593913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289593906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b9b5d0873f0bb4583d3fb98a7c1d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMouseEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 215239822}
+        m_TargetAssemblyTypeName: RankingDisplayer, Assembly-CSharp
+        m_MethodName: DisplayRecord
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &293641953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,6 +2110,18 @@ MonoBehaviour:
           m_StringArgument: Endless
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 215239822}
+        m_TargetAssemblyTypeName: RankingDisplayer, Assembly-CSharp
+        m_MethodName: ResetDisplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &379576095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,7 +2305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107.0001, y: -147.04375}
+  m_AnchoredPosition: {x: 107.0001, y: -144.37605}
   m_SizeDelta: {x: 153.8815, y: 35.6352}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &479814280
@@ -2271,7 +2328,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3. 0:00.00
+  m_text: 3. ----------
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41f7910eb1d437749a59a35aa118a1ea, type: 2}
   m_sharedMaterial: {fileID: -1102569545813278838, guid: 41f7910eb1d437749a59a35aa118a1ea, type: 2}
@@ -2362,6 +2419,7 @@ GameObject:
   - component: {fileID: 561638841}
   - component: {fileID: 561638844}
   - component: {fileID: 561638845}
+  - component: {fileID: 561638846}
   m_Layer: 5
   m_Name: NormalButton
   m_TagString: Untagged
@@ -2519,6 +2577,33 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 1, b: 0.43220472, a: 0}
   m_EffectDistance: {x: 1.5, y: 1.5}
   m_UseGraphicAlpha: 1
+--- !u!114 &561638846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561638839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b9b5d0873f0bb4583d3fb98a7c1d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMouseEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 215239822}
+        m_TargetAssemblyTypeName: RankingDisplayer, Assembly-CSharp
+        m_MethodName: DisplayRecord
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &580538419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,7 +2638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107.0001, y: -105.03125}
+  m_AnchoredPosition: {x: 107.0001, y: -103.12575}
   m_SizeDelta: {x: 153.8815, y: 35.6352}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580538421
@@ -2576,7 +2661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2. 0:00.00
+  m_text: 2. ----------
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41f7910eb1d437749a59a35aa118a1ea, type: 2}
   m_sharedMaterial: {fileID: -1102569545813278838, guid: 41f7910eb1d437749a59a35aa118a1ea, type: 2}
@@ -2974,7 +3059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107.0001, y: -63.01875}
+  m_AnchoredPosition: {x: 107.0001, y: -61.875454}
   m_SizeDelta: {x: 153.8815, y: 35.6352}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692963007
@@ -2997,7 +3082,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1. 0:00.00
+  m_text: 1. ----------
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41f7910eb1d437749a59a35aa118a1ea, type: 2}
   m_sharedMaterial: {fileID: -1102569545813278838, guid: 41f7910eb1d437749a59a35aa118a1ea, type: 2}
@@ -3992,8 +4077,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 107.0001, y: -21.00625}
-  m_SizeDelta: {x: 153.8815, y: 35.6352}
+  m_AnchoredPosition: {x: 107.0001, y: -20.62515}
+  m_SizeDelta: {x: 183.94, y: 35.6352}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &914966734
 MonoBehaviour:
@@ -4050,7 +4135,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4851,7 +4936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0014648438, y: -0.00036621094}
+  m_AnchoredPosition: {x: 0.0014648438, y: -0.00035095215}
   m_SizeDelta: {x: 960.43, y: 540.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1125767122
@@ -4970,6 +5055,7 @@ GameObject:
   - component: {fileID: 1160041716}
   - component: {fileID: 1160041719}
   - component: {fileID: 1160041720}
+  - component: {fileID: 1160041721}
   m_Layer: 5
   m_Name: ExpertButton
   m_TagString: Untagged
@@ -5127,6 +5213,33 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 1, b: 0.43220472, a: 0}
   m_EffectDistance: {x: 1.5, y: 1.5}
   m_UseGraphicAlpha: 1
+--- !u!114 &1160041721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160041714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b9b5d0873f0bb4583d3fb98a7c1d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMouseEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 215239822}
+        m_TargetAssemblyTypeName: RankingDisplayer, Assembly-CSharp
+        m_MethodName: DisplayRecord
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1161303500
 GameObject:
   m_ObjectHideFlags: 0

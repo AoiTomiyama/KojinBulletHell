@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 
 public class SaveDateManager : MonoBehaviour
 {
-    private static string _filePath;
+    private const string _saveKey = "SAVEDATA";
     public static SaveDateManager Instance { get; private set; }
     private void Awake()
     {
@@ -17,10 +16,6 @@ public class SaveDateManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    private void Start()
-    {
-        _filePath = Path.Combine(Application.persistentDataPath, "playerData.json");
-    }
     /// <summary>
     /// セーブデータをJSON形式にしてローカルに保存する。
     /// </summary>
@@ -29,8 +24,9 @@ public class SaveDateManager : MonoBehaviour
     {
         var wrapper = new PlayerDataWrapper { playerDataList = playerList };
         string json = JsonUtility.ToJson(wrapper, true);
-        File.WriteAllText(_filePath, json);
-        Debug.Log($"<color=lightblue>[SaveDataManager]</color> Save data successfully saved! : {_filePath}");
+        PlayerPrefs.SetString(_saveKey, json);
+        PlayerPrefs.Save();
+        Debug.Log($"<color=lightblue>[SaveDataManager]</color> Save data successfully saved!");
     }
     /// <summary>
     /// ローカルからセーブデータを取得する
@@ -38,9 +34,9 @@ public class SaveDateManager : MonoBehaviour
     /// <returns>ローカルから取得したセーブデータ。取得できなかった場合は空のリストが返される。</returns>
     public List<Record> LoadData()
     {
-        if (File.Exists(_filePath))
+        if (PlayerPrefs.HasKey(_saveKey))
         {
-            string json = File.ReadAllText(_filePath);
+            string json = PlayerPrefs.GetString(_saveKey, "{}");
             PlayerDataWrapper wrapper = JsonUtility.FromJson<PlayerDataWrapper>(json);
             Debug.Log("<color=lightblue>[SaveDataManager]</color> Save data successfully loaded!");
             return wrapper.playerDataList;

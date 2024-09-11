@@ -25,7 +25,10 @@ public class ClearSceneManager : MonoBehaviour
         GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SEVolume");
 
         var record = PlayerPrefs.GetFloat("Time");
-        SaveDateManager.Instance.AddData(new SaveDateManager.Record(_oneBeforeSceneName, PlayerPrefs.GetInt("DIFF_INT"), record));
+        if (PlayerPrefs.HasKey("DIFF_INT") && _oneBeforeSceneName != "")
+        {
+            SaveDateManager.Instance.AddData(new SaveDateManager.Record(_oneBeforeSceneName, PlayerPrefs.GetInt("DIFF_INT"), record));
+        }
 
         _timeRecordText.text = "Time: " + record.ToString("F2");
 

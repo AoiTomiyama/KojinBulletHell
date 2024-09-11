@@ -8,22 +8,25 @@ using UnityEngine;
 public class ShowTutorialGuide : MonoBehaviour, IPausable
 {
     [SerializeField, Header("表示させるテキスト")]
-    private TextMeshProUGUI _text;
+    private List<TextMeshProUGUI> _texts;
     /// <summary>Tween完了前にシーン移動した際にKillできるように保存</summary>
     private List<Tween> _tweens = new();
     /// <summary>テキストの表示状態</summary>
     private bool _isVisible;
     private void Start()
     {
-        _text.color = new(_text.color.r, _text.color.g, _text.color.b, 0);
+        _texts.ForEach(text => text.color = new(text.color.r, text.color.g, text.color.b, 0));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !_isVisible)
         {
             _isVisible = true;
-            _tweens.Add(_text.transform.DOMoveY(_text.transform.position.y - 30f, 0.7f));
-            _tweens.Add(_text.DOFade(1, 0.8f));
+            foreach (var text in _texts)
+            {
+                _tweens.Add(text.transform.DOMoveY(text.transform.position.y - 30f, 0.7f));
+                _tweens.Add(text.DOFade(1, 0.8f));
+            }
         }
     }
     private void OnDisable()
@@ -33,12 +36,12 @@ public class ShowTutorialGuide : MonoBehaviour, IPausable
     public void Pause()
     {
         _tweens.ForEach(tw => tw.Pause());
-        _text.enabled = false;
+        _texts.ForEach(text => text.enabled = false);
     }
 
     public void Resume()
     {
         _tweens.ForEach(tw => tw.Play());
-        _text.enabled = true;
+        _texts.ForEach(text => text.enabled = true);
     }
 }

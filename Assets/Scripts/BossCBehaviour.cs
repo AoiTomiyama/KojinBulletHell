@@ -59,7 +59,7 @@ public class BossCBehaviour : BossBase
                 _bossCube.transform.DOPlay();
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy(_particlePattern.gameObject, 99f);
             })
             .OnComplete(() => WanderingMove())
         );
@@ -114,7 +114,7 @@ public class BossCBehaviour : BossBase
                 subParticleEmission.enabled = false;
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy(_particlePattern.gameObject, 99f);
                 _bossCube.transform.DOPlay();
             })
             .OnComplete(() => WanderingMove())
@@ -157,7 +157,7 @@ public class BossCBehaviour : BossBase
             {
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy(_particlePattern.gameObject, 99f);
                 _bossCube.transform.DOPlay();
             })
             .OnComplete(() => WanderingMove())
@@ -224,7 +224,7 @@ public class BossCBehaviour : BossBase
                 if (_difficulty == Enums.Difficulties.Ruthless)
                 {
                     emission.enabled = false;
-                    Destroy(_particlePattern.gameObject, 5);
+                    Destroy(_particlePattern.gameObject, 99f);
                 }
 
                 Destroy(secondAttack);

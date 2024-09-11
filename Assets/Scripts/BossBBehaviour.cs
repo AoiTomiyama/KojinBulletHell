@@ -65,7 +65,7 @@ public class BossBBehaviour : BossBase
             {
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, 3f);
+                Destroy(_particlePattern.gameObject, 99f);
                 WanderingMove();
             })
         );
@@ -106,7 +106,7 @@ public class BossBBehaviour : BossBase
             {
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy(_particlePattern.gameObject, 99f);
                 _bossCube.transform.DOPlay();
             })
         );
@@ -152,7 +152,7 @@ public class BossBBehaviour : BossBase
             {
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy(_particlePattern.gameObject, 99f);
                 _bossCube.transform.DOPlay();
             })
         );

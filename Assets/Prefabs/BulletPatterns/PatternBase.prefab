@@ -4892,9 +4892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleDamage: 1
   _particleBehaviour: 0
-  _waitTime: 0
-  _maxAngular: 360
-  _minAngular: 0
   _shootSE: {fileID: 8300000, guid: 136301e3528a7da4c80414b4cd8296ad, type: 3}
 --- !u!82 &7782341364216967684
 AudioSource:

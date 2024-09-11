@@ -117,7 +117,7 @@ public class PlayerControl : MonoBehaviour, IPausable
             {
                 _isFiring = false;
             }
-            if (_isFiring && _intervalTimer <= 0 || Input.GetKey(KeyCode.P))
+            if (_isFiring && _intervalTimer <= 0)
             {
                 ShootBullet();
             }

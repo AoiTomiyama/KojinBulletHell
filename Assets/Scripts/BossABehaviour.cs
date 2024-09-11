@@ -52,7 +52,7 @@ public class BossABehaviour : BossBase
             {
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy( _particlePattern.gameObject, 99f);
                 _bossCube.transform.DOPlay();
             })
         );
@@ -112,7 +112,7 @@ public class BossABehaviour : BossBase
             .OnStart(() =>
             {
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, burstCount);
+                Destroy(_particlePattern.gameObject, 99f);
                 _bossCube.transform.DOPlay();
             })
             .OnComplete(() => WanderingMove())
@@ -153,7 +153,7 @@ public class BossABehaviour : BossBase
             {
                 emission.enabled = false;
                 _particleTr.DetachChildren();
-                Destroy(_particlePattern.gameObject, duration);
+                Destroy(_particlePattern.gameObject, 99f);
                 _bossCube.transform.DOPlay();
             })
             .OnComplete(() => WanderingMove())

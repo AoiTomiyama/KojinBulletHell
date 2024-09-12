@@ -176,13 +176,18 @@ public class BossBBehaviour : BossBase
         _bossCube.transform.rotation = Quaternion.Euler(0, 0, 90);
 
         //ä˘ë∂ÇÃíeñãÇîjä¸
-        foreach (var go in transform.GetComponentsInChildren<LaserBeam>())
-        {
-            Destroy(go.gameObject);
-        }
         if (_particlePattern != null)
         {
             Destroy(_particlePattern.gameObject);
+        }
+        if (_coroutine != null)
+        {
+            foreach (var go in transform.GetComponentsInChildren<LaserBeam>())
+            {
+                Destroy(go.gameObject);
+            }
+            StopCoroutine(_coroutine);
+            _coroutine = null;
         }
 
         //ëÊìÒå`ë‘ÇÃçUåÇÇê∂ê¨
@@ -253,6 +258,15 @@ public class BossBBehaviour : BossBase
         if (_particlePattern != null)
         {
             Destroy(_particlePattern.gameObject);
+        }
+        if (_coroutine != null)
+        {
+            foreach (var go in transform.GetComponentsInChildren<LaserBeam>())
+            {
+                Destroy(go.gameObject);
+            }
+            StopCoroutine(_coroutine);
+            _coroutine = null;
         }
 
         var finalAttack = Instantiate(_finalAttack, transform.position, Quaternion.identity);

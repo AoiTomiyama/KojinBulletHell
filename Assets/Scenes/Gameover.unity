@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeInOut
       objectReference: {fileID: 0}
+    - target: {fileID: 8642652959351784094, guid: f47067acd44f6b645acc570f6c954055, type: 3}
+      propertyPath: _isStartFadeOut
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -391,7 +395,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: f47067acd44f6b645acc570f6c954055, type: 3}
 --- !u!224 &662519496 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6573620534576466271, guid: f47067acd44f6b645acc570f6c954055, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8301774869594990516, guid: f47067acd44f6b645acc570f6c954055, type: 3}
   m_PrefabInstance: {fileID: 662519495}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &764164111

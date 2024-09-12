@@ -80,13 +80,12 @@ public class LaserGenerator : MonoBehaviour, IPausable
                 }
                 _generatedPositions.Add(currentPos);
                 Instantiate(_laser, currentPos, transform.rotation, transform.parent);
-
-                var timer = 0f;
-                while (timer < _interval)
-                {
-                    timer += Time.deltaTime;
-                    yield return null;
-                }
+            }
+            var timer = 0f;
+            while (timer < _interval)
+            {
+                timer += Time.deltaTime;
+                yield return null;
             }
         }
     }

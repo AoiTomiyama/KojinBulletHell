@@ -1830,7 +1830,7 @@ MonoBehaviour:
   _effectImage: {fileID: 1281369346}
   _finalAttack: {fileID: 3414550776816550853, guid: d753bbf1b0f10164da6668d74be7f5a6, type: 3}
   _magicEffector: {fileID: 276612194}
-  _state: 1
+  _state: 0
 --- !u!58 &1603850484
 CircleCollider2D:
   m_ObjectHideFlags: 0

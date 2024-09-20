@@ -28,17 +28,19 @@ public class EnemyHealthController : MonoBehaviour
     private AudioSource _seAus;
     /// <summary>‘æ“ñŒ`‘Ô‚É“Ë“ü‚µ‚½‚©‚Ç‚¤‚©</summary>
     private HealthStatus _healthStatus = HealthStatus.Normal;
+    /// <summary>“ïˆÕ“x</summary>
+    private Enums.Difficulties _difficulty;
     private void Start()
     {
         _seAus = GameObject.Find("SE").GetComponent<AudioSource>();
         _boss = FindObjectOfType<BossBase>();
         _healthSlider = GetComponent<Slider>();
-        var difficulty = (Enums.Difficulties)PlayerPrefs.GetInt("DIFF_INT");
-        if (difficulty == Enums.Difficulties.Expert)
+        _difficulty = (Enums.Difficulties)PlayerPrefs.GetInt("DIFF_INT");
+        if (_difficulty == Enums.Difficulties.Expert)
         {
             _maxHealth *= 1.5f;
         }
-        else if (difficulty == Enums.Difficulties.Ruthless)
+        else if (_difficulty == Enums.Difficulties.Ruthless)
         {
             _maxHealth *= 2f;
         }
@@ -81,7 +83,7 @@ public class EnemyHealthController : MonoBehaviour
                 _boss.PhaseSecondStart();
                 _healthStatus = HealthStatus.Half;
             }
-            else if (_health == 1 && _healthStatus == HealthStatus.Half)
+            else if (_health == 1 && _healthStatus == HealthStatus.Half && _difficulty != Enums.Difficulties.Normal)
             {
                 Debug.Log("<color=yellow>[Boss]</color> Final Attack Start");
                 _boss.FinalAttack();
